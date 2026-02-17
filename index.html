@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emmanuel | Founder & Executive Strategist</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+    background:#0c111d;
+    color:#e5e7eb;
+    font-family:'Inter',sans-serif;
+    scroll-behavior:smooth;
+}
+nav{
+    position:fixed;width:100%;
+    background:rgba(12,17,29,0.9);
+    backdrop-filter:blur(12px);
+    padding:20px 60px;
+    display:flex;
+    justify-content:space-between;
+    z-index:1000;
+}
+nav h2{
+    font-family:'Playfair Display',serif;
+    color:#fff;
+}
+nav a{
+    color:#cbd5e1;margin-left:30px;
+    text-decoration:none;font-size:14px;
+    position:relative;
+}
+nav a::after{
+    content:'';position:absolute;width:0%;height:2px;
+    background:#22c55e;bottom:-5px;left:0;transition:0.3s;
+}
+nav a:hover::after{width:100%;}
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+.hero img{
+    width:180px;height:180px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #22c55e;
+    margin-bottom:30px;
+}
+.hero h1{
+    font-family:'Playfair Display',serif;
+    font-size:60px;margin-bottom:15px;
+}
+.hero p{
+    max-width:800px;font-size:22px;opacity:0.85;
+}
+.btn{
+    margin-top:30px;padding:14px 40px;
+    border:1px solid #22c55e;color:#22c55e;
+    border-radius:50px;text-decoration:none;transition:0.3s;
+}
+.btn:hover{background:#22c55e;color:#0c111d;}
+.section{
+    padding:120px 80px;
+    max-width:1200px;margin:auto;
+}
+.section h2{
+    font-family:'Playfair Display',serif;
+    font-size:36px;margin-bottom:40px;color:#22c55e;
+}
+.card{
+    background:#111827;padding:40px;
+    border-radius:20px;margin-bottom:30px;
+    transition:0.4s;
+}
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+.metrics{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:40px;text-align:center;
+}
+.metric h3{
+    font-size:48px;color:#22c55e;
+}
+.contact-links a{
+    color:#22c55e;
+    text-decoration:none;
+    margin-right:20px;
+}
+.contact-links a:hover{
+    text-decoration:underline;
+}
+footer{
+    text-align:center;padding:40px;
+    border-top:1px solid #1f2937;
+}
+@media(max-width:768px){
+    nav{padding:20px;}
+    .section{padding:80px 20px;}
+    .hero h1{font-size:40px;}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h2>Emmanuel</h2>
+    <div>
+        <a href="#about">About</a>
+        <a href="#leadership">Leadership</a>
+        <a href="#impact">Impact</a>
+        <a href="#vision">Vision</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <img src="profile.jpg" alt="Emmanuel Profile Photo">
+    <h1>Emmanuel</h1>
+    <p>Founder of CHILEKEN AGRO HOLDINGS | Executive Agribusiness Strategist | Driving Sustainable Growth Across Emerging Markets</p>
+    <a href="cv.pdf" class="btn" download>Download CV</a>
+</section>
+
+<section id="about" class="section">
+    <h2>Executive Profile</h2>
+    <div class="card">
+        <p>Vision-driven founder and executive leader specializing in scalable agribusiness infrastructure, strategic expansion, and sustainable enterprise development. Committed to transforming agricultural systems through innovation, discipline, and long-term growth strategy.</p>
+    </div>
+</section>
+
+<section id="leadership" class="section">
+    <h2>Leadership – CHILEKEN AGRO HOLDINGS</h2>
+    <div class="card">
+        <p>As Founder and Strategic Director, Emmanuel leads high-impact agribusiness initiatives focused on production optimization, supply chain development, and long-term value creation within Zambia and regional markets.</p>
+    </div>
+</section>
+
+<section id="impact" class="section">
+    <h2>Impact & Results</h2>
+    <div class="metrics">
+        <div class="metric">
+            <h3>35%+</h3>
+            <p>Operational Efficiency Growth</p>
+        </div>
+        <div class="metric">
+            <h3>50+</h3>
+            <p>Projects Executed</p>
+        </div>
+        <div class="metric">
+            <h3>10+</h3>
+            <p>Years Leadership</p>
+        </div>
+        <div class="metric">
+            <h3>100+</h3>
+            <p>Stakeholder Partnerships</p>
+        </div>
+    </div>
+</section>
+
+<section id="vision" class="section">
+    <h2>Strategic Vision</h2>
+    <div class="card">
+        <p>To build a modern agribusiness ecosystem that integrates technology, sustainable production systems, and scalable distribution networks — positioning CHILEKEN AGRO HOLDINGS as a regional leader in agricultural innovation and economic impact.</p>
+    </div>
+</section>
+
+<section id="contact" class="section">
+    <h2>Contact & Social</h2>
+    <div class="card contact-links">
+        <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
+        <p>Phone: +260 XXX XXX XXX</p>
+        <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+    </div>
+</section>
+
+<footer>
+    © 2026 Emmanuel | Founder & Executive Strategist
+</footer>
+
+</body>
+</html>
