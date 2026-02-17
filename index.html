@@ -126,10 +126,24 @@ footer{
 </nav>
 
 <section class="hero">
-    <img src="profile.jpg" alt="Emmanuel Profile Photo">
-    <h1>NGULUBE EMMANUEL </h1>
-    <p>Founder of CHILEKEN AGRO HOLDINGS | Executive Agribusiness Strategist | Driving Sustainable Growth Across Emerging Markets</p>
-    <a href="cv.pdf" class="btn" download>Download CV</a>
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+        <!-- Profile Photo -->
+        <img src="profile.jpg" alt="Emmanuel Profile Photo" style="width:180px;height:180px;border-radius:50%;object-fit:cover;border:4px solid #22c55e;margin-bottom:25px;">
+
+        <!-- Name -->
+        <h1 style="font-family:'Playfair Display',serif;font-size:64px;margin-bottom:10px;color:#fff;">Emmanuel</h1>
+
+        <!-- Tagline -->
+        <p style="max-width:800px;font-size:22px;opacity:0.85;margin-bottom:25px;">
+            Founder of <strong>CHILEKEN AGRO HOLDINGS</strong> | Executive Agribusiness Strategist | Driving Sustainable Growth Across Emerging Markets
+        </p>
+
+        <!-- CV & LinkedIn Buttons -->
+        <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;">
+            <a href="cv.pdf" class="btn" style="padding:14px 40px;border:1px solid #22c55e;color:#22c55e;border-radius:50px;text-decoration:none;transition:0.3s;">Download CV</a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn" style="padding:14px 40px;border:1px solid #22c55e;color:#22c55e;border-radius:50px;text-decoration:none;transition:0.3s;">LinkedIn Profile</a>
+        </div>
+    </div>
 </section>
 
 <section id="about" class="section">
