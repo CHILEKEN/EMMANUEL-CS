@@ -2,202 +2,64 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<title>My Place</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Place | Agribusiness & Technology</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<!-- Font Awesome for social icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-html,body{height:100%;}
-body{
-  background:#0f172a;
-  color:#e2e8f0;
-  min-height:100vh;
-  line-height:1.5;
-  overflow-x:hidden;
-}
-
-/* NAV – sticky & compact */
-nav{
-  position:sticky;
-  top:0;
-  z-index:999;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:0.8rem 5%;
-  background:rgba(15,23,42,0.94);
-  backdrop-filter:blur(10px);
-}
+body{background:#0f172a;color:#e2e8f0;min-height:100vh;line-height:1.5;overflow-x:hidden;}
+nav{position:sticky;top:0;z-index:999;display:flex;justify-content:space-between;align-items:center;padding:0.8rem 5%;background:rgba(15,23,42,0.95);backdrop-filter:blur(10px);}
 nav .logo{font-weight:800;font-size:1.4rem;color:#00f5ff;}
-nav a{
-  color:#e2e8f0;
-  text-decoration:none;
-  font-size:0.9rem;
-  margin-left:1rem;
-}
-
-/* HERO – fits mobile perfectly */
-.hero{
-  min-height:90vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:3rem 5% 4rem;
-}
-.hero h1{
-  font-size:clamp(2.6rem,9.5vw,5rem);
-  background:linear-gradient(90deg,#00f5ff,#6366f1);
-  -webkit-background-clip:text;
-  color:transparent;
-  margin-bottom:0.8rem;
-  line-height:1.1;
-}
-.hero p{
-  font-size:clamp(1rem,4.2vw,1.3rem);
-  color:#cbd5e1;
-  margin-bottom:1.8rem;
-  max-width:90%;
-}
-.btn{
-  padding:0.8rem 2rem;
-  border-radius:999px;
-  background:linear-gradient(90deg,#00f5ff,#6366f1);
-  color:white;
-  text-decoration:none;
-  font-weight:600;
-  font-size:1rem;
-}
-
-/* SECTIONS – compact & mobile-first */
-section{
-  padding:3rem 5%;
-  opacity:0;
-  transform:translateY(25px);
-  transition:opacity 0.6s,transform 0.6s;
-}
+nav a{color:#e2e8f0;text-decoration:none;font-size:0.9rem;margin-left:1rem;}
+.hero{min-height:85vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2.5rem 5% 3.5rem;}
+.hero h1{font-size:clamp(2.6rem,10vw,5.2rem);background:linear-gradient(90deg,#00f5ff,#6366f1);-webkit-background-clip:text;color:transparent;margin-bottom:0.8rem;line-height:1.1;}
+.hero p{font-size:clamp(1.05rem,4.5vw,1.35rem);color:#cbd5e1;margin-bottom:1.6rem;max-width:90%;}
+.btn{padding:0.8rem 2.2rem;border-radius:999px;background:linear-gradient(90deg,#00f5ff,#6366f1);color:white;text-decoration:none;font-weight:600;font-size:1rem;}
+section{padding:2.8rem 5% 3.8rem;opacity:0;transform:translateY(25px);transition:opacity 0.6s,transform 0.6s;}
 section.visible{opacity:1;transform:none;}
-
-/* CARDS – lightweight */
-.card{
-  background:rgba(255,255,255,0.06);
-  backdrop-filter:blur(8px);
-  border:1px solid rgba(99,102,241,0.18);
-  border-radius:12px;
-  padding:1.5rem;
-  margin:1rem auto;
-  max-width:900px;
-}
-
-/* PROFILE – neon flowing border */
-.profile{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:1.5rem;
-  text-align:center;
-}
+.card{background:rgba(255,255,255,0.06);backdrop-filter:blur(8px);border:1px solid rgba(99,102,241,0.2);border-radius:12px;padding:1.6rem;margin:1.2rem auto;max-width:900px;}
+.profile{display:flex;flex-direction:column;align-items:center;gap:1.6rem;text-align:center;}
 .profile img{
-  width:clamp(140px,35vw,200px);
+  width:clamp(150px,38vw,210px);
   border-radius:50%;
   border:5px solid transparent;
   background:linear-gradient(45deg,#00f5ff,#6366f1,#a78bfa,#00f5ff) border-box;
   background-size:300% 300%;
   padding:4px;
-  animation: neonFlow 5s linear infinite;
-  box-shadow:0 0 18px rgba(0,245,255,0.45);
+  animation:neonFlow 7s linear infinite;
+  box-shadow:0 0 20px rgba(0,245,255,0.5);
 }
-@keyframes neonFlow {
-  0% {background-position:0% 50%;}
-  50% {background-position:100% 50%;}
-  100% {background-position:0% 50%;}
-}
-
-/* METRICS – tight grid */
-.metrics{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-  gap:1rem;
-  text-align:center;
-}
-.metric h2{
-  font-size:clamp(2.2rem,7.5vw,3.8rem);
-  color:#00f5ff;
-  margin-bottom:0.3rem;
-}
-
-/* TESTIMONIALS */
-.testimonial{
-  background:rgba(99,102,241,0.05);
-  border-radius:10px;
-  padding:1.2rem;
-  margin:1rem 0;
-}
-.testimonial p{font-style:italic;margin-bottom:0.6rem;font-size:0.95rem;}
-.testimonial-author{color:#00f5ff;font-weight:600;font-size:0.9rem;}
-
-/* MAP */
-.map-container{
-  margin:2rem auto 0;
-  max-width:100%;
-  border-radius:12px;
-  overflow:hidden;
-  border:1px solid rgba(99,102,241,0.25);
-}
-.map-container iframe{
-  width:100%;
-  height:clamp(260px,50vw,380px);
-  border:0;
-}
-
-/* FORM – simple & fast */
-.contact-form{
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
-  max-width:640px;
-  margin:2.5rem auto 0;
-}
-.contact-form input,
-.contact-form textarea{
-  padding:0.8rem 1rem;
-  border-radius:8px;
-  border:1px solid rgba(99,102,241,0.3);
-  background:rgba(255,255,255,0.04);
-  color:white;
-  font-size:0.95rem;
-}
+@keyframes neonFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1.2rem;text-align:center;}
+.metric h2{font-size:clamp(2.4rem,8vw,4rem);color:#00f5ff;margin-bottom:0.3rem;}
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-top:1.5rem;}
+.testimonial{background:rgba(99,102,241,0.05);border-radius:10px;padding:1.3rem;}
+.testimonial p{font-style:italic;margin-bottom:0.8rem;font-size:0.95rem;}
+.testimonial-author{color:#00f5ff;font-weight:600;font-size:0.95rem;}
+.testimonial-role{color:#94a3b8;font-size:0.9rem;margin-top:0.3rem;}
+.map-container{margin:2.2rem auto 0;max-width:100%;border-radius:12px;overflow:hidden;border:1px solid rgba(99,102,241,0.25);}
+.map-container iframe{width:100%;height:clamp(260px,50vw,380px);border:0;}
+.contact-form{display:flex;flex-direction:column;gap:1rem;max-width:640px;margin:2.2rem auto 0;}
+.contact-form input,.contact-form textarea{padding:0.8rem 1.1rem;border-radius:10px;border:1px solid rgba(99,102,241,0.3);background:rgba(255,255,255,0.04);color:white;font-size:0.95rem;}
 .contact-form textarea{min-height:110px;}
-.contact-form button{
-  padding:0.9rem;
-  border:none;
-  border-radius:999px;
-  background:linear-gradient(90deg,#00f5ff,#6366f1);
-  color:white;
-  font-weight:600;
-  font-size:1rem;
-  cursor:pointer;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:3rem 5% 4rem;
-  background:#0b1220;
-  font-size:0.9rem;
-}
-
-/* MOBILE FIXES */
+.contact-form button{padding:0.9rem;border:none;border-radius:999px;background:linear-gradient(90deg,#00f5ff,#6366f1);color:white;font-weight:600;font-size:1rem;cursor:pointer;}
+.social-icons{margin-top:1.5rem;display:flex;justify-content:center;gap:1.8rem;}
+.social-icons a{color:#e2e8f0;font-size:2rem;transition:0.3s;}
+.social-icons a:hover{color:#00f5ff;transform:scale(1.2);}
+footer{text-align:center;padding:3.5rem 5% 4.5rem;background:#0b1220;font-size:0.95rem;}
 @media (max-width:600px){
   nav{padding:0.7rem 5%;}
   nav a{margin-left:0.8rem;font-size:0.85rem;}
+  .hero{padding:2rem 5% 3rem;}
   section{padding:2rem 6% 3rem;}
-  .card{padding:1.2rem;}
-  .hero{padding:2.5rem 5% 3.5rem;}
+  .card{padding:1.3rem;}
+  .social-icons{gap:1.5rem;}
+  .social-icons a{font-size:1.8rem;}
 }
 </style>
 </head>
@@ -218,7 +80,7 @@ footer{
 
 <section id="hero" class="hero">
   <h1 class="typing">WELCOME TO MY PLACE, FEEL FREE</h1>
-  <p>Agribusiness & Technology Leader<br>CHILEKEN AGRO HOLDINGS – Lusaka</p>
+  <p>Agribusiness & Technology Leader<br>CHILEKEN AGRO HOLDINGS – Lusaka, Zambia</p>
   <a href="#about" class="btn">Explore</a>
 </section>
 
@@ -235,7 +97,7 @@ footer{
 <section id="leadership">
   <div class="card">
     <h2>Leadership</h2>
-    <p>Founder & Strategic Director at CHILEKEN AGRO HOLDINGS. Focusing on digital tools for farming efficiency and sustainability.</p>
+    <p>Founder & Strategic Director at CHILEKEN AGRO HOLDINGS. Focusing on smart farming, digital supply chains and climate-smart agriculture solutions.</p>
   </div>
 </section>
 
@@ -253,10 +115,28 @@ footer{
 
 <section id="testimonials">
   <div class="card">
-    <h2>Feedback</h2>
-    <div class="testimonial">
-      <p>"Emmanuel is driving real change in Zambian agriculture with technology."</p>
-      <div class="testimonial-author">Juma Gift Milanzi</div>
+    <h2>What Partners Say</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <p>"Emmanuel is driving real change in Zambian agriculture with technology."</p>
+        <div class="testimonial-author">Juma Gift Milanzi</div>
+        <div class="testimonial-role">Community Leader</div>
+      </div>
+      <div class="testimonial">
+        <p>"His digital solutions have transformed how we manage supply chains — highly recommended."</p>
+        <div class="testimonial-author">Grace Mwansa</div>
+        <div class="testimonial-role">Agri-Business Partner</div>
+      </div>
+      <div class="testimonial">
+        <p>"Emmanuel’s vision for smart farming is exactly what Zambia needs right now."</p>
+        <div class="testimonial-author">Dr. Chileshe Banda</div>
+        <div class="testimonial-role">Agricultural Consultant</div>
+      </div>
+      <div class="testimonial">
+        <p>"Working with him on tech integration was seamless and produced excellent results."</p>
+        <div class="testimonial-author">Victor Kunda</div>
+        <div class="testimonial-role">Tech Collaborator</div>
+      </div>
     </div>
   </div>
 </section>
@@ -276,7 +156,7 @@ footer{
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d244195.512!2d28.199997!3d-15.416667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x195f2c9b5d9f9a8d%3A0x4b5e8f9f9f9f9f9f!2sLusaka%2C%20Zambia!5e0!3m2!1sen!2s!4v1739712000000" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
-    <p style="margin:1.5rem 0 1rem;text-align:center;">Lusaka, Zambia</p>
+    <p style="margin:1.6rem 0 1.2rem;text-align:center;">Lusaka, Zambia</p>
 
     <form class="contact-form" action="https://formspree.io/f/your-id" method="POST">
       <input type="text" name="name" placeholder="Name" required>
@@ -286,15 +166,35 @@ footer{
       <button type="submit">Send</button>
     </form>
 
-    <p style="margin-top:1.5rem;text-align:center;font-size:0.9rem;">
+    <p style="margin-top:1.8rem;text-align:center;font-size:0.9rem;">
       <a href="mailto:Emmanuel.ngulube@cs.unza.zm">Emmanuel.ngulube@cs.unza.zm</a><br>
       +260 979 236 667<br>
       <a href="https://linkedin.com/in/emmanuel-ngulube-890b3b328" target="_blank">LinkedIn</a>
     </p>
+
+    <!-- Quick WhatsApp connect button in contact section -->
+    <div style="text-align:center;margin-top:1.5rem;">
+      <a href="https://wa.me/260979236667" target="_blank" style="display:inline-block;padding:0.8rem 1.8rem;background:#25D366;color:white;border-radius:999px;font-weight:600;text-decoration:none;">
+        <i class="fab fa-whatsapp" style="margin-right:0.5rem;"></i> Message on WhatsApp
+      </a>
+    </div>
   </div>
 </section>
 
-<footer>© 2026 Emmanuel Ngulube</footer>
+<footer>
+  © 2026 Emmanuel Ngulube
+  <div class="social-icons" style="margin-top:1.5rem;display:flex;justify-content:center;gap:2rem;">
+    <a href="https://www.facebook.com/emmanuelngulube.emmanuelngulube" target="_blank" aria-label="Facebook">
+      <i class="fab fa-facebook-f" style="font-size:2rem;color:#1877F2;"></i>
+    </a>
+    <a href="https://wa.me/260979236667" target="_blank" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp" style="font-size:2rem;color:#25D366;"></i>
+    </a>
+    <a href="https://linkedin.com/in/emmanuel-ngulube-890b3b328" target="_blank" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in" style="font-size:2rem;color:#0A66C2;"></i>
+    </a>
+  </div>
+</footer>
 
 <canvas id="bgCanvas"></canvas>
 
@@ -305,7 +205,7 @@ if(typing){
   const t = typing.textContent.trim();
   typing.textContent = "";
   let i = 0;
-  function type(){if(i<t.length){typing.textContent+=t[i++];setTimeout(type,28)}}
+  function type(){if(i<t.length){typing.textContent+=t[i++];setTimeout(type,32)}}
   setTimeout(type,300);
 }
 
