@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NGULUBE EMMANUEL | Founder & Executive Strategist</title>
+<title>NGULUBE EMMANUEL| Founder & Executive Strategist</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -14,7 +14,7 @@ body {
     background:#0c111d;
     color:#e5e7eb;
     font-family:'Inter',sans-serif;
-    scroll-behavior:smooth;
+    scroll-behavior: smooth;
 }
 
 /* --- Navigation --- */
@@ -28,10 +28,7 @@ nav {
     justify-content:space-between;
     z-index:1000;
 }
-nav h2 {
-    font-family:'Playfair Display',serif;
-    color:#fff;
-}
+nav h2 { font-family:'Playfair Display',serif; color:#fff; }
 nav a {
     color:#cbd5e1;
     margin-left:30px;
@@ -96,6 +93,13 @@ nav a:hover::after { width:100%; }
     padding:120px 80px;
     max-width:1200px;
     margin:auto;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 .section h2 {
     font-family:'Playfair Display',serif;
@@ -128,8 +132,6 @@ nav a:hover::after { width:100%; }
     font-size:48px;
     color:#22c55e;
 }
-
-/* Hover effect for metric cards */
 .metric.card:hover {
     transform:translateY(-10px);
     box-shadow:0 20px 40px rgba(0,0,0,0.4);
@@ -160,39 +162,9 @@ footer {
 </style>
 </head>
 
-<script>
-// Animate counters when in view
-const counters = document.querySelectorAll('.counter');
-const options = {threshold: 0.5};
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting){
-            const counter = entry.target;
-            const target = +counter.getAttribute('data-target');
-            let count = 0;
-            const increment = target / 100; // smooth increment
-            const updateCount = () => {
-                count += increment;
-                if(count < target){
-                    counter.innerText = Math.ceil(count);
-                    requestAnimationFrame(updateCount);
-                } else {
-                    counter.innerText = target;
-                }
-            };
-            updateCount();
-            observer.unobserve(counter); // animate once
-        }
-    });
-}, options);
-
-counters.forEach(counter => observer.observe(counter));
-</script>
-
 <body>
-
 <nav>
-    <h2>NGULUBE EMMANUEL</h2>
+    <h2>WELCOME TO OUR PLATFORM</h2>
     <div>
         <a href="#about">About</a>
         <a href="#leadership">Leadership</a>
@@ -203,23 +175,12 @@ counters.forEach(counter => observer.observe(counter));
 </nav>
 
 <section class="hero">
-    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
-        <!-- Profile Photo -->
-        <img src="profile.jpg" alt="Emmanuel Profile Photo" style="width:180px;height:180px;border-radius:50%;object-fit:cover;border:4px solid #22c55e;margin-bottom:25px;">
-
-        <!-- Name -->
-        <h1 style="font-family:'Playfair Display',serif;font-size:64px;margin-bottom:10px;color:#fff;">Emmanuel</h1>
-
-        <!-- Tagline -->
-        <p style="max-width:800px;font-size:22px;opacity:0.85;margin-bottom:25px;">
-            Founder of <strong>CHILEKEN AGRO HOLDINGS</strong> | Executive Agribusiness Strategist | Driving Sustainable Growth Across Emerging Markets
-        </p>
-
-        <!-- CV & LinkedIn Buttons -->
-        <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;">
-            <a href="cv.pdf" class="btn" style="padding:14px 40px;border:1px solid #22c55e;color:#22c55e;border-radius:50px;text-decoration:none;transition:0.3s;">Download CV</a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn" style="padding:14px 40px;border:1px solid #22c55e;color:#22c55e;border-radius:50px;text-decoration:none;transition:0.3s;">LinkedIn Profile</a>
-        </div>
+    <img src="profile.jpg" alt="Emmanuel Profile Photo">
+    <h1>Emmanuel</h1>
+    <p>Founder of <strong>CHILEKEN AGRO HOLDINGS</strong> | Executive Agribusiness Strategist | Driving Sustainable Growth Across Emerging Markets</p>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;">
+        <a href="cv.pdf" class="btn">Download CV</a>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn">LinkedIn Profile</a>
     </div>
 </section>
 
@@ -269,15 +230,53 @@ counters.forEach(counter => observer.observe(counter));
 <section id="contact" class="section">
     <h2>Contact & Social</h2>
     <div class="card contact-links">
-        <p>Email: <a href="mailto:emmanuel.ngulube@cs.unza.zm">. emmanuel.ngulube@cs.unza.zm</a></p>
-        <p>Phone: +260979236667</p>
+        <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
+        <p>Phone: +260 XXX XXX XXX</p>
         <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
     </div>
 </section>
 
 <footer>
-    © 2026 NGULUBE EMMANUEL | Founder & Executive Strategist
+    © 2026 Emmanuel | Founder & Executive Strategist
 </footer>
+
+<script>
+// Animate metrics counters
+const counters = document.querySelectorAll('.counter');
+const options = {threshold: 0.5};
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            const counter = entry.target;
+            const target = +counter.getAttribute('data-target');
+            let count = 0;
+            const increment = target / 100;
+            const updateCount = () => {
+                count += increment;
+                if(count < target){
+                    counter.innerText = Math.ceil(count);
+                    requestAnimationFrame(updateCount);
+                } else { counter.innerText = target; }
+            };
+            updateCount();
+            observer.unobserve(counter);
+        }
+    });
+}, options);
+counters.forEach(counter => observer.observe(counter));
+
+// Animate section entrances
+const sections = document.querySelectorAll('.section');
+const sectionObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.2 });
+sections.forEach(section => sectionObserver.observe(section));
+</script>
 
 </body>
 </html>
