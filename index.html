@@ -3,77 +3,189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Executive portfolio of Emmanuel Ngulube – Innovative leader in agribusiness and youth advocacy. Founder & Strategic Director at CHILEKEN AGRO HOLDINGS, blending technology, sustainable agriculture, and strategic growth in Zambia.">
-<meta name="keywords" content="Emmanuel Ngulube, CHILEKEN AGRO HOLDINGS, agribusiness Zambia, sustainable agriculture, youth leadership, digital innovation, Lusaka">
-<title>Emmanuel Ngulube | Executive Portfolio</title>
+<meta name="description" content="Emmanuel Ngulube – Youthful Agriculturalist, Author, Politician, and Youth Leadership Advocate in Lusaka, Zambia. Empowering youth through sustainable agriculture, leadership, and community development.">
+<meta name="keywords" content="Emmanuel Ngulube, youthful agriculturalist, youth leadership advocate, Zambia agriculture, Lusaka, sustainable farming, youth empowerment">
+<title>Emmanuel Ngulube | Youthful Agriculturalist & Leadership Advocate</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 /* GLOBAL STYLING */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#0f172a;color:white;overflow-x:hidden;scroll-behavior:smooth;}
-
-/* CURSOR */
-.cursor{width:20px;height:20px;border-radius:50%;position:fixed;pointer-events:none;background:radial-gradient(circle,#00f5ff,transparent);mix-blend-mode:screen;transform:translate(-50%,-50%);z-index:9999;}
+body{
+  background:#0f172a;
+  color:white;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+  min-height:100vh;
+  line-height:1.6;
+}
 
 /* NAV */
-nav{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:15px 5%;background:rgba(0,0,0,0.4);backdrop-filter:blur(12px);z-index:1000;}
-nav a{color:white;text-decoration:none;margin-left:20px;transition:0.3s;}
-nav a:hover{color:#00f5ff;}
-.logo{font-weight:800;font-size:1.5rem;color:#00f5ff;}
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:clamp(10px, 3vw, 15px) 5%;
+  background:rgba(15,23,42,0.7);
+  backdrop-filter:blur(12px);
+  z-index:1000;
+}
+nav .logo{font-weight:800;font-size:clamp(1.3rem, 5vw, 1.6rem);color:#00f5ff;}
+nav div a{
+  color:white;
+  text-decoration:none;
+  margin-left:clamp(10px, 2vw, 18px);
+  font-size:clamp(0.85rem, 3vw, 1rem);
+  transition:0.3s;
+}
+nav div a:hover{color:#00f5ff;}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;padding:60px 5%;}
-.hero h1{font-size:3.5rem;background:linear-gradient(90deg,#00f5ff,#6366f1);-webkit-background-clip:text;color:transparent;margin-bottom:20px;}
-.hero p{font-size:1.3rem;color:#cbd5e1;margin-bottom:30px;}
-.btn{padding:14px 40px;border-radius:50px;background:linear-gradient(90deg,#00f5ff,#6366f1);color:white;text-decoration:none;transition:0.4s;box-shadow:0 0 20px rgba(0,245,255,0.4);}
-.btn:hover{transform:scale(1.08);box-shadow:0 0 30px rgba(0,245,255,0.6);}
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:clamp(100px, 15vh, 140px) 5% 60px;
+}
+.hero h1{
+  font-size:clamp(2.8rem, 10vw, 5rem);
+  background:linear-gradient(90deg,#00f5ff,#6366f1);
+  -webkit-background-clip:text;
+  color:transparent;
+  margin-bottom:clamp(15px, 4vw, 25px);
+  line-height:1.1;
+}
+.hero p{
+  font-size:clamp(1.1rem, 4.5vw, 1.4rem);
+  color:#cbd5e1;
+  max-width:clamp(500px, 80vw, 800px);
+  margin-bottom:clamp(25px, 5vw, 40px);
+}
+.btn{
+  padding:clamp(12px, 4vw, 16px) clamp(30px, 8vw, 50px);
+  border-radius:50px;
+  background:linear-gradient(90deg,#00f5ff,#6366f1);
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  font-size:clamp(1rem, 4vw, 1.2rem);
+  transition:0.4s;
+  box-shadow:0 0 20px rgba(0,245,255,0.4);
+}
+.btn:hover{transform:scale(1.06);box-shadow:0 0 35px rgba(0,245,255,0.6);}
 
 /* SECTIONS */
-section{padding:100px 5%;opacity:0;transform:translateY(30px);transition:1.2s ease;}
+section{
+  padding:clamp(60px, 12vw, 110px) 5%;
+  opacity:0;
+  transform:translateY(50px);
+  transition:1.3s ease-out;
+}
 section.active{opacity:1;transform:translateY(0);}
-h2{font-weight:800;font-size:2.5rem;color:#00f5ff;margin-bottom:25px;text-align:center;}
-p{line-height:1.8;color:#cbd5e1;font-size:1.1rem;}
+h2{
+  font-weight:800;
+  font-size:clamp(2.2rem, 7vw, 3.2rem);
+  color:#00f5ff;
+  margin-bottom:clamp(20px, 5vw, 35px);
+  text-align:center;
+}
+p{
+  font-size:clamp(1rem, 3.8vw, 1.15rem);
+  color:#cbd5e1;
+  max-width:clamp(600px, 85vw, 1000px);
+  margin:0 auto 25px;
+}
 
-/* GLASS CARDS */
-.card{background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(99,102,241,0.2);border-radius:25px;padding:40px;margin:25px 0;transition:0.6s;box-shadow:0 10px 30px rgba(0,0,0,0.3);}
-.card:hover{transform:rotateY(4deg) rotateX(3deg) scale(1.03);box-shadow:0 20px 50px rgba(0,245,255,0.2);}
+/* CARDS */
+.card{
+  background:rgba(255,255,255,0.07);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(99,102,241,0.18);
+  border-radius:clamp(18px, 4vw, 28px);
+  padding:clamp(25px, 6vw, 45px);
+  margin:clamp(20px, 5vw, 35px) auto;
+  max-width:clamp(700px, 90vw, 1200px);
+  transition:0.5s ease;
+  box-shadow:0 8px 32px rgba(0,0,0,0.4);
+}
+.card:hover{transform:translateY(-8px);box-shadow:0 16px 48px rgba(0,245,255,0.2);}
 
 /* PROFILE */
-.profile{display:flex;flex-wrap:wrap;align-items:center;gap:40px;justify-content:center;}
-.profile img{width:220px;border-radius:50%;border:5px solid #6366f1;box-shadow:0 0 30px rgba(99,102,241,0.4);}
+.profile{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:clamp(25px, 6vw, 45px);
+  text-align:center;
+}
+.profile img{
+  width:clamp(180px, 40vw, 260px);
+  height:auto;
+  border-radius:50%;
+  border:5px solid #6366f1;
+  box-shadow:0 0 40px rgba(99,102,241,0.35);
+}
 
 /* METRICS */
-.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:30px;text-align:center;}
-.metric h2{font-size:3rem;color:#00f5ff;margin-bottom:10px;}
+.metrics{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(clamp(140px, 30vw, 220px), 1fr));
+  gap:clamp(20px, 4vw, 30px);
+  text-align:center;
+}
+.metric h2{
+  font-size:clamp(2.5rem, 8vw, 4rem);
+  color:#00f5ff;
+  margin-bottom:8px;
+}
+.metric p{font-size:clamp(0.95rem, 3.5vw, 1.1rem);color:#94a3b8;}
 
 /* TESTIMONIALS */
-.testimonial{position:relative;padding:30px 40px 20px;background:rgba(99,102,241,0.05);border-radius:15px;margin:20px 0;}
-.testimonial::before{content:'“';font-size:6rem;color:#00f5ff;opacity:0.15;position:absolute;left:20px;top:-20px;line-height:1;}
-.testimonial p{font-style:italic;margin-bottom:20px;font-size:1.15rem;}
-.testimonial-author{font-weight:700;color:#00f5ff;font-size:1.2rem;}
-.testimonial-role{color:#94a3b8;font-size:1rem;}
+.testimonial{
+  background:rgba(99,102,241,0.06);
+  border-radius:16px;
+  padding:clamp(20px, 5vw, 35px);
+  margin:clamp(20px, 5vw, 30px) 0;
+  position:relative;
+}
+.testimonial::before{
+  content:'“';
+  font-size:clamp(5rem, 15vw, 8rem);
+  color:#00f5ff;
+  opacity:0.1;
+  position:absolute;
+  left:clamp(10px, 3vw, 25px);
+  top:-20px;
+}
+.testimonial p{font-style:italic;margin-bottom:15px;font-size:clamp(1rem, 4vw, 1.1rem);}
+.testimonial-author{font-weight:700;color:#00f5ff;font-size:clamp(1.05rem, 4vw, 1.2rem);}
+.testimonial-role{color:#94a3b8;font-size:clamp(0.9rem, 3.5vw, 1rem);}
 
-/* CONTACT */
-.contact a{color:#00f5ff;text-decoration:none;transition:0.3s;}
+/* CONTACT & FOOTER */
+.contact a{color:#00f5ff;text-decoration:none;}
 .contact a:hover{text-decoration:underline;}
-
-/* FOOTER */
-footer{text-align:center;padding:30px;background:#0b1220;font-size:0.9rem;}
+footer{
+  text-align:center;
+  padding:clamp(30px, 6vw, 50px) 5%;
+  background:#0b1220;
+  font-size:clamp(0.9rem, 3vw, 1rem);
+}
 
 /* RESPONSIVE */
-@media(max-width:768px){
-  .hero h1{font-size:2.5rem;}
-  .hero p{font-size:1.1rem;}
-  .profile{flex-direction:column;text-align:center;}
-  section{padding:80px 5%;}
+@media (min-width: 768px) {
+  .profile{flex-direction:row;justify-content:center;text-align:left;}
+  nav div a{margin-left:clamp(15px, 2.5vw, 25px);}
 }
 </style>
 </head>
 
 <body>
-
-<div class="cursor"></div>
 
 <nav>
   <div class="logo">EN</div>
@@ -91,17 +203,18 @@ footer{text-align:center;padding:30px;background:#0b1220;font-size:0.9rem;}
 <!-- HERO -->
 <section id="hero" class="hero active">
   <h1 class="typing">Emmanuel Ngulube</h1>
-  <p>Youthful Agriculturalist • Leadership Advocate • Founder & Strategic Director, CHILEKEN AGRO HOLDINGS</p>
-  <a href="#about" class="btn">Discover My Journey</a>
+  <p>Author • Agriculturist • Politician • Youth Leadership Advocate • Empowering Zambia's Future Through Agriculture & Youth Leadership</p>
+  <a href="#about" class="btn">Explore My Journey</a>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
   <div class="card profile">
-    <img src="profile.jpg" alt="Emmanuel Ngulube - Professional Headshot in Lusaka, Zambia">
+    <img src="profile.jpg" alt="Emmanuel Ngulube - Youthful Agriculturalist, Author, and Leadership Advocate in Lusaka, Zambia">
     <div>
       <h2>About Me</h2>
-      <p>I'm Emmanuel Ngulube, a passionate agriculturalist, youth leadership advocate, and innovative entrepreneur based in Lusaka, Zambia. With roots in computer science from the University of Zambia (UNZA), I bridge technology and sustainable agriculture to create lasting impact. Through CHILEKEN AGRO HOLDINGS, I drive modern farming solutions, empower smallholder farmers, and champion youth involvement in agribusiness for food security and economic resilience across Zambia and the region.</p>
+      <p>Hello, I'm Emmanuel Ngulube – a passionate youthful agriculturalist, author, politician, and dedicated youth leadership advocate based in Lusaka, Zambia.</p>
+      <p>I am committed to driving positive change through sustainable agriculture, youth empowerment, and strong leadership. By integrating innovative farming practices with community advocacy, I aim to build food security, inspire young leaders, and contribute to Zambia's social and economic development.</p>
     </div>
   </div>
 </section>
@@ -109,20 +222,20 @@ footer{text-align:center;padding:30px;background:#0b1220;font-size:0.9rem;}
 <!-- LEADERSHIP -->
 <section id="leadership">
   <div class="card">
-    <h2>Leadership – CHILEKEN AGRO HOLDINGS</h2>
-    <p>As Founder and Strategic Director, I spearhead transformative agribusiness ventures emphasizing production efficiency, climate-smart practices, digital tools for supply chains, and scalable market linkages. Our mission is to uplift rural communities, optimize livestock and crop systems, and build drought-resilient agricultural enterprises that contribute to Zambia's growth and food sovereignty.</p>
+    <h2>Leadership & Advocacy</h2>
+    <p>As a youth leadership advocate, agriculturist, and emerging political voice, I focus on empowering young Zambians to lead in agriculture, climate resilience, community development, and national progress. My work emphasizes sustainable practices, youth involvement in decision-making, and bridging traditional farming with modern solutions for a stronger Zambia.</p>
   </div>
 </section>
 
 <!-- IMPACT -->
 <section id="impact">
   <div class="card">
-    <h2>Impact & Achievements</h2>
+    <h2>Impact & Vision in Action</h2>
     <div class="metrics">
-      <div class="metric"><h2 data-target="25">0</h2><p>Projects & Initiatives Led</p></div>
-      <div class="metric"><h2 data-target="200">0</h2><p>Farmers & Clients Impacted</p></div>
-      <div class="metric"><h2 data-target="12">0</h2><p>Strategic Alliances Built</p></div>
-      <div class="metric"><h2 data-target="10">0</h2><p>Innovative Agri-Solutions</p></div>
+      <div class="metric"><h2 data-target="30">0</h2><p>Youth & Community Initiatives</p></div>
+      <div class="metric"><h2 data-target="500">0</h2><p>Lives & Farmers Influenced</p></div>
+      <div class="metric"><h2 data-target="15">0</h2><p>Leadership & Advocacy Efforts</p></div>
+      <div class="metric"><h2 data-target="10">0</h2><p>Sustainable Agri Projects</p></div>
     </div>
   </div>
 </section>
@@ -130,21 +243,16 @@ footer{text-align:center;padding:30px;background:#0b1220;font-size:0.9rem;}
 <!-- TESTIMONIALS -->
 <section id="testimonials">
   <div class="card">
-    <h2>What Partners Say</h2>
+    <h2>What People Say</h2>
     <div class="testimonial">
-      <p>"Emmanuel's blend of tech-savvy insight and genuine passion for agriculture has inspired real change in our farming communities. His leadership drives sustainable, youth-focused solutions that truly make a difference in Zambia."</p>
-      <div class="testimonial-author">Agricultural Cooperative Leader</div>
-      <div class="testimonial-role">Lusaka Region Partner</div>
+      <p>"Emmanuel Ngulube is a true inspiration for Zambian youth. His passion for agriculture and leadership motivates many to embrace farming as a powerful path to self-reliance and national development."</p>
+      <div class="testimonial-author">Juma Gift Milanzi</div>
+      <div class="testimonial-role">Community Supporter & Sharer of Leadership Messages</div>
     </div>
     <div class="testimonial">
-      <p>"Working alongside Emmanuel has shown me the power of innovative agribusiness. His strategic vision and commitment to smallholders have strengthened resilience against climate challenges and market volatility."</p>
-      <div class="testimonial-author">Regional Agri-Entrepreneur</div>
-      <div class="testimonial-role">Southern Africa Collaborator</div>
-    </div>
-    <div class="testimonial">
-      <p>"As a youth advocate and founder, Emmanuel brings energy, knowledge, and results. His work at CHILEKEN is building the next generation of Zambian agricultural leaders."</p>
-      <div class="testimonial-author">Youth Leadership Mentor</div>
-      <div class="testimonial-role">National Network Associate</div>
+      <p>"Emmanuel brings energy, dedication, and real vision to youth advocacy and agriculture in Zambia. His messages resonate deeply and encourage young people to take action for a better future."</p>
+      <div class="testimonial-author">Community Youth Follower</div>
+      <div class="testimonial-role">Lusaka-Based Advocate</div>
     </div>
   </div>
 </section>
@@ -152,34 +260,26 @@ footer{text-align:center;padding:30px;background:#0b1220;font-size:0.9rem;}
 <!-- VISION -->
 <section id="vision">
   <div class="card">
-    <h2>Strategic Vision</h2>
-    <p>To pioneer a thriving, tech-integrated agribusiness landscape in Zambia and beyond — where sustainable production, digital innovation, youth empowerment, and equitable value chains create food security, economic prosperity, and climate resilience for generations to come. CHILEKEN AGRO HOLDINGS aims to become a flagship model for African agricultural transformation.</p>
+    <h2>My Vision for Zambia</h2>
+    <p>To build a Zambia where youth lead in sustainable agriculture, innovation thrives alongside tradition, and every young person has the opportunity to contribute to food security, economic growth, and national pride through strong leadership and community action.</p>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="contact">
   <div class="card">
-    <h2>Get in Touch</h2>
-    <p>Email: <a href="mailto:Emmanuel.ngulube@cs.unza.zm">Emmanuel.ngulube@cs.unza.zm</a></p>
-    <p>Phone: +260 979 236 667</p>
+    <h2>Let's Connect</h2>
+    <p>Facebook: <a href="https://www.facebook.com/emmanuel.ngulube.71653" target="_blank">Follow on Facebook</a></p>
     <p>Location: Lusaka, Zambia</p>
-    <p>LinkedIn: <a href="https://zm.linkedin.com/in/emmanuel-ngulube-890b3b328" target="_blank">Connect on LinkedIn</a> (or search "Emmanuel Ngulube UNZA" for latest profile)</p>
+    <p>Reach out for collaborations, speaking engagements, or youth leadership discussions.</p>
   </div>
 </section>
 
-<footer>© 2026 Emmanuel Ngulube | All Rights Reserved | Lusaka, Zambia</footer>
+<footer>© 2026 Emmanuel Ngulube | Youthful Agriculturalist & Leadership Advocate | Lusaka, Zambia</footer>
 
 <canvas id="bgCanvas"></canvas>
 
 <script>
-// Cursor Glow
-const cursor = document.querySelector(".cursor");
-document.addEventListener("mousemove", e => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
-});
-
 // Typing Effect
 const typing = document.querySelector(".typing");
 if (typing) {
@@ -190,64 +290,71 @@ if (typing) {
     if (i < text.length) {
       typing.innerText += text.charAt(i);
       i++;
-      setTimeout(type, 70);
+      setTimeout(type, 65);
     }
   }
   type();
 }
 
-// Section Reveal on Scroll
-const sections = document.querySelectorAll("section");
-window.addEventListener("scroll", () => {
-  sections.forEach(sec => {
-    if (sec.getBoundingClientRect().top < window.innerHeight - 100) {
-      sec.classList.add("active");
+// Intersection Observer for sections & counters
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("active");
     }
   });
-});
+}, { threshold: 0.15 });
 
-// Counter Animation
-const counters = document.querySelectorAll(".metric h2");
-function startCounters() {
-  counters.forEach(counter => {
-    const target = +counter.getAttribute("data-target");
-    let count = 0;
-    const update = setInterval(() => {
-      count += Math.ceil(target / 80);
-      if (count >= target) {
-        counter.innerText = target;
-        clearInterval(update);
-      } else {
-        counter.innerText = count;
-      }
-    }, 25);
-  });
-}
-window.addEventListener("scroll", () => {
-  const impact = document.querySelector("#impact");
-  if (impact.getBoundingClientRect().top < window.innerHeight - 100) {
-    startCounters();
+document.querySelectorAll("section").forEach(sec => observer.observe(sec));
+
+let countersStarted = false;
+const counterObserver = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting && !countersStarted) {
+    countersStarted = true;
+    document.querySelectorAll(".metric h2").forEach(counter => {
+      const target = +counter.getAttribute("data-target");
+      let count = 0;
+      const inc = target / 60;
+      const update = setInterval(() => {
+        count += inc;
+        counter.innerText = Math.ceil(count);
+        if (count >= target) {
+          counter.innerText = target;
+          clearInterval(update);
+        }
+      }, 30);
+    });
   }
-});
+}, { threshold: 0.4 });
 
-// Background Particles (enhanced cyan/purple theme)
+const impact = document.querySelector("#impact");
+if (impact) counterObserver.observe(impact);
+
+// Particles – lightweight
 const canvas = document.getElementById("bgCanvas");
 const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
 let particles = [];
-for (let i = 0; i < 150; i++) {
+for (let i = 0; i < 70; i++) {
   particles.push({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
-    r: Math.random() * 2.5 + 1,
-    dx: (Math.random() - 0.5) * 0.8,
-    dy: (Math.random() - 0.5) * 0.8
+    r: Math.random() * 2 + 0.7,
+    dx: (Math.random() - 0.5) * 0.5,
+    dy: (Math.random() - 0.5) * 0.5
   });
 }
-function animate() {
+
+function animateParticles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "rgba(0, 245, 255, 0.18)";
+  ctx.fillStyle = "rgba(0,245,255,0.12)";
   particles.forEach(p => {
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -257,15 +364,9 @@ function animate() {
     if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
     if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
   });
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animateParticles);
 }
-animate();
-
-// Resize Canvas on Window Resize
-window.addEventListener('resize', () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
+animateParticles();
 </script>
 
 </body>
