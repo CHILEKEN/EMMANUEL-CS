@@ -4,199 +4,305 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emmanuel | Executive Portfolio</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
-/* Basic Reset */
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Inter',sans-serif;background:#0c111d;color:#e5e7eb;scroll-behavior:smooth;overflow-x:hidden;}
-nav{position:fixed;width:100%;top:0;left:0;padding:20px 50px;display:flex;justify-content:space-between;background:rgba(12,17,29,0.85);backdrop-filter:blur(10px);z-index:1000;}
-nav h2{color:#22c55e;font-family:'Playfair Display',serif;font-size:22px;}
-nav a{color:#cbd5e1;margin-left:25px;text-decoration:none;position:relative;font-weight:500;font-size:14px;}
-nav a::after{content:'';position:absolute;width:0;height:2px;background:#22c55e;bottom:-4px;left:0;transition:0.3s;}
-nav a:hover::after{width:100%;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter',sans-serif;
+  background:#0c111d;
+  color:#e5e7eb;
+  overflow-x:hidden;
+}
 
-/* Hero Section */
-.welcome-hero{height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;}
-.welcome-hero canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;}
-.welcome-container{position:relative;z-index:1;}
-.welcome-text{font-family:'Playfair Display',serif;font-size:64px;color:#22c55e;margin-bottom:20px;}
-.welcome-subtext{font-size:20px;color:#cbd5e1;}
-.cursor{display:inline-block;width:2px;background-color:#22c55e;animation:blink 1s infinite;margin-left:2px;}
-@keyframes blink{0%,50%,100%{opacity:1;}25%,75%{opacity:0;}}
+/* NAV */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:20px 50px;
+  display:flex;
+  justify-content:space-between;
+  background:rgba(12,17,29,0.8);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+nav h2{color:#22c55e;font-family:'Playfair Display',serif}
+nav a{color:#cbd5e1;margin-left:25px;text-decoration:none;position:relative}
+nav a::after{
+  content:'';
+  position:absolute;
+  width:0;
+  height:2px;
+  background:#22c55e;
+  bottom:-4px;
+  left:0;
+  transition:.3s;
+}
+nav a:hover::after{width:100%}
 
-/* Sections & Cards */
-.section{padding:100px 50px;max-width:1200px;margin:auto;opacity:0;transform:translateY(40px);transition:opacity 0.8s,transform 0.8s;position:relative;}
-.section.visible{opacity:1;transform:translateY(0);}
-.section h2{font-family:'Playfair Display',serif;color:#22c55e;font-size:36px;margin-bottom:40px;}
-.card{background:#111827;padding:30px;border-radius:20px;margin-bottom:30px;transition:transform 0.4s, box-shadow 0.4s;position:relative;z-index:1;}
-.card:hover{box-shadow:0 0 30px #22c55e,0 0 60px #22c55e;transform:translateY(-5px);animation:pulse 2s infinite alternate;}
-@keyframes pulse{0%{box-shadow:0 0 20px #22c55e,0 0 40px #22c55e;}100%{box-shadow:0 0 30px #22c55e,0 0 60px #22c55e;}}
+/* HERO */
+.welcome-hero{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+canvas{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+}
+.welcome-container{
+  position:relative;
+  z-index:2;
+}
 
-/* Metrics */
-.metrics{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
-.metric.card{flex:1 1 140px;min-width:140px;max-width:250px;text-align:center;padding:25px;position:relative;overflow:hidden;}
-.metric h3{font-size:48px;color:#22c55e;}
-.metric p{font-size:16px;}
+.hero-photo{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid #22c55e;
+  margin-bottom:25px;
+  box-shadow:0 0 30px #22c55e;
+  animation:float 4s ease-in-out infinite;
+}
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+  100%{transform:translateY(0)}
+}
 
-/* Buttons */
-.btn{padding:12px 35px;border:1px solid #22c55e;color:#22c55e;border-radius:50px;text-decoration:none;display:inline-block;transition:0.3s;position:relative;z-index:1;}
-.btn:hover{box-shadow:0 0 30px #22c55e,0 0 60px #22c55e;transform:translateY(-5px);animation:pulse 2s infinite alternate;}
+.welcome-text{
+  font-family:'Playfair Display',serif;
+  font-size:56px;
+  color:#22c55e;
+  margin-bottom:15px;
+}
 
-/* Footer */
-footer{text-align:center;padding:40px;border-top:1px solid #1f2937;color:#cbd5e1;}
+.cursor{
+  display:inline-block;
+  width:2px;
+  background:#22c55e;
+  animation:blink 1s infinite;
+}
+@keyframes blink{
+  0%,50%,100%{opacity:1}
+  25%,75%{opacity:0}
+}
 
-/* Responsive */
-@media(max-width:768px){.welcome-text{font-size:48px;}.welcome-subtext{font-size:18px;}.section{padding:80px 20px;}.metric h3{font-size:36px;}.metric p{font-size:14px;}}
-@media(max-width:480px){.welcome-text{font-size:32px;}.welcome-subtext{font-size:16px;}.metric h3{font-size:28px;}}
+.welcome-subtext{opacity:.8;margin-bottom:25px}
+
+.btn{
+  padding:12px 30px;
+  border:1px solid #22c55e;
+  border-radius:50px;
+  color:#22c55e;
+  text-decoration:none;
+  margin:5px;
+  display:inline-block;
+  transition:.3s;
+}
+.btn:hover{
+  box-shadow:0 0 25px #22c55e,0 0 50px #22c55e;
+  transform:translateY(-5px);
+}
+
+/* SECTIONS */
+.section{
+  padding:120px 50px;
+  max-width:1100px;
+  margin:auto;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+.section.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.section h2{
+  font-family:'Playfair Display',serif;
+  color:#22c55e;
+  margin-bottom:30px;
+}
+
+.card{
+  background:#111827;
+  padding:30px;
+  border-radius:20px;
+  margin-bottom:25px;
+  transition:.4s;
+}
+.card:hover{
+  box-shadow:0 0 30px #22c55e;
+  transform:translateY(-5px);
+}
+
+/* METRICS */
+.metrics{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+}
+.metric{
+  flex:1 1 200px;
+  text-align:center;
+}
+.metric h3{
+  font-size:42px;
+  color:#22c55e;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .welcome-text{font-size:36px}
+  nav{padding:15px}
+  .section{padding:80px 20px}
+}
 </style>
 </head>
-<body>
 
-<!-- Hero -->
-<section class="welcome-hero">
-  <canvas id="floatingCanvas"></canvas>
-  <div class="welcome-container">
-    <h1 class="welcome-text" id="hero-headline"></h1>
-    <p class="welcome-subtext">Explore our executive solutions and impact-driven portfolio</p>
-  </div>
-</section>
+<body>
 
 <nav>
   <h2>Emmanuel</h2>
   <div>
     <a href="#about">About</a>
-    <a href="#leadership">Leadership</a>
     <a href="#impact">Impact</a>
-    <a href="#vision">Vision</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<!-- Sections -->
-<section id="about" class="section">
-  <h2>Executive Profile</h2>
-  <div class="card"><p>Vision-driven founder and executive leader specializing in scalable agribusiness infrastructure, strategic expansion, and sustainable enterprise development.</p></div>
+<section class="welcome-hero">
+  <canvas id="bgCanvas"></canvas>
+
+  <div class="welcome-container">
+    <img src="profile.jpg" alt="Emmanuel Photo" class="hero-photo">
+    <h1 class="welcome-text" id="headline"></h1>
+    <p class="welcome-subtext">Founder of CHILEKEN AGRO HOLDINGS</p>
+    <a href="cv.pdf" class="btn">Download CV</a>
+  </div>
 </section>
 
-<section id="leadership" class="section">
-  <h2>Leadership – CHILEKEN AGRO HOLDINGS</h2>
-  <div class="card"><p>Founder & Strategic Director, leading high-impact agribusiness initiatives focused on production optimization and long-term value creation.</p></div>
+<section id="about" class="section">
+  <h2>Executive Profile</h2>
+  <div class="card">
+    Vision-driven founder building scalable agribusiness infrastructure.
+  </div>
 </section>
 
 <section id="impact" class="section">
-  <h2>Impact & Results</h2>
+  <h2>Impact</h2>
   <div class="metrics">
-    <div class="metric card"><h3 class="counter" data-target="35">0</h3><p>Operational Efficiency Growth (%)</p></div>
-    <div class="metric card"><h3 class="counter" data-target="50">0</h3><p>Projects Executed</p></div>
-    <div class="metric card"><h3 class="counter" data-target="10">0</h3><p>Years Leadership</p></div>
-    <div class="metric card"><h3 class="counter" data-target="100">0</h3><p>Stakeholder Partnerships</p></div>
+    <div class="metric card">
+      <h3 class="counter" data-target="35">0</h3>
+      <p>Efficiency Growth %</p>
+    </div>
+    <div class="metric card">
+      <h3 class="counter" data-target="50">0</h3>
+      <p>Projects</p>
+    </div>
   </div>
-</section>
-
-<section id="vision" class="section">
-  <h2>Strategic Vision</h2>
-  <div class="card"><p>To build a modern agribusiness ecosystem integrating technology, sustainable production systems, and scalable distribution networks.</p></div>
 </section>
 
 <section id="contact" class="section">
-  <h2>Contact & Social</h2>
-  <div class="card contact-links">
-    <p>Email: <a href="mailto:Emmanuel.ngulube@cs.unza.zm">Emmanuel.ngulube@cs.unza.zm</a></p>
-    <p>Phone: +260979236667</p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/public-profile/settings" target="_blank">linkedin.com/in/Emmanuel.ngulube</a></p>
+  <h2>Contact</h2>
+  <div class="card">
+    Email: Emmanuel.ngulube@cs.unza.zm<br>
+    Phone: +260979236667
   </div>
 </section>
 
-<footer>© 2026 Emmanuel | Founder & Executive Strategist</footer>
-
-<!-- Audio -->
 <audio id="ambientSound" src="ambient.mp3" loop></audio>
 
 <script>
-// Wait for DOM
-document.addEventListener("DOMContentLoaded", function(){
 
-  // --- Hero Typewriter ---
-  const heroText = "WELCOME TO OUR PLATFORM";
-  const heroHeadline = document.getElementById("hero-headline");
-  let index = 0;
-  function typeHeroText(){
-    if(index <= heroText.length){
-      heroHeadline.innerHTML = heroText.slice(0,index)+'<span class="cursor">|</span>';
-      index++;
-      setTimeout(typeHeroText,120);
-    }
+/* HERO TYPEWRITER */
+const text="WELCOME TO OUR PLATFORM";
+const headline=document.getElementById("headline");
+let i=0;
+function type(){
+  if(i<=text.length){
+    headline.innerHTML=text.slice(0,i)+'<span class="cursor"></span>';
+    i++;
+    setTimeout(type,100);
   }
-  typeHeroText();
+}
+type();
 
-  // --- Scroll-based section reveal ---
-  const sections = document.querySelectorAll('.section');
-  const observer = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting) e.target.classList.add('visible');
-    });
-  }, {threshold:0.2});
-  sections.forEach(s=>observer.observe(s));
-
-  // --- Counters + metric particle explosions ---
-  const counters=document.querySelectorAll('.counter');
-  counters.forEach(counter=>{
-    const target=+counter.getAttribute('data-target');
-    let count=0;
-    const step=Math.ceil(target/100);
-    function updateCounter(){
-      count+=step;
-      if(count<target){
-        counter.innerText=count;
-        requestAnimationFrame(updateCounter);
-      } else {counter.innerText=target;}
-    }
-    updateCounter();
+/* SECTION REVEAL */
+const sections=document.querySelectorAll(".section");
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting) entry.target.classList.add("visible");
   });
-
-  // --- Ambient sound ---
-  let soundStarted=false;
-  window.addEventListener('scroll',()=>{
-    if(!soundStarted){
-      const audio=document.getElementById('ambientSound');
-      audio.volume=0.2;
-      audio.play().catch(()=>{});
-      soundStarted=true;
-    }
-  });
-
-  // --- Floating particles ---
-  const floatingCanvas=document.getElementById('floatingCanvas');
-  const fCtx=floatingCanvas.getContext('2d');
-  let particles=[];
-  function resize(){floatingCanvas.width=window.innerWidth;floatingCanvas.height=window.innerHeight;}
-  window.addEventListener('resize',resize);
-  resize();
-  for(let i=0;i<80;i++){
-    particles.push({x:Math.random()*floatingCanvas.width,y:Math.random()*floatingCanvas.height,r:Math.random()*3+2,speedX:(Math.random()-0.5)*0.5,speedY:(Math.random()-0.5)*0.5});
-  }
-  function draw(){
-    fCtx.clearRect(0,0,floatingCanvas.width,floatingCanvas.height);
-    let scroll=window.scrollY;
-    let color='rgba(34,197,94,0.15)';
-    particles.forEach(p=>{
-      fCtx.save();
-      fCtx.shadowColor=color;fCtx.shadowBlur=12;
-      fCtx.fillStyle=color;
-      let parallax=scroll*0.02;
-      fCtx.beginPath();
-      fCtx.arc(p.x,p.y+parallax,p.r,0,Math.PI*2);
-      fCtx.fill();
-      fCtx.restore();
-      p.x+=p.speedX;p.y+=p.speedY;
-      if(p.x<0)p.x=floatingCanvas.width;if(p.x>floatingCanvas.width)p.x=0;
-      if(p.y<0)p.y=floatingCanvas.height;if(p.y>floatingCanvas.height)p.y=0;
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
-
 });
+sections.forEach(section=>observer.observe(section));
+
+/* COUNTERS */
+document.querySelectorAll(".counter").forEach(counter=>{
+  const target=+counter.dataset.target;
+  let count=0;
+  const step=Math.ceil(target/100);
+  function update(){
+    count+=step;
+    if(count<target){
+      counter.innerText=count;
+      requestAnimationFrame(update);
+    } else counter.innerText=target;
+  }
+  update();
+});
+
+/* AMBIENT SOUND */
+let started=false;
+window.addEventListener("scroll",()=>{
+  if(!started){
+    document.getElementById("ambientSound").play().catch(()=>{});
+    started=true;
+  }
+});
+
+/* BACKGROUND PARTICLES */
+const canvas=document.getElementById("bgCanvas");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<100;i++){
+  particles.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*3+1,
+    dx:(Math.random()-0.5)*0.5,
+    dy:(Math.random()-0.5)*0.5
+  });
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    ctx.fillStyle="rgba(34,197,94,0.2)";
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill();
+    p.x+=p.dx;
+    p.y+=p.dy;
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+
 </script>
 
 </body>
