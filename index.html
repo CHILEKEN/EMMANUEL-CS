@@ -44,39 +44,43 @@
     #loader {
       position: fixed;
       inset: 0;
-      background: #000;
+      background: #0f172a;
       z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
       color: #10b981;
       font-family: 'Courier New', monospace;
-      font-size: 1.15rem;
     }
-    .terminal-line { opacity: 0; animation: fadeIn 1s forwards; }
-    .terminal-line:nth-child(1) { animation-delay: 0.6s; }
-    .terminal-line:nth-child(2) { animation-delay: 2.2s; }
-    .terminal-line:nth-child(3) { animation-delay: 3.8s; }
-    @keyframes fadeIn { to { opacity: 1; } }
-
-    .particle-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .terminal {
+      border: 2px solid #10b981;
+      padding: 1.5rem;
+      min-width: 320px;
+      animation: blink 1.2s infinite;
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    .particle-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
     .particle {
       position: absolute;
       background: #10b981;
       border-radius: 50%;
-      opacity: 0.35;
-      box-shadow: 0 0 10px #10b981;
+      opacity: 0.4;
       animation: float var(--dur) infinite linear;
     }
-    .particle::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, #10b98133, transparent);
-      transform: rotate(var(--angle));
-      opacity: 0.2;
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.2); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(-20vh) scale(0.8); opacity: 0; }
     }
-
     .glitch-text:hover { animation: glitch 0.35s linear infinite; text-shadow: 3px 0 #ff0099, -3px 0 #00ffff; }
     .card-hover {
       transition: all 0.4s ease;
@@ -105,16 +109,16 @@
 </head>
 <body class="bg-slate-50 dark:bg-bgdark text-slate-900 dark:text-slate-100 transition-colors duration-500">
 
-  <!-- Loading Screen -->
+  <!-- Cyber-themed immersion loading screen (exact from first version) -->
   <div id="loader">
-    <div class="text-center space-y-3">
-      <div class="terminal-line">> BOOTING EMMANUEL'S SECURE PORTFOLIO...</div>
-      <div class="terminal-line">> CCNA & LAB ENVIRONMENT LOADED [VERIFIED]</div>
-      <div class="terminal-line">> CONNECTING TO NETWORK NODES <span class="animate-blink">█</span></div>
+    <div class="terminal">
+      <p>Initializing Emmanuel's Cyber Portfolio...</p>
+      <p>CCNA Module Loaded [OK]</p>
+      <p>Network Nodes Online...</p>
     </div>
   </div>
 
-  <!-- Hero with Profile Photo -->
+  <!-- Hero with profile photo -->
   <section id="hero" class="min-h-screen relative flex items-center justify-center overflow-hidden">
     <div class="particle-bg" id="particles"></div>
     <div class="text-center z-10 px-6" data-aos="fade-up" data-aos-duration="1400">
@@ -187,7 +191,7 @@
             <div class="w-5/12 text-right md:text-left"><p class="text-xl font-bold">2025</p><p>CCNA Certification</p></div>
             <div class="w-5/12"><p class="text-xl font-bold">2023–Present</p><p>UNZA B.Sc. Computer Science – Networking & InfoSec Major</p></div>
           </div>
-          <!-- Add more timeline entries here as you progress -->
+          <!-- You can add more entries here -->
         </div>
       </div>
     </section>
@@ -283,7 +287,7 @@
             <a href="#" class="text-primary hover:underline font-medium">View Details & Diagrams →</a>
           </div>
         </div>
-        <!-- Duplicate this block and customize for your other projects -->
+        <!-- Add more project cards here -->
       </div>
     </section>
 
@@ -307,7 +311,7 @@
           <p class="opacity-80 mb-6">Practical lab examples showing how to permit/deny specific traffic using named and numbered ACLs.</p>
           <a href="#" class="text-primary hover:underline">Read Article →</a>
         </div>
-        <!-- Duplicate for more blog posts -->
+        <!-- Add more blog cards here -->
       </div>
     </section>
 
@@ -319,7 +323,7 @@
           “Emmanuel consistently showed deep understanding of routing protocols and security best practices in group labs.”  
           <footer class="mt-6 text-right opacity-80">— UNZA Lecturer, Networking Module</footer>
         </blockquote>
-        <!-- Add more quotes -->
+        <!-- Add more testimonials here -->
       </div>
     </section>
 
@@ -357,12 +361,12 @@
   </footer>
 
   <script>
-    // Loader
+    // Loader hide
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('loader').style.opacity = '0';
-        setTimeout(() => document.getElementById('loader').style.display = 'none', 1000);
-      }, 4800);
+        setTimeout(() => document.getElementById('loader').style.display = 'none', 800);
+      }, 3500);
     });
 
     // Particles
@@ -375,7 +379,6 @@
       p.style.left = `${Math.random()*100}%`;
       p.style.top = `${Math.random()*100}%`;
       p.style.setProperty('--dur', `${12 + Math.random()*18}s`);
-      p.style.setProperty('--angle', `${Math.random()*360}deg`);
       particles.appendChild(p);
     }
 
