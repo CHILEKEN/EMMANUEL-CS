@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NGULUBE EMMANUEL | NOC Portfolio</title>
+    <title>NGULUBE EMMANUEL | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -29,7 +29,7 @@
             background-size: 50px 50px;
         }
 
-        /* Navigation */
+        /* Navigation - Restored to your original style */
         nav { 
             position: fixed; width: 100%; top: 0; background: rgba(2, 6, 23, 0.95); 
             backdrop-filter: blur(10px); padding: 15px 5%; 
@@ -37,87 +37,48 @@
             z-index: 1000; border-bottom: 2px solid var(--accent); 
         }
 
-        .welcome-msg { font-weight: 900; color: var(--accent-light); letter-spacing: 4px; font-size: 1.2rem; }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { color: #ffffff; text-decoration: none; margin-left: 25px; font-size: 14px; font-weight: 700; text-transform: uppercase; }
+        .nav-links a.active { color: var(--accent-light); }
 
-        /* Hamburger Menu (Top Left) */
-        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100; order: -1; }
-        .menu-toggle span { display: block; width: 25px; height: 3px; background: var(--accent-light); transition: 0.4s; }
-
-        .nav-links { 
-            position: fixed; top: 0; left: -100%; height: 100vh; width: 280px; 
-            background: var(--primary); flex-direction: column; justify-content: center;
-            transition: 0.4s cubic-bezier(0.77,0.2,0.05,1.0); border-right: 2px solid var(--accent);
-            padding-left: 40px; z-index: 1050;
-        }
-        .nav-links.active { left: 0; }
-        .nav-links a { 
-            color: #ffffff; text-decoration: none; margin: 15px 0; font-size: 1.1rem; 
-            font-weight: 700; text-transform: uppercase; transition: 0.3s; display: block;
-        }
-        .nav-links a.active { color: var(--accent-light); text-shadow: 0 0 10px var(--accent); }
-
-        /* Desktop specific nav override */
-        @media (min-width: 992px) {
-            .menu-toggle { display: none; }
-            .nav-links { 
-                position: static; height: auto; width: auto; background: transparent; 
-                flex-direction: row; border: none; padding: 0;
-            }
-            .nav-links a { margin: 0 0 0 25px; font-size: 14px; }
-            nav { justify-content: space-between; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Standard behavior restored */
         }
 
         /* Content Sections */
         main { max-width: 900px; margin: auto; padding: 0 5%; }
-        section { padding: 120px 0 60px; min-height: 90vh; }
+        section { padding: 120px 0 60px; min-height: 80vh; }
         
-        .status-badge {
-            display: inline-flex; align-items: center; background: rgba(255, 49, 49, 0.1); 
-            border: 2px solid var(--status-red); padding: 8px 20px; border-radius: 30px;
-            font-size: 0.8rem; font-weight: 900; color: #ff6b6b; margin-bottom: 30px;
-            animation: pulseAlert 2s infinite;
-        }
-        @keyframes pulseAlert { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
-
         .card { 
             background: var(--card-bg); padding: 30px; border-radius: 15px; 
             margin-bottom: 30px; border: 1px solid rgba(34, 197, 94, 0.2); 
             opacity: 0; transform: translateY(20px); transition: 0.6s ease-out;
         }
         .card.show { opacity: 1; transform: translateY(0); }
-        h2 { font-size: 2rem; margin-bottom: 30px; font-weight: 900; text-transform: uppercase; letter-spacing: 5px; border-left: 8px solid var(--accent); padding-left: 20px; }
 
         .progress { background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 10px; margin: 10px 0 25px; overflow: hidden; }
         .bar { height: 100%; background: var(--accent-light); width: 0; transition: 1.5s ease-in-out; }
 
-        /* Floating Speaker Icon */
+        /* Small Speaker Toggle */
         #sound-toggle {
-            position: fixed; bottom: 85px; left: 25px; z-index: 2000;
-            width: 45px; height: 45px; background: var(--primary);
+            position: fixed; bottom: 80px; left: 25px; z-index: 2000;
+            width: 40px; height: 40px; background: rgba(15, 23, 42, 0.9);
             border: 1px solid var(--accent); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            cursor: pointer; color: var(--accent-light); transition: 0.3s;
+            cursor: pointer; color: var(--accent-light);
         }
         #sound-toggle.muted { border-color: var(--status-red); color: var(--status-red); }
 
-        /* Network Console Footer */
+        /* Network Status Footer */
         .net-footer {
-            position: fixed; bottom: 0; left: 0; width: 100%; height: 60px;
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 50px;
             background: rgba(2, 6, 23, 0.98); border-top: 1px solid var(--accent);
             display: flex; align-items: center; justify-content: space-between;
             padding: 0 25px; z-index: 1000; font-family: monospace; font-size: 11px;
-            color: var(--accent-light); text-transform: uppercase;
+            color: var(--accent-light);
         }
 
-        .console-log { display: flex; gap: 20px; overflow: hidden; }
-        .log-item { display: flex; align-items: center; gap: 8px; }
-        .dot { height: 6px; width: 6px; background: var(--accent); border-radius: 50%; display: inline-block; }
-
-        .btn { display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); color: white !important; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 800; margin-top: 20px; cursor: pointer; border: none; }
-
-        .menu-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-        .menu-toggle.open span:nth-child(2) { opacity: 0; }
-        .menu-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+        .btn { display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); color: white !important; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 800; margin-top: 20px; border: none; }
     </style>
 </head>
 <body>
@@ -125,9 +86,8 @@
 <div class="bg-container"></div>
 
 <nav>
-    <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
-    <div class="welcome-msg">NGULUBE.SYS</div>
-    <div class="nav-links" id="nav-list">
+    <div style="font-weight:900; color:var(--accent-light); letter-spacing:4px;">WELCOME</div>
+    <div class="nav-links">
         <a href="#hero">Home</a>
         <a href="#about">About</a>
         <a href="#education">Education</a>
@@ -144,82 +104,54 @@
 
 <main>
     <section id="hero" style="text-align: center;">
-        <div class="status-badge"><span style="height:8px; width:8px; background:var(--status-red); border-radius:50%; display:inline-block; margin-right:10px;"></span>LUSAKA_NOC_ACTIVE</div>
-        <br>
-        <img src="profile.jpg" alt="Emmanuel" style="width:160px; height:160px; border-radius:50%; border:4px solid var(--accent); margin-bottom:20px; object-fit: cover;">
-        <h1 style="font-size:clamp(2rem, 5vw, 3.5rem); font-weight:900; letter-spacing: 2px;">NGULUBE EMMANUEL</h1>
-        <p style="color:var(--accent-light); font-weight:800; font-size:1.2rem; text-transform: uppercase;">Network Engineer Intern</p>
+        <img src="profile.jpg" alt="Profile" style="width:160px; height:160px; border-radius:50%; border:4px solid var(--accent); margin-bottom:20px;">
+        <h1 style="font-size:3rem; font-weight:900;">NGULUBE EMMANUEL</h1>
+        <p style="color:var(--accent-light); font-weight:800; font-size:1.2rem;">Network Engineer Intern</p>
         <div class="card" style="opacity:1; transform:none; margin-top:20px;">
-            Final-year Computer Science student at <strong>The University of Zambia (UNZA)</strong>. 
-            CCNA Certified specialist focusing on Enterprise Infrastructure and Network Security.
+            Final-year Computer Science student at <strong>The University of Zambia (UNZA)</strong>. CCNA Certified specialist.
         </div>
         <a href="cv.pdf" class="btn" download>Download CV</a>
     </section>
 
     <section id="about">
         <h2>About Me</h2>
-        <div class="card">
-            I am a results-driven fourth-year student at the University of Zambia. My expertise lies in designing robust <strong>LAN/WAN architectures</strong> and troubleshooting complex network layers for the Zambian ISP and banking sectors.
-        </div>
+        <div class="card">I am a fourth-year student at the University of Zambia focusing on designing robust <strong>LAN/WAN architectures</strong> and network security.</div>
     </section>
 
     <section id="education">
-        <h2>Education & Certs</h2>
-        <div class="card">
-            <h3>Cisco Certified Network Associate (CCNA)</h3>
-            <p>Verification ID: <strong>CSCO144XXXX</strong></p>
-            <p>Expertise: OSPF, BGP, VLAN Trunking, HSRP, and Subnetting.</p>
-        </div>
-        <div class="card">
-            <h3>B.Sc. Computer Science</h3>
-            <p><strong>The University of Zambia</strong> | 2022 - 2026</p>
-        </div>
+        <h2>Education</h2>
+        <div class="card"><h3>CCNA Certification</h3><p>Cisco ID: CSCO144XXXX</p></div>
+        <div class="card"><h3>B.Sc. Computer Science</h3><p>University of Zambia | 2026</p></div>
     </section>
 
     <section id="skills">
-        <h2>Technical Stack</h2>
+        <h2>Technical Skills</h2>
         <div class="card">
-            <p>Routing & Switching (OSPF, BGP)</p>
+            <p>Routing & Switching</p>
             <div class="progress"><div class="bar" data-width="90%"></div></div>
-            <p>Network Security (ACLs, Firewalls)</p>
+            <p>Network Security</p>
             <div class="progress"><div class="bar" data-width="85%"></div></div>
-            <p>IP Addressing & VLSM</p>
-            <div class="progress"><div class="bar" data-width="95%"></div></div>
         </div>
     </section>
 
     <section id="projects">
-        <h2>Field Deployment</h2>
-        <div class="card">
-            <h3>Campus Network Redesign</h3>
-            <p>Implemented multi-area OSPF for UNZA backbone to optimize traffic flow and reduce latency by 15%.</p>
-        </div>
-        <div class="card">
-            <h3>Enterprise VPN Lab</h3>
-            <p>Configured Site-to-Site VPNs using IPsec on Cisco ISR routers for secure remote office connectivity.</p>
-        </div>
+        <h2>Projects</h2>
+        <div class="card"><h3>Campus Network Redesign</h3><p>Optimized traffic using OSPF multi-area routing.</p></div>
     </section>
 
     <section id="contact">
-        <h2>Contact Terminal</h2>
+        <h2>Contact</h2>
         <div class="card" style="text-align: center;">
-            <p>📍 Lusaka, Zambia | 📞 <strong>+260 979 236 667</strong></p>
-            <p>📧 <strong>Emmanuel.ngulube@cs.unza.zm</strong></p>
-            <div style="margin-top:20px;">
-                <a href="https://github.com/CHILEKEN" target="_blank" class="social-btn" style="color:var(--accent-light); text-decoration: none; font-weight: bold; margin: 0 10px;">GITHUB</a>
-                <a href="https://linkedin.com" target="_blank" class="social-btn" style="color:var(--accent-light); text-decoration: none; font-weight: bold; margin: 0 10px;">LINKEDIN</a>
-            </div>
+            <p>📍 Lusaka, Zambia | 📞 +260 979 236 667</p>
+            <p>📧 Emmanuel.ngulube@cs.unza.zm</p>
         </div>
     </section>
 </main>
 
 <div class="net-footer">
-    <div class="console-log">
-        <div class="log-item"><span class="dot"></span> STATUS: ONLINE</div>
-        <div class="log-item"><span class="dot"></span> LOC: LUSAKA, ZM</div>
-        <div class="log-item" id="sys-time"><span class="dot"></span> TIME: --:--:--</div>
-    </div>
-    <div id="sys-ip">IP: 192.168.10.1</div>
+    <div>STATUS: ACTIVE</div>
+    <div id="sys-time">TIME: --:--:--</div>
+    <div>IP: 192.168.10.1</div>
 </div>
 
 <script>
@@ -227,76 +159,50 @@
     const scrollSnd = document.getElementById('scrollSnd');
     const toggleBtn = document.getElementById('sound-toggle');
     const icon = document.getElementById('speaker-icon');
-    const menuBtn = document.getElementById('mobile-menu');
-    const navList = document.getElementById('nav-list');
     
     let isMuted = false;
     let currentSection = "";
 
     // Clock
-    function updateClock() {
+    setInterval(() => {
         const now = new Date();
-        document.getElementById('sys-time').innerHTML = `<span class="dot"></span> TIME: ${now.toLocaleTimeString('en-GB')}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
+        document.getElementById('sys-time').innerText = `TIME: ${now.toLocaleTimeString('en-GB')}`;
+    }, 1000);
 
-    // Toggle Audio
+    // Audio Toggle
     toggleBtn.onclick = () => {
         isMuted = !isMuted;
         toggleBtn.classList.toggle('muted');
         icon.className = isMuted ? "fas fa-volume-mute" : "fas fa-volume-up";
-        // One-time unlock for browsers
-        if(!isMuted) { clickSnd.play().then(() => { clickSnd.pause(); clickSnd.currentTime = 0; }); }
     };
 
     function playSfx(sound) {
         if (!isMuted) {
             sound.currentTime = 0;
-            sound.volume = 0.2;
-            sound.play().catch(e => console.log("Unlock required"));
+            sound.volume = 0.15;
+            sound.play().catch(() => {});
         }
     }
 
-    // Interaction Sounds
+    // Universal Click Sound
     document.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A' || e.target.closest('.btn') || e.target.closest('.menu-toggle') || e.target.closest('#sound-toggle')) {
+        if (e.target.tagName === 'A' || e.target.closest('.btn') || e.target.closest('#sound-toggle')) {
             playSfx(clickSnd);
         }
     });
 
-    // Mobile Menu
-    menuBtn.onclick = () => {
-        menuBtn.classList.toggle('open');
-        navList.classList.toggle('active');
-    };
-
-    document.querySelectorAll('.nav-links a').forEach(l => {
-        l.onclick = () => {
-            menuBtn.classList.remove('open');
-            navList.classList.remove('active');
-        };
-    });
-
-    // Intersection Observer for Scroll Sound and Progress Bars
+    // Observer for Cards & Scroll Sound
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 if (entry.target.tagName === 'SECTION' && entry.target.id !== currentSection) {
                     currentSection = entry.target.id;
                     playSfx(scrollSnd);
-                    
-                    document.querySelectorAll('.nav-links a').forEach(a => {
-                        a.classList.remove('active');
-                        if(a.getAttribute('href') === `#${currentSection}`) a.classList.add('active');
-                    });
                 }
                 if (entry.target.classList.contains('card')) {
                     entry.target.classList.add('show');
-                    const bars = entry.target.querySelectorAll('.bar');
-                    bars.forEach(bar => {
-                        bar.style.width = bar.getAttribute('data-width');
-                    });
+                    const bar = entry.target.querySelector('.bar');
+                    if (bar) bar.style.width = bar.dataset.width;
                 }
             }
         });
