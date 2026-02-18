@@ -1,214 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emmanuel Ngulube | Network Engineering Intern</title>
-<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
---primary:#0f172a;
---accent:#2563eb;
---accent-light:#0ea5e9;
---bg:#f1f5f9;
---dark-bg:#0b1220;
---card:#ffffff;
---card-text:#111111;
---dark-card:rgba(30,41,59,0.95);
---dark-card-text:#f1f5f9;
---divider:linear-gradient(90deg,var(--accent),var(--accent-light));
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmanuel Ngulube | Network Engineering Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #2563eb;
+            --accent-light: #0ea5e9;
+            --bg: #f1f5f9;
+            --dark-bg: #0b1220;
+            --card: #ffffff;
+            --card-text: #111111;
+            --dark-card: rgba(30, 41, 59, 0.95);
+            --dark-card-text: #f1f5f9;
+            --divider: linear-gradient(90deg, var(--accent), var(--accent-light));
+        }
 
-/* Global */
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--card-text);transition:0.4s;}
-.dark{background:var(--dark-bg);color:var(--dark-card-text);}
+        /* Global Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--card-text); transition: background 0.4s, color 0.4s; overflow-x: hidden; line-height: 1.6; }
+        body.dark { background: var(--dark-bg); color: var(--dark-card-text); }
 
-/* Navbar */
-nav{position:fixed;width:100%;top:0;background:rgba(15,23,42,0.95);backdrop-filter:blur(8px);padding:12px 30px;display:flex;justify-content:space-between;align-items:center;z-index:1000;border-bottom:1px solid rgba(255,255,255,0.1);}
-nav a{color:white;text-decoration:none;margin-left:18px;font-size:13px;transition:0.3s;}
-nav a:hover,a.active{color:var(--accent);}
-.toggle{cursor:pointer;background:var(--accent);padding:5px 12px;border-radius:20px;font-size:12px;color:white;transition:0.3s;}
+        /* Animated Network Background */
+        #network-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: #0f172a; }
+        .node { position: absolute; background: var(--accent-light); border-radius: 50%; opacity: 0.3; pointer-events: none; }
 
-/* Sections */
-section{padding:100px 20px;max-width:900px;margin:auto;scroll-margin-top:70px;position:relative;}
-h2,h3{margin-bottom:18px;position:relative;}
-h2::after{content:"";display:block;width:60px;height:4px;background:var(--divider);border-radius:2px;margin-top:6px;}
+        /* Navigation */
+        nav { position: fixed; width: 100%; top: 0; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); transition: 0.3s; }
+        nav.scrolled { padding: 10px 30px; background: rgba(15, 23, 42, 0.98); }
+        nav strong { color: white; letter-spacing: 0.5px; font-size: 1.2rem; }
+        nav .nav-links { display: flex; align-items: center; }
+        nav a { color: rgba(255,255,255,0.8); text-decoration: none; margin-left: 20px; font-size: 14px; transition: 0.3s; font-weight: 500; }
+        nav a:hover, nav a.active { color: var(--accent-light); }
+        .toggle { cursor: pointer; background: var(--accent); padding: 6px 15px; border-radius: 20px; font-size: 12px; color: white; transition: 0.3s; margin-left: 15px; border: 1px solid transparent; }
+        .toggle:hover { background: transparent; border-color: var(--accent); }
 
-/* Headings visibility */
-section h2{color:var(--primary); font-size:28px;}
-.dark section h2{color:var(--dark-card-text);}
-#hero h1{font-size:32px; line-height:1.3; background:linear-gradient(90deg,var(--accent),var(--accent-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:gradientMove 5s infinite alternate;}
-@keyframes gradientMove{0%{background-position:0%;}100%{background-position:100%;}}
+        /* Main Content */
+        main { max-width: 900px; margin: auto; padding: 0 20px; }
+        section { padding: 100px 0; scroll-margin-top: 80px; }
+        h2 { font-size: 32px; margin-bottom: 24px; position: relative; color: var(--primary); }
+        .dark h2 { color: var(--dark-card-text); }
+        h2::after { content: ""; display: block; width: 60px; height: 4px; background: var(--divider); border-radius: 2px; margin-top: 8px; }
 
-/* Buttons */
-.btn{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-light));color:white;padding:10px 18px;border-radius:10px;text-decoration:none;margin-top:10px;transition:0.3s;font-size:14px;}
-.btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 8px 20px rgba(0,0,0,0.15);}
+        /* Hero Section */
+        #hero { text-align: center; padding-top: 150px; }
+        #hero img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--accent); margin-bottom: 25px; object-fit: cover; box-shadow: 0 0 20px rgba(37, 99, 235, 0.4); transition: 0.5s; }
+        #hero img:hover { transform: rotate(5deg) scale(1.05); }
+        #hero h1 { font-size: 3rem; margin-bottom: 15px; background: linear-gradient(90deg, #fff, var(--accent-light), #fff); background-size: 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 8s linear infinite; }
+        #hero p { font-size: 1.1rem; color: #cbd5e1; max-width: 700px; margin: 0 auto 30px; }
 
-/* Cards */
-.card{background:rgba(255,255,255,0.95);color:var(--card-text);backdrop-filter:blur(12px);padding:20px;border-radius:12px;margin-bottom:20px;box-shadow:0 8px 25px rgba(0,0,0,0.15);opacity:0;transform:translateY(25px);transition:transform 0.6s,opacity 0.6s;}
-.dark .card{background:var(--dark-card);color:var(--dark-card-text);}
-.card.show{opacity:1;transform:translateY(0);}
+        @keyframes gradientMove { 0% { background-position: 0%; } 100% { background-position: 200%; } }
 
-/* Progress bars */
-.progress{background:#ddd;border-radius:20px;overflow:hidden;height:10px;margin-top:5px;}
-.bar{height:10px;background:var(--accent);width:0;transition:1.5s;}
+        /* Buttons */
+        .btn { display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); color: white; padding: 12px 24px; border-radius: 12px; text-decoration: none; transition: 0.3s; font-size: 15px; font-weight: 600; border: none; cursor: pointer; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3); }
 
-/* Hero */
-#hero{padding:100px 20px 70px;text-align:center;color:white;position:relative;}
-#hero img{width:130px;height:130px;border-radius:50%;border:3px solid var(--accent);margin-bottom:18px;object-fit:cover;animation:photoPulse 2s infinite alternate;}
-@keyframes photoPulse{0%{transform:scale(1);}100%{transform:scale(1.05);}}
+        /* Cards */
+        .card { background: var(--card); padding: 25px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05); opacity: 0; transform: translateY(30px); transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+        .dark .card { background: var(--dark-card); color: var(--dark-card-text); border-color: rgba(255,255,255,0.05); }
+        .card.show { opacity: 1; transform: translateY(0); }
+        .card:hover { border-color: var(--accent); }
+        .card h3 { margin-bottom: 10px; color: var(--accent-light); }
+        .card ul { padding-left: 20px; margin-top: 10px; }
+        .card li { margin-bottom: 5px; font-size: 14px; opacity: 0.9; }
 
-/* Animated network background */
-#network-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden;background:#0f172a;}
-.node{position:absolute;width:5px;height:5px;background:var(--accent);border-radius:50%;animation:move 10s infinite linear;}
-@keyframes move{from{transform:translateY(0);}to{transform:translateY(100vh);}}
+        /* Skills/Progress */
+        .skill-label { display: flex; justify-content: space-between; font-weight: 600; font-size: 14px; }
+        .progress { background: rgba(0,0,0,0.1); border-radius: 20px; overflow: hidden; height: 8px; margin: 8px 0 20px; }
+        .dark .progress { background: rgba(255,255,255,0.1); }
+        .bar { height: 100%; background: var(--divider); width: 0; transition: 1.5s cubic-bezier(0.1, 0, 0.2, 1); }
 
-/* Back to top */
-#backTop{position:fixed;bottom:18px;right:18px;background:var(--accent);color:white;padding:9px 14px;border-radius:50%;cursor:pointer;transition:0.3s;font-weight:bold;font-size:14px;}
-#backTop:hover{background:var(--accent-light);transform:scale(1.1);}
-.fade{opacity:0;transform:translateY(20px);transition:0.8s;}
-.fade.show{opacity:1;transform:translateY(0);}
+        /* Contact Details */
+        .contact-grid { display: grid; gap: 15px; margin-bottom: 20px; }
+        .social-links { display: flex; gap: 15px; }
 
-/* Responsive */
-@media (max-width:768px){
-nav{flex-direction:column;align-items:flex-start;padding:10px 20px;}
-nav a{margin:6px 0;font-size:14px;}
-#hero img{width:110px;height:110px;}
-#hero h1{font-size:28px;}
-section{padding:80px 15px;}
-.card{padding:16px;}
-.btn{padding:8px 14px;font-size:13px;}
-h2::after{width:50px;height:3px;}
-}
-@media (max-width:480px){
-#hero img{width:90px;height:90px;}
-#hero h1{font-size:24px;}
-section{padding:60px 10px;}
-.card{padding:14px;}
-.btn{padding:7px 12px;font-size:12px;}
-h2::after{width:40px;height:3px;}
-}
-</style>
+        /* Footer & Back to Top */
+        footer { padding: 50px 20px; text-align: center; color: #64748b; font-size: 14px; border-top: 1px solid rgba(255,255,255,0.05); }
+        #backTop { position: fixed; bottom: 25px; right: 25px; background: var(--accent); color: white; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; transition: 0.3s; opacity: 0; visibility: hidden; z-index: 100; font-weight: bold; }
+        #backTop.visible { opacity: 1; visibility: visible; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            #hero h1 { font-size: 2.2rem; }
+            nav a { margin-left: 10px; font-size: 12px; }
+            .nav-links { display: flex; align-items: center; }
+        }
+    </style>
 </head>
 <body>
 
 <div id="network-bg"></div>
 
-<nav>
-<div><strong>Emmanuel Ngulube</strong></div>
-<div>
-<a href="#hero" class="active">Home</a>
-<a href="#about">About</a>
-<a href="#skills">Skills</a>
-<a href="#projects">Projects</a>
-<a href="#certifications">Certifications</a>
-<a href="#contact">Contact</a>
-<span class="toggle" onclick="toggleMode()">Mode</span>
-</div>
+<nav id="navbar">
+    <div><strong>E.N</strong></div>
+    <div class="nav-links">
+        <a href="#hero" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <span class="toggle" onclick="toggleMode()">Mode</span>
+    </div>
 </nav>
 
-<section id="hero" class="fade">
-<img src="profile.jpg" alt="Emmanuel Ngulube">
-<h1>Network Engineering Intern | CCNA Certified</h1>
-<p>Final-year Computer Science student at UNZA specializing in Network Engineering, Routing & Switching, TCP/IP, and Enterprise LAN/WAN Infrastructure Design. Actively seeking internship opportunities in Zambia within telecoms, ISP, banking IT, and enterprise networks.</p>
-<a href="Emmanuel_Ngulube_CV.pdf" class="btn" download>Download CV</a>
-</section>
+<main>
+    <section id="hero">
+        <img src="profile.jpg" alt="Emmanuel Ngulube">
+        <h1>Network Engineer Intern</h1>
+        <p>Final-year Computer Science student at <strong>UNZA</strong>. CCNA Certified specialist focusing on Enterprise Infrastructure, Routing/Switching, and Network Security.</p>
+        <a href="cv.pdf" class="btn" download>Download CV</a>
+    </section>
 
-<section id="about" class="fade">
-<h2>About Me</h2>
-<div class="card">
-I am a fourth-year Computer Science student at UNZA, specializing in Network and Information Security with strong focus on Network Engineering. Expertise includes routing & switching, IP addressing, VLAN configuration, LAN/WAN design, and enterprise network simulation.
-</div>
-</section>
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="card">
+            I am a results-driven fourth-year student at the University of Zambia. My expertise lies in designing robust LAN/WAN architectures and troubleshooting complex network issues. I am passionate about optimizing data flow and securing enterprise infrastructures for the Zambian ISP and banking sectors.
+        </div>
+    </section>
 
-<section id="skills" class="fade">
-<h2>Technical Skills</h2>
-<div class="card">Routing & Switching<div class="progress"><div class="bar" data-width="90%"></div></div></div>
-<div class="card">TCP/IP & Subnetting<div class="progress"><div class="bar" data-width="95%"></div></div></div>
-<div class="card">VLAN Configuration<div class="progress"><div class="bar" data-width="85%"></div></div></div>
-<div class="card">Network Troubleshooting<div class="progress"><div class="bar" data-width="90%"></div></div></div>
-<div class="card">Linux & Server Administration<div class="progress"><div class="bar" data-width="80%"></div></div></div>
-</section>
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="card">
+            <div class="skill-label"><span>Routing & Switching (OSPF, EIGRP, BGP)</span><span>90%</span></div>
+            <div class="progress"><div class="bar" data-width="90%"></div></div>
 
-<section id="projects" class="fade">
-<h2>Networking Projects</h2>
-<div class="card">Enterprise LAN/WAN Design using VLANs and dynamic routing protocols.</div>
-<div class="card">IP Addressing Optimization and Subnetting Project.</div>
-<div class="card">Network Traffic Analysis using Wireshark.</div>
-<div class="card">Virtual Network Lab using VirtualBox and Linux Servers.</div>
-</section>
+            <div class="skill-label"><span>TCP/IP & VLSM Subnetting</span><span>95%</span></div>
+            <div class="progress"><div class="bar" data-width="95%"></div></div>
 
-<section id="certifications" class="fade">
-<h2>Certifications</h2>
-<div class="card">Cisco Certified Network Associate (CCNA)</div>
-<div class="card">Practical Networking Labs & Simulations</div>
-<div class="card">Zambian ISP & Enterprise Network Preparedness Training</div>
-</section>
+            <div class="skill-label"><span>VLANs, STP & Trunking</span><span>85%</span></div>
+            <div class="progress"><div class="bar" data-width="85%"></div></div>
 
-<section id="contact" class="fade">
-<h2>Contact</h2>
-<div class="card">
-📞 +260 979 236 667<br>
-📧 Emmanuel.ngulube@cs.unza.zm<br>
-🌍 Lusaka, Zambia<br>
-<a href="https://github.com/CHILEKEN" target="_blank">GitHub</a><br>
-<a href="https://www.linkedin.com/in/emmanuel-ngulube" target="_blank">LinkedIn</a>
-</div>
-</section>
+            <div class="skill-label"><span>Network Troubleshooting (Wireshark)</span><span>90%</span></div>
+            <div class="progress"><div class="bar" data-width="90%"></div></div>
+
+            <div class="skill-label"><span>Linux Administration</span><span>80%</span></div>
+            <div class="progress"><div class="bar" data-width="80%"></div></div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Networking Projects</h2>
+        
+        <div class="card">
+            <h3>Enterprise LAN/WAN Infrastructure Design</h3>
+            <p>Simulated a multi-site enterprise network in <strong>GNS3</strong>.</p>
+            <ul>
+                <li>Implemented <strong>802.1Q VLAN Trunking</strong> and Router-on-a-Stick routing.</li>
+                <li>Configured <strong>OSPFv2</strong> with area-based path optimization and neighbor authentication.</li>
+                <li>HSRP implementation for gateway redundancy and high availability.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>IP Address Optimization (VLSM)</h3>
+            <p>Designed a hierarchical IP plan for 500+ host environments.</p>
+            <ul>
+                <li>Minimized IP wastage using <strong>Variable Length Subnet Masking</strong>.</li>
+                <li>Configured Dynamic NAT/PAT and DHCP relay agents for multi-segment connectivity.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Packet-Level Security Audit</h3>
+            <p>Analyzed network vulnerabilities using <strong>Wireshark</strong>.</p>
+            <ul>
+                <li>Applied <strong>Extended ACLs</strong> to secure internal server segments from unauthorized VLANs.</li>
+                <li>Mitigated Layer 2 attacks through Port Security and DHCP Snooping.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <div class="card">
+            <strong>Cisco Certified Network Associate (CCNA)</strong><br>
+            <small>Cisco Networking Academy</small>
+        </div>
+        <div class="card">
+            <strong>ISP & Enterprise Network Preparedness</strong><br>
+            <small>Practical Labs focused on Zambian Telecom standards</small>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <div class="card">
+            <div class="contact-grid">
+                <span>📍 Lusaka, Zambia</span>
+                <span>📞 +260 979 236 667</span>
+                <span>📧 Emmanuel.ngulube@cs.unza.zm</span>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/CHILEKEN" target="_blank" class="btn" style="background: #333;">GitHub</a>
+                <a href="https://www.linkedin.com/in/emmanuel-ngulube" target="_blank" class="btn" style="background: #0077b5;">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+</main>
 
 <div id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
 
 <footer>
-© 2026 Emmanuel Ngulube | Network Engineering Portfolio
+    © 2026 Emmanuel Ngulube | Network Engineering Portfolio
 </footer>
 
 <script>
-// Dark Mode Toggle
-function toggleMode(){document.body.classList.toggle("dark");}
+    function toggleMode() { document.body.classList.toggle("dark"); }
 
-// Scroll-triggered animations
-const cards=document.querySelectorAll(".card, .fade");
-window.addEventListener("scroll",()=>{
-  cards.forEach(el=>{
-    if(el.getBoundingClientRect().top < window.innerHeight - 100){el.classList.add("show");}
-  });
-});
+    const navbar = document.getElementById("navbar");
+    const backTop = document.getElementById("backTop");
+    const cards = document.querySelectorAll(".card");
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("nav a");
 
-// Skills progress bar animation
-const skillsBars=document.querySelectorAll(".bar");
-window.addEventListener("scroll",()=>{
-  skillsBars.forEach(bar=>{
-    if(bar.getBoundingClientRect().top < window.innerHeight - 50){
-      bar.style.width=bar.getAttribute("data-width");
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+            backTop.classList.add("visible");
+        } else {
+            navbar.classList.remove("scrolled");
+            backTop.classList.remove("visible");
+        }
+
+        let current = "";
+        sections.forEach(section => {
+            if (pageYOffset >= section.offsetTop - 150) {
+                current = section.getAttribute("id");
+            }
+        });
+        navLinks.forEach(a => {
+            a.classList.remove("active");
+            if (a.getAttribute("href") === `#${current}`) a.classList.add("active");
+        });
+
+        cards.forEach(card => {
+            if (card.getBoundingClientRect().top < window.innerHeight - 100) {
+                card.classList.add("show");
+                const bar = card.querySelector(".bar");
+                if (bar) bar.style.width = bar.getAttribute("data-width");
+            }
+        });
+    });
+
+    const bg = document.getElementById("network-bg");
+    for (let i = 0; i < 50; i++) {
+        let node = document.createElement("div");
+        let size = Math.random() * 4 + 2;
+        node.className = "node";
+        node.style.width = size + "px";
+        node.style.height = size + "px";
+        node.style.left = Math.random() * 100 + "vw";
+        node.style.top = Math.random() * 100 + "vh";
+        node.style.opacity = Math.random() * 0.4;
+        
+        node.animate([
+            { transform: 'translate(0, 0)' },
+            { transform: `translate(${Math.random() * 40 - 20}px, ${Math.random() * 80 - 40}px)` }
+        ], {
+            duration: 4000 + Math.random() * 4000,
+            iterations: Infinity,
+            direction: 'alternate',
+            easing: 'ease-in-out'
+        });
+        bg.appendChild(node);
     }
-  });
-});
-
-// Animated network nodes
-const bg=document.getElementById("network-bg");
-for(let i=0;i<40;i++){
-  let node=document.createElement("div");
-  node.className="node";
-  node.style.left=Math.random()*100+"vw";
-  node.style.animationDuration=(5+Math.random()*10)+"s";
-  bg.appendChild(node);
-}
-
-// Navbar active section highlighting
-const sections=document.querySelectorAll('section');
-window.addEventListener('scroll',()=>{
-  let scrollY=window.pageYOffset;
-  sections.forEach(sec=>{
-    const top=sec.offsetTop-100;
-    const bottom=top+sec.offsetHeight;
-    const id=sec.getAttribute('id');
-    if(scrollY>=top && scrollY<=bottom){
-      document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
-      document.querySelector('nav a[href="#'+id+'"]').classList.add('active');
-    }
-  });
-});
 </script>
 </body>
 </html>
