@@ -4,11 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Place | Emmanuel Ngulube – Agribusiness & Technology</title>
-<meta name="description" content="Emmanuel Ngulube – Lusaka-based innovator in agribusiness and technology. Transforming Zambian agriculture through smart farming, digital supply chains and climate-smart solutions.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 :root {
@@ -112,6 +111,8 @@ nav {
   color: white;
   font-weight: 600;
   font-size: clamp(1rem, 4vw, 1.15rem);
+  text-align: center;
+  display: inline-block;
 }
 
 .card {
@@ -182,6 +183,9 @@ nav {
   cursor: pointer;
   position: relative;
   min-width: 120px;
+  margin: 0.5rem auto;
+  display: block;
+  width: fit-content;
 }
 
 .contact-form button.loading { color: transparent; }
@@ -205,6 +209,28 @@ nav {
 
 .success { color: var(--accent); }
 
+.whatsapp-btn, .cv-btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-align: center;
+  margin: 1rem auto;
+  width: fit-content;
+}
+
+.whatsapp-btn {
+  background: #25D366;
+  color: white;
+  box-shadow: 0 4px 15px rgba(37,213,102,0.4);
+}
+
+.cv-btn {
+  background: linear-gradient(90deg, var(--accent-dark), var(--accent));
+  color: white;
+  box-shadow: 0 4px 15px rgba(99,102,241,0.4);
+}
+
 footer {
   text-align: center;
   padding: 2.5rem 5% 3.5rem;
@@ -218,6 +244,7 @@ footer {
   section { padding: 2.5rem 6% 3rem; }
   .card { padding: 1.5rem; width: 94%; }
   .testimonials-grid { grid-template-columns: 1fr; }
+  .whatsapp-btn, .cv-btn { padding: 0.9rem 1.8rem; font-size: 1rem; }
 }
 </style>
 </head>
@@ -323,20 +350,20 @@ footer {
 
     <div id="form-status" style="text-align:center;margin-top:1.2rem;font-weight:600;min-height:1.5rem;"></div>
 
-    <p style="margin-top:1.8rem;text-align:center;font-size:0.95rem;">
-      <a href="mailto:Emmanuel.ngulube@cs.unza.zm">Emmanuel.ngulube@cs.unza.zm</a><br>
+    <p style="margin:2rem 0 1rem;text-align:center;font-size:1rem;">
+      <a href="mailto:Emmanuel.ngulube@cs.unza.zm" style="color:var(--accent);">Emmanuel.ngulube@cs.unza.zm</a><br>
       +260 979 236 667<br>
-      <a href="https://linkedin.com/in/emmanuel-ngulube-890b3b328" target="_blank">LinkedIn</a>
+      <a href="https://linkedin.com/in/emmanuel-ngulube-890b3b328" target="_blank" style="color:var(--accent);">LinkedIn</a>
     </p>
 
-    <div style="text-align:center;margin:1.5rem 0;">
-      <a href="https://wa.me/260979236667" target="_blank" style="padding:0.9rem 1.8rem;background:#25D366;color:white;border-radius:999px;font-weight:600;display:inline-block;">
+    <div style="text-align:center;margin:2rem 0;">
+      <a href="https://wa.me/260979236667" target="_blank" class="whatsapp-btn">
         <i class="fab fa-whatsapp" style="margin-right:0.5rem;"></i> Message on WhatsApp
       </a>
     </div>
 
-    <div style="text-align:center;margin:2rem 0;">
-      <a href="cv.pdf" download style="padding:1rem 2.5rem;background:linear-gradient(90deg,var(--accent-dark),var(--accent));color:white;border-radius:999px;font-weight:600;">
+    <div style="text-align:center;margin:1rem 0;">
+      <a href="cv.pdf" download class="cv-btn">
         <i class="fas fa-file-download" style="margin-right:0.6rem;"></i> Download My CV (PDF)
       </a>
     </div>
@@ -356,24 +383,6 @@ footer {
 
 <footer style="text-align:center;padding:2.5rem 5% 3.5rem;background:#0b1220;">
   © <span id="year"></span> Emmanuel Ngulube
-
-  <div style="margin:1.5rem 0;">
-    <a href="cv.pdf" download style="padding:1rem 2.5rem;background:linear-gradient(90deg,var(--accent-dark),var(--accent));color:white;border-radius:999px;font-weight:600;">
-      <i class="fas fa-file-download" style="margin-right:0.6rem;"></i> Download My CV (PDF)
-    </a>
-  </div>
-
-  <div style="margin-top:1.5rem;display:flex;justify-content:center;gap:2rem;">
-    <a href="https://www.facebook.com/emmanuelngulube.emmanuelngulube" target="_blank">
-      <i class="fab fa-facebook-f" style="font-size:2rem;color:#1877F2;"></i>
-    </a>
-    <a href="https://wa.me/260979236667" target="_blank">
-      <i class="fab fa-whatsapp" style="font-size:2rem;color:#25D366;"></i>
-    </a>
-    <a href="https://linkedin.com/in/emmanuel-ngulube-890b3b328" target="_blank">
-      <i class="fab fa-linkedin-in" style="font-size:2rem;color:#0A66C2;"></i>
-    </a>
-  </div>
 </footer>
 
 <canvas id="bgCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;"></canvas>
