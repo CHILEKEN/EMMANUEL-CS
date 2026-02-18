@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Place | Emmanuel Ngulube – Agribusiness & Technology</title>
+<title>Emmanuel Ngulube | Agribusiness & Tech Innovator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
@@ -11,23 +11,25 @@
 
 <style>
 :root {
-  --bg: #0f172a;
-  --text: #e2e8f0;
-  --card-bg: rgba(255,255,255,0.07);
-  --card-border: rgba(99,102,241,0.22);
-  --accent: #00f5ff;
-  --accent-dark: #6366f1;
-  --link: #cbd5e1;
+  --bg: #020617;
+  --text: #f8fafc;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --card-border: rgba(34, 197, 94, 0.2);
+  --accent: #22c55e; /* Agri Green */
+  --accent-glow: #00f5ff; /* Tech Cyan */
+  --accent-dark: #15803d;
+  --link: #94a3b8;
+  scroll-behavior: smooth;
 }
 
 [data-theme="light"] {
-  --bg: #fdfaf7;
-  --text: #2d1f16;
-  --card-bg: #fffaf5;
-  --card-border: #f0e0d6;
-  --accent: #e07a5f;
-  --accent-dark: #c44536;
-  --link: #7c3aed;
+  --bg: #f8fafc;
+  --text: #0f172a;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --accent: #16a34a;
+  --accent-dark: #15803d;
+  --link: #64748b;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -41,426 +43,330 @@ body {
   overflow-x: hidden;
 }
 
+/* Navigation */
 nav {
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: clamp(0.8rem, 3vw, 1.2rem) 5%;
+  padding: 1rem 5%;
   background: var(--card-bg);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--card-border);
-  flex-wrap: wrap;
-  gap: 1rem;
 }
 
-.logo { font-weight: 800; font-size: clamp(1.4rem, 5vw, 1.8rem); color: var(--accent); }
+.logo { font-weight: 800; font-size: 1.5rem; color: var(--accent); letter-spacing: -1px; }
 
-.nav-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(0.8rem, 3vw, 1.2rem);
-  justify-content: flex-end;
-}
-
+.nav-links { display: flex; gap: 1.5rem; align-items: center; }
 .nav-links a {
-  font-size: clamp(0.9rem, 3.5vw, 1rem);
-  color: var(--link);
-  text-decoration: none;
-}
-
-.theme-toggle {
-  background: none;
-  border: none;
-  font-size: clamp(1.3rem, 4.5vw, 1.6rem);
-  cursor: pointer;
+  font-size: 0.9rem;
   color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
 }
+.nav-links a:hover { color: var(--accent); }
 
+/* Hero */
 .hero {
-  min-height: 80vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: clamp(2.5rem, 8vw, 5rem) 5%;
+  padding: 0 5%;
+  background: radial-gradient(circle at center, rgba(34, 197, 94, 0.15) 0%, transparent 70%);
 }
 
 .hero h1 {
-  font-size: clamp(2.6rem, 10vw, 5.5rem);
-  background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+  font-size: clamp(2rem, 8vw, 4.5rem);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+}
+
+.hero h1 span {
+  background: linear-gradient(90deg, var(--accent), var(--accent-glow));
   -webkit-background-clip: text;
-  color: transparent;
-  margin-bottom: 0.5rem;
+  -webkit-text-fill-color: transparent;
 }
 
-.hero .tagline {
-  font-size: clamp(1.1rem, 4.5vw, 1.5rem);
-  color: var(--accent);
-  margin-bottom: 2rem;
-}
+.tagline { font-size: clamp(1rem, 3vw, 1.4rem); opacity: 0.9; max-width: 700px; margin-bottom: 2.5rem; }
 
+/* Buttons */
 .btn {
-  padding: clamp(0.8rem, 3.5vw, 1.1rem) clamp(1.8rem, 6vw, 2.5rem);
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
   color: white;
+  text-decoration: none;
   font-weight: 600;
-  font-size: clamp(1rem, 4vw, 1.15rem);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: inline-block;
+  border: none;
 }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3); }
 
+/* Cards & Sections */
+section { padding: 5rem 5%; max-width: 1100px; margin: 0 auto; }
 .card {
   background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 3rem;
   backdrop-filter: blur(10px);
+}
+
+h2 { font-size: 2rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 10px; }
+h2::after { content: ""; height: 2px; flex: 1; background: var(--card-border); }
+
+/* Profile */
+.profile-flex { display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; }
+.profile-img {
+  flex: 0 0 250px;
+  height: 250px;
+  border-radius: 30px;
+  object-fit: cover;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 30px rgba(34, 197, 94, 0.2);
+}
+
+/* Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--card-border);
   border-radius: 16px;
-  padding: clamp(1.4rem, 4vw, 2rem);
-  margin: 1.5rem auto;
-  max-width: 1000px;
-  width: 92%;
-}
-
-.profile { display: flex; flex-direction: column; align-items: center; gap: 1.8rem; text-align: center; }
-
-.profile img {
-  width: clamp(150px, 38vw, 220px);
-  border-radius: 50%;
-  border: 5px solid transparent;
-  background: linear-gradient(45deg, var(--accent), var(--accent-dark), #a78bfa, var(--accent)) border-box;
-  background-size: 300% 300%;
-  padding: 5px;
-  animation: neonFlow 8s linear infinite;
-}
-
-@keyframes neonFlow { 0%,100% { background-position: 0% 50% } 50% { background-position: 100% 50% } }
-
-.metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1.5rem; text-align: center; }
-
-.metric h2 { font-size: clamp(2.5rem, 9vw, 4.5rem); color: var(--accent); }
-
-.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-
-.testimonial {
-  background: rgba(99,102,241,0.06);
-  border-radius: 12px;
   padding: 1.5rem;
+  transition: 0.3s;
+}
+.project-card:hover { border-color: var(--accent); background: rgba(255, 255, 255, 0.05); }
+
+.tag {
+  display: inline-block;
+  padding: 2px 10px;
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--accent);
+  border-radius: 5px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-right: 5px;
 }
 
-.map-container { margin: 2rem auto; max-width: 100%; border-radius: 16px; overflow: hidden; border: 1px solid var(--card-border); }
+/* Impact Metrics */
+.metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-top: 2rem; }
+.metric { text-align: center; }
+.metric h3 { font-size: 3rem; color: var(--accent); }
 
-.map-container iframe { width: 100%; height: clamp(280px, 55vw, 420px); border: 0; loading: lazy; }
-
-.qr-container { text-align: center; margin: 2.5rem auto; max-width: 260px; }
-
-.qr-container img { width: 100%; border-radius: 16px; box-shadow: 0 0 25px rgba(99,102,241,0.3); loading: lazy; }
-
-.contact-form { display: flex; flex-direction: column; gap: 1.2rem; max-width: 680px; margin: 2rem auto 0; }
-
+/* Contact Form */
+.contact-form { display: grid; gap: 1rem; margin-top: 2rem; }
 .contact-form input, .contact-form textarea {
-  padding: 1rem 1.2rem;
+  width: 100%;
+  padding: 1rem;
   border-radius: 12px;
   border: 1px solid var(--card-border);
-  background: var(--card-bg);
-  color: var(--text);
-  font-size: 1rem;
-}
-
-.contact-form button {
-  padding: 1rem;
-  border: none;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+  background: rgba(0,0,0,0.2);
   color: white;
-  font-weight: 600;
-  font-size: 1.1rem;
-  cursor: pointer;
-  position: relative;
-  min-width: 120px;
 }
 
-.contact-form button.loading { color: transparent; }
-.contact-form button.loading::after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  top: 50%;
-  left: 50%;
-  margin: -10px 0 0 -10px;
-  border: 3px solid white;
-  border-top-color: transparent;
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
-#form-status { text-align: center; margin-top: 1rem; font-weight: 600; min-height: 1.5rem; }
-
-.success { color: var(--accent); }
-
-footer {
-  text-align: center;
-  padding: 2.5rem 5% 3.5rem;
-  background: #0b1220;
-}
+/* Background Canvas */
+#bgCanvas { position: fixed; top: 0; left: 0; z-index: -1; }
 
 @media (max-width: 768px) {
-  nav { padding: 0.8rem 6%; flex-direction: column; gap: 1rem; }
-  .nav-links { justify-content: center; width: 100%; }
-  .hero { padding: 2rem 6% 4rem; min-height: 70vh; }
-  section { padding: 2.5rem 6% 3rem; }
-  .card { padding: 1.5rem; width: 94%; }
-  .testimonials-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; } /* Could add a hamburger menu here */
+  .profile-flex { justify-content: center; text-align: center; }
+  .card { padding: 1.5rem; }
 }
 </style>
 </head>
 <body data-theme="dark">
 
+<canvas id="bgCanvas"></canvas>
+
 <nav>
-  <div class="logo">EN</div>
-  <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
-    <a href="#hero">Home</a>
+  <div class="logo">EMMANUEL.NG</div>
+  <div class="nav-links">
     <a href="#about">About</a>
-    <a href="#leadership">Leadership</a>
     <a href="#impact">Impact</a>
-    <a href="#testimonials">Testimonials</a>
-    <a href="#vision">Vision</a>
+    <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
-    <button id="themeToggle" style="background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text);">
+    <button id="themeToggle" style="background:none;border:none;cursor:pointer;color:var(--text);font-size:1.2rem;">
       <i class="fas fa-moon"></i>
     </button>
   </div>
 </nav>
 
-<section id="hero" class="hero">
-  <h1 class="typing">WELCOME TO MY PLACE, FEEL FREE</h1>
-  <div class="tagline">Transforming Zambian Agriculture Through Technology & Innovation</div>
-  <a href="#about" class="btn">Explore</a>
-</section>
+<header class="hero" id="home">
+  <h1><span>Cultivating the Future</span><br>Through Agri-Tech</h1>
+  <p class="tagline">Emmanuel Ngulube — Building climate-smart digital solutions to transform Zambian Agribusiness through Chileken Agro Holdings.</p>
+  <div style="display:flex; gap:1rem;">
+    <a href="#projects" class="btn">View My Work</a>
+    <a href="#contact" class="btn" style="background: transparent; border: 1px solid var(--accent);">Get In Touch</a>
+  </div>
+</header>
 
 <section id="about">
-  <div class="card profile">
-    <img src="profile.jpg" alt="Emmanuel Ngulube" loading="lazy">
-    <div>
-      <h2>About Me</h2>
-      <p>Emmanuel Ngulube – Lusaka-based innovator in agribusiness and technology. Building smarter, more sustainable farming through CHILEKEN AGRO HOLDINGS.</p>
-    </div>
-  </div>
-</section>
-
-<section id="leadership">
   <div class="card">
-    <h2>Leadership</h2>
-    <p>Founder & Strategic Director at CHILEKEN AGRO HOLDINGS. Focusing on smart farming, digital supply chains and climate-smart agriculture solutions.</p>
+    <div class="profile-flex">
+      <img src="profile.jpg" alt="Emmanuel Ngulube" class="profile-img">
+      <div style="flex: 1;">
+        <h2>About Me</h2>
+        <p>Based in Lusaka, I bridge the gap between traditional agriculture and modern technology. As the Founder of <strong>Chileken Agro Holdings</strong>, I develop systems that optimize supply chains, enhance crop yields, and bring digital visibility to small-scale farmers.</p>
+        <div style="margin-top:1.5rem; display:flex; gap:1rem; font-size:1.5rem; color:var(--accent);">
+          <i class="fab fa-react"></i> <i class="fab fa-python"></i> <i class="fab fa-node-js"></i> <i class="fas fa-leaf"></i>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="impact">
   <div class="card">
-    <h2>Impact</h2>
+    <h2>Impact & Vision</h2>
     <div class="metrics">
-      <div class="metric"><h2 data-target="30">0</h2><p>Projects</p></div>
-      <div class="metric"><h2 data-target="500">0</h2><p>Farmers</p></div>
-      <div class="metric"><h2 data-target="12">0</h2><p>Innovations</p></div>
-      <div class="metric"><h2 data-target="8">0</h2><p>Partners</p></div>
+      <div class="metric"><h3 data-target="30">0</h3><p>Projects Launched</p></div>
+      <div class="metric"><h3 data-target="500">0</h3><p>Farmers Supported</p></div>
+      <div class="metric"><h3 data-target="12">0</h3><p>Tech Solutions</p></div>
     </div>
   </div>
 </section>
 
-<section id="testimonials">
-  <div class="card">
-    <h2>What Partners Say</h2>
-    <div class="testimonials-grid">
-      <div class="testimonial">
-        <p>"Emmanuel is driving real change in Zambian agriculture with technology."</p>
-        <div class="testimonial-author">Juma Gift Milanzi</div>
-        <div class="testimonial-role">Community Leader</div>
-      </div>
-      <div class="testimonial">
-        <p>"His digital solutions have transformed how we manage supply chains — highly recommended."</p>
-        <div class="testimonial-author">Grace Mwansa</div>
-        <div class="testimonial-role">Agri-Business Partner</div>
-      </div>
-      <div class="testimonial">
-        <p>"Emmanuel’s vision for smart farming is exactly what Zambia needs right now."</p>
-        <div class="testimonial-author">Dr. Chileshe Banda</div>
-        <div class="testimonial-role">Agricultural Consultant</div>
-      </div>
-      <div class="testimonial">
-        <p>"Working with him on tech integration was seamless and produced excellent results."</p>
-        <div class="testimonial-author">Victor Kunda</div>
-        <div class="testimonial-role">Tech Collaborator</div>
-      </div>
+<section id="projects">
+  <h2>Featured Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <h3>Smart Supply Tracker</h3>
+      <p>A digital ledger system for tracking grain distribution from farm to market in real-time.</p>
+      <span class="tag">JavaScript</span> <span class="tag">Node.js</span> <span class="tag">Agri-Data</span>
     </div>
-  </div>
-</section>
-
-<section id="vision">
-  <div class="card">
-    <h2>Vision</h2>
-    <p>A tech-powered, sustainable future for agriculture in Zambia.</p>
+    <div class="project-card">
+      <h3>Chileken Agro Portal</h3>
+      <p>An e-commerce and advisory platform connecting farmers with high-quality inputs and expert advice.</p>
+      <span class="tag">React</span> <span class="tag">Firebase</span> <span class="tag">E-Commerce</span>
+    </div>
+    <div class="project-card">
+      <h3>Climate-Smart IoT</h3>
+      <p>Researching soil moisture sensor integration for automated irrigation in Lusaka’s urban farms.</p>
+      <span class="tag">IoT</span> <span class="tag">Python</span> <span class="tag">Sustainability</span>
+    </div>
   </div>
 </section>
 
 <section id="contact">
   <div class="card">
-    <h2>Contact</h2>
-
-    <form class="contact-form" id="contactForm" action="https://formspree.io/f/xwvnbdqd" method="POST">
-      <input type="text" name="name" placeholder="Name" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="text" name="subject" placeholder="Subject" required>
-      <textarea name="message" placeholder="Message" required rows="4"></textarea>
-      <button type="submit" id="submitBtn">Send</button>
-    </form>
-
-    <div id="form-status" style="text-align:center;margin-top:1.2rem;font-weight:600;min-height:1.5rem;"></div>
-
-    <p style="margin-top:1.8rem;text-align:center;font-size:0.95rem;">
-      <a href="mailto:Emmanuel.ngulube@cs.unza.zm">Emmanuel.ngulube@cs.unza.zm</a><br>
-      +260 979 236 667<br>
-      <a href="https://linkedin.com/in/emmanuel-ngulube-890b3b328" target="_blank">LinkedIn</a>
-    </p>
-
-    <div style="text-align:center;margin:1.5rem 0;">
-      <a href="https://wa.me/260979236667" target="_blank" style="padding:0.9rem 1.8rem;background:#25D366;color:white;border-radius:999px;font-weight:600;display:inline-block;">
-        <i class="fab fa-whatsapp" style="margin-right:0.5rem;"></i> Message on WhatsApp
-      </a>
-    </div>
-
-    <div style="text-align:center;margin:2rem 0;">
-      <a href="cv.pdf" download style="padding:1rem 2.5rem;background:linear-gradient(90deg,var(--accent-dark),var(--accent));color:white;border-radius:999px;font-weight:600;">
-        <i class="fas fa-file-download" style="margin-right:0.6rem;"></i> Download My CV (PDF)
-      </a>
+    <h2>Let's Collaborate</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+      <div>
+        <p>I'm always open to discussing tech integrations, agribusiness partnerships, or speaking engagements.</p>
+        <div style="margin-top: 1.5rem;">
+          <p><i class="fas fa-envelope"></i> Emmanuel.ngulube@cs.unza.zm</p>
+          <p><i class="fas fa-phone"></i> +260 979 236 667</p>
+          <p><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/emmanuel-ngulube-890b3b328" style="color:var(--accent);">Connect on LinkedIn</a></p>
+        </div>
+        <div style="margin-top: 2rem;">
+            <a href="https://wa.me/260979236667" class="btn" style="background:#25D366;"><i class="fab fa-whatsapp"></i> WhatsApp Me</a>
+        </div>
+      </div>
+      <form class="contact-form" action="https://formspree.io/f/xwvnbdqd" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="4" placeholder="How can I help you?" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
     </div>
   </div>
 </section>
 
-<div class="card" style="margin:0 5% 2rem;max-width:1000px;">
-  <div class="map-container">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d244195.512!2d28.199997!3d-15.416667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x195f2c9b5d9f9a8d%3A0x4b5e8f9f9f9f9f9f!2sLusaka%2C%20Zambia!5e0!3m2!1sen!2s!4v1739712000000" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </div>
-
-  <div style="text-align:center;margin:2rem auto;max-width:260px;">
-    <p style="margin-bottom:1rem;font-weight:600;">Scan to Message on WhatsApp</p>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https://wa.me/260979236667" alt="WhatsApp QR Code" loading="lazy">
-  </div>
-</div>
-
-<footer style="text-align:center;padding:2.5rem 5% 3.5rem;background:#0b1220;">
-  © <span id="year"></span> Emmanuel Ngulube
+<footer style="text-align:center; padding: 4rem 0; opacity: 0.6; font-size: 0.9rem;">
+  <p>&copy; <span id="year"></span> Emmanuel Ngulube. Built with passion for Zambian Agriculture.</p>
 </footer>
 
-<canvas id="bgCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;"></canvas>
-
 <script>
-// Theme toggle
+// Theme Toggle
 const toggle = document.getElementById('themeToggle');
 const body = document.body;
-let theme = localStorage.getItem('theme') || 'dark';
-body.setAttribute('data-theme', theme);
-toggle.innerHTML = theme === 'light' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-
 toggle.addEventListener('click', () => {
-  theme = theme === 'dark' ? 'light' : 'dark';
-  body.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
-  toggle.innerHTML = theme === 'light' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+  const isDark = body.getAttribute('data-theme') === 'dark';
+  body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  toggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
 });
 
-// Year
-document.getElementById('year').textContent = new Date().getFullYear();
+// Impact Counters
+const counters = document.querySelectorAll('[data-target]');
+const observerOptions = { threshold: 0.5 };
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      const target = +entry.target.getAttribute('data-target');
+      let count = 0;
+      const update = () => {
+        const speed = target / 50;
+        if(count < target) {
+          count += speed;
+          entry.target.innerText = Math.ceil(count);
+          setTimeout(update, 30);
+        } else {
+          entry.target.innerText = target;
+        }
+      };
+      update();
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+counters.forEach(c => observer.observe(c));
 
-// Typing
-const typing = document.querySelector('.typing');
-if (typing) {
-  const text = typing.textContent.trim();
-  typing.textContent = '';
-  let i = 0;
-  function type() {
-    if (i < text.length) typing.textContent += text[i++];
-    setTimeout(type, 35);
-  }
-  setTimeout(type, 400);
-}
+// Background Animation
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+let w, h, particles = [];
 
-// Reveal
-const obs = new IntersectionObserver(e => e.forEach(en => {
-  if (en.isIntersecting) en.target.classList.add('visible');
-}), { threshold: 0.1 });
-document.querySelectorAll('section').forEach(s => obs.observe(s));
-
-// Counters
-let countersStarted = false;
-const cObs = new IntersectionObserver(e => {
-  if (e[0].isIntersecting && !countersStarted) {
-    countersStarted = true;
-    document.querySelectorAll('.metric h2').forEach(el => {
-      const t = +el.dataset.target;
-      let c = 0;
-      const id = setInterval(() => {
-        c += t / 60;
-        el.textContent = Math.ceil(c);
-        if (c >= t) { el.textContent = t; clearInterval(id); }
-      }, 20);
+function init() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+  particles = [];
+  for(let i=0; i<40; i++) {
+    particles.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      size: Math.random() * 2 + 1,
+      speedX: (Math.random() - 0.5) * 0.5,
+      speedY: (Math.random() - 0.5) * 0.5
     });
   }
-}, { threshold: 0.5 });
-cObs.observe(document.querySelector('#impact'));
-
-// Particles
-const cv = document.getElementById('bgCanvas'), ctx = cv.getContext('2d');
-let w, h;
-function rs() { w = cv.width = window.innerWidth; h = cv.height = window.innerHeight; }
-rs(); window.addEventListener('resize', rs);
-let parts = [];
-for (let i = 0; i < 12; i++) {
-  parts.push({
-    x: Math.random() * w,
-    y: Math.random() * h,
-    r: Math.random() * 1.8 + 0.5,
-    dx: (Math.random() - 0.5) * 0.6,
-    dy: (Math.random() - 0.5) * 0.6
-  });
 }
-function lp() {
-  ctx.clearRect(0, 0, w, h);
-  ctx.fillStyle = 'rgba(0,245,255,0.05)';
-  parts.forEach(p => {
-    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
-    p.x += p.dx; p.y += p.dy;
-    if (p.x < 0 || p.x > w) p.dx *= -1;
-    if (p.y < 0 || p.y > h) p.dy *= -1;
+
+function animate() {
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle = body.getAttribute('data-theme') === 'dark' ? 'rgba(34, 197, 94, 0.2)' : 'rgba(34, 197, 94, 0.1)';
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+    ctx.fill();
+    p.x += p.speedX;
+    p.y += p.speedY;
+    if(p.x < 0 || p.x > w) p.speedX *= -1;
+    if(p.y < 0 || p.y > h) p.speedY *= -1;
   });
-  requestAnimationFrame(lp);
+  requestAnimationFrame(animate);
 }
-lp();
 
-// Form
-const form = document.querySelector('.contact-form');
-const btn = form?.querySelector('#submitBtn');
-const status = document.getElementById('form-status');
+window.addEventListener('resize', init);
+init();
+animate();
 
-if (form && btn && status) {
-  form.addEventListener('submit', e => {
-    btn.classList.add('loading');
-    btn.disabled = true;
-    status.textContent = '';
-    status.className = '';
-
-    setTimeout(() => {
-      status.textContent = "Message sent! I'll reply soon.";
-      status.className = 'success';
-      btn.classList.remove('loading');
-      btn.disabled = false;
-      form.reset();
-    }, 800);
-  });
-}
+document.getElementById('year').textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>
