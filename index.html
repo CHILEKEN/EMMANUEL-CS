@@ -10,19 +10,20 @@
             --primary: #0f172a;
             --accent: #00b01c; 
             --accent-light: #22c55e;
-            --status-red: #ff3131; /* Cinematic Alert Red */
+            --status-red: #ff3131;
             --dark-bg: #020617;
             --card-bg: #0f172a;
             --text-main: #ffffff;
             --text-dim: #cbd5e1;
             --grid-color: rgba(0, 176, 28, 0.12);
+            --glow-burst: 0 0 50px rgba(34, 197, 94, 0.9);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
         
         body { background: var(--dark-bg); color: var(--text-main); overflow-x: hidden; line-height: 1.6; width: 100%; }
 
-        /* Background Grid */
+        /* Background Grid Visibility (RESTORED) */
         .bg-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
@@ -32,7 +33,7 @@
             background-size: clamp(40px, 5vw, 60px) clamp(40px, 5vw, 60px);
         }
 
-        /* Navigation */
+        /* Navigation (RESTORED WITH BLUR) */
         nav { 
             position: fixed; width: 100%; top: 0; background: rgba(2, 6, 23, 0.98); 
             backdrop-filter: blur(15px); padding: 15px clamp(15px, 5%, 50px); 
@@ -43,41 +44,41 @@
         .welcome-msg {
             font-size: clamp(1rem, 2vw, 1.4rem); font-weight: 900; letter-spacing: 4px; color: var(--accent-light);
             text-shadow: 0 0 15px var(--accent);
+            animation: shake 0.4s infinite alternate;
         }
+        @keyframes shake { 0% { transform: translate(1px, 1px); } 100% { transform: translate(-1px, -1px); } }
 
         .nav-links a { color: #ffffff; text-decoration: none; margin-left: clamp(10px, 2vw, 25px); font-size: clamp(12px, 1.2vw, 14px); font-weight: 700; text-transform: uppercase; }
+        .nav-links a:hover { color: var(--accent-light); text-shadow: 0 0 10px var(--accent-light); }
 
         /* HERO SECTION */
         #hero { text-align: center; padding: clamp(120px, 15vh, 200px) 20px clamp(40px, 8vh, 80px); }
-        
-        /* THE RED STATUS BADGE - CINEMATIC GLOW */
+
+        /* STATUS BADGE (RESTORED RED GLOW) */
         .status-badge {
             display: inline-flex; align-items: center; 
-            background: rgba(255, 49, 49, 0.1); 
-            border: 2px solid var(--status-red); 
+            background: rgba(255, 49, 49, 0.1); border: 2px solid var(--status-red); 
             padding: 8px 20px; border-radius: 30px;
             font-size: clamp(0.75rem, 1.5vw, 0.9rem); font-weight: 900; color: #ff6b6b;
             margin-bottom: 30px; letter-spacing: 2px;
-            box-shadow: 0 0 15px rgba(255, 49, 49, 0.4);
             animation: pulseRedAlert 2s infinite ease-in-out;
         }
-
         @keyframes pulseRedAlert {
-            0%, 100% { box-shadow: 0 0 10px var(--status-red), inset 0 0 5px var(--status-red); opacity: 1; }
-            50% { box-shadow: 0 0 25px var(--status-red), inset 0 0 10px var(--status-red); opacity: 0.8; }
+            0%, 100% { box-shadow: 0 0 10px var(--status-red); opacity: 1; }
+            50% { box-shadow: 0 0 25px var(--status-red); opacity: 0.8; }
         }
+        .red-dot { height: 10px; width: 10px; background-color: var(--status-red); border-radius: 50%; display: inline-block; margin-right: 10px; }
 
-        .red-dot { height: 10px; width: 10px; background-color: var(--status-red); border-radius: 50%; display: inline-block; margin-right: 10px; box-shadow: 0 0 10px var(--status-red); }
-
-        /* PROFILE IMAGE - BACK TO GREEN */
+        /* PROFILE IMAGE (RESTORED GREEN RING) */
         #hero img { 
             width: clamp(140px, 25vw, 180px); height: clamp(140px, 25vw, 180px); border-radius: 50%; 
             border: 4px solid var(--accent); object-fit: cover;
             box-shadow: 0 0 20px rgba(0, 176, 28, 0.3);
-            transition: 0.3s;
+            transition: 0.3s; cursor: pointer;
         }
+        #hero img:active { transform: scale(0.95); box-shadow: var(--glow-burst) !important; }
 
-        /* BLOCKY TYPOGRAPHY */
+        /* BLOCKY TYPOGRAPHY (RESTORED & OPTIMIZED) */
         .user-name {
             font-size: clamp(1.8rem, 6.5vw, 3.5rem); font-weight: 900; color: #FFFFFF; 
             letter-spacing: clamp(3px, 1.2vw, 10px); text-transform: uppercase; 
@@ -98,7 +99,7 @@
             border: 1px solid rgba(34, 197, 94, 0.2);
         }
 
-        /* CONTENT STYLING */
+        /* SECTION HEADERS (RESTORED DASHBOARD STYLE) */
         main { max-width: 900px; margin: auto; padding: 0 clamp(15px, 5%, 50px); }
         section { padding: clamp(40px, 10vh, 100px) 0; }
         
@@ -106,24 +107,36 @@
             font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 30px; font-weight: 900; 
             color: #ffffff; text-transform: uppercase; letter-spacing: 5px; 
             border-left: 8px solid var(--accent); padding-left: 20px;
+            text-shadow: 2px 2px 0px rgba(0, 176, 28, 0.3);
         }
 
+        /* CARDS (RESTORED ANIMATION & TACTILE GLOW) */
         .card { 
             background: var(--card-bg); padding: clamp(20px, 4vw, 35px); border-radius: 15px; 
             margin-bottom: clamp(20px, 3vw, 40px); border: 1px solid rgba(34, 197, 94, 0.3); 
             opacity: 0; transform: translateY(30px); transition: 0.6s ease-out;
+            cursor: pointer;
         }
         .card.show { opacity: 1; transform: translateY(0); }
+        .card:active { transform: scale(0.98); box-shadow: var(--glow-burst) !important; }
         .card h3 { color: var(--accent-light); margin-bottom: 15px; font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 800; }
+        .card p { color: var(--text-dim); }
 
+        /* SKILLS PROGRESS (RESTORED ANIMATED BARS) */
         .progress { background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 12px; margin: 10px 0 25px; overflow: hidden; }
         .bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); width: 0; transition: 1.5s ease-in-out; }
 
+        /* BUTTONS (RESTORED GRADIENTS) */
         .btn, .social-btn { 
             display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); 
-            color: white !important; padding: 16px 35px; border-radius: 10px; 
+            color: white !important; padding: clamp(12px, 2vw, 18px) clamp(20px, 4vw, 40px); border-radius: 10px; 
             text-decoration: none; font-weight: 800; border: none; margin: 10px 5px; font-size: 16px;
+            transition: 0.2s;
         }
+        .btn:active, .social-btn:active { transform: scale(0.95); box-shadow: var(--glow-burst); }
+
+        .social-btn.github { background: #161b22; border: 2px solid var(--accent); }
+        .social-btn.linkedin { background: #0077b5; border: 2px solid #00a0dc; }
 
         footer { padding: 40px 20px; text-align: center; color: #64748b; font-size: 12px; font-weight: 700; letter-spacing: 3px; border-top: 1px solid rgba(34, 197, 94, 0.1); text-transform: uppercase; }
 
@@ -131,6 +144,7 @@
             .nav-links { display: none; }
             h2 { letter-spacing: 2px; }
             .user-name { letter-spacing: 2px; -webkit-text-stroke: 0px; }
+            .btn, .social-btn { width: 100%; margin: 5px 0; }
         }
     </style>
 </head>
@@ -153,9 +167,7 @@
     <section id="hero">
         <div class="status-badge"><span class="red-dot"></span>OPEN FOR INTERNSHIPS</div>
         <br>
-        <div class="profile-container">
-            <img src="profile.jpg" alt="NGULUBE EMMANUEL">
-        </div>
+        <img src="profile.jpg" alt="NGULUBE EMMANUEL">
         <span class="user-name">NGULUBE EMMANUEL</span>
         <div class="hero-title">Network Engineer Intern</div>
         <p class="hero-bio">
@@ -180,7 +192,7 @@
         <div class="card">
             <h3>Cisco Certified Network Associate (CCNA)</h3>
             <p>Verification ID: <strong>CSCO144XXXX</strong></p>
-            <p>Expertise in IP routing (OSPF, BGP), VLAN trunking, and high-availability design (HSRP).</p>
+            <p>Mastery in OSPF, BGP, VLSM, and Enterprise Security protocols.</p>
         </div>
         <div class="card">
             <h3>B.Sc. Computer Science</h3>
@@ -191,12 +203,26 @@
     <section id="skills">
         <h2>Technical Skills</h2>
         <div class="card">
-            <p><strong>Routing & Switching</strong> (OSPF, BGP)</p>
+            <p><strong>Routing & Switching</strong> (OSPF, BGP, EIGRP)</p>
             <div class="progress"><div class="bar" data-width="90%"></div></div>
             <p><strong>TCP/IP & VLSM</strong> Subnetting Expert</p>
             <div class="progress"><div class="bar" data-width="95%"></div></div>
-            <p><strong>Network Security</strong> (ACLs, Port Security)</p>
+            <p><strong>Network Security</strong> (ACLs, Port Security, VPNs)</p>
             <div class="progress"><div class="bar" data-width="85%"></div></div>
+            <p><strong>Analysis Tools</strong> (Wireshark, GNS3, Packet Tracer)</p>
+            <div class="progress"><div class="bar" data-width="90%"></div></div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Networking Projects</h2>
+        <div class="card">
+            <h3>Enterprise LAN/WAN Infrastructure</h3>
+            <p>Full implementation of <strong>802.1Q VLAN Trunking</strong> and <strong>OSPFv2</strong> with gateway redundancy via <strong>HSRP</strong>.</p>
+        </div>
+        <div class="card">
+            <h3>Security Audit & Hardening</h3>
+            <p>Implemented <strong>Extended ACLs</strong> and Port Security to prevent Layer 2 attacks and rogue device access.</p>
         </div>
     </section>
 
@@ -206,7 +232,7 @@
             <p>📍 Lusaka, Zambia | 📞 <strong>+260 979 236 667</strong></p>
             <p>📧 <strong>Emmanuel.ngulube@cs.unza.zm</strong></p>
             <div style="margin-top:30px;">
-                <a href="https://github.com/CHILEKEN" target="_blank" class="social-btn github">GitHub</a>
+                <a href="https://github.com/CHILEKEN" target="_blank" class="social-btn github">GitHub Profile</a>
                 <a href="https://linkedin.com/in/emmanuel-ngulube" target="_blank" class="social-btn linkedin">LinkedIn</a>
             </div>
         </div>
