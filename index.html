@@ -9,10 +9,12 @@
 :root{
 --primary:#0f172a;
 --accent:#2563eb;
+--accent-light:#0ea5e9;
 --bg:#f1f5f9;
 --dark-bg:#0b1220;
 --card:#ffffff;
 --dark-card:rgba(30,41,59,0.85);
+--divider:linear-gradient(90deg,var(--accent),var(--accent-light));
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;scroll-behavior:smooth;}
@@ -22,25 +24,48 @@ nav{position:fixed;width:100%;top:0;background:rgba(15,23,42,0.85);backdrop-filt
 nav a{color:white;text-decoration:none;margin-left:18px;font-size:13px;transition:0.3s;}
 nav a:hover,a.active{color:var(--accent);}
 .toggle{cursor:pointer;background:var(--accent);padding:5px 12px;border-radius:20px;font-size:12px;color:white;transition:0.3s;}
-section{padding:100px 20px;max-width:950px;margin:auto;scroll-margin-top:70px;}
-h2,h3{margin-bottom:18px;}
-.btn{display:inline-block;background:linear-gradient(90deg,#2563eb,#0ea5e9);color:white;padding:10px 18px;border-radius:10px;text-decoration:none;margin-top:10px;transition:0.3s;font-size:14px;}
+section{padding:100px 20px;max-width:900px;margin:auto;scroll-margin-top:70px;position:relative;}
+h2,h3{margin-bottom:18px;position:relative;}
+h2::after{content:"";display:block;width:60px;height:4px;background:var(--divider);border-radius:2px;margin-top:6px;}
+.btn{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-light));color:white;padding:10px 18px;border-radius:10px;text-decoration:none;margin-top:10px;transition:0.3s;font-size:14px;}
 .btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 8px 20px rgba(0,0,0,0.15);}
 .card{background:rgba(255,255,255,0.08);backdrop-filter:blur(12px);padding:20px;border-radius:12px;margin-bottom:20px;box-shadow:0 8px 25px rgba(0,0,0,0.15);opacity:0;transform:translateY(25px);transition:transform 0.6s,opacity 0.6s;}
 .dark .card{background:var(--dark-card);}
 .card.show{opacity:1;transform:translateY(0);}
 .progress{background:#ddd;border-radius:20px;overflow:hidden;height:10px;margin-top:5px;}
 .bar{height:10px;background:var(--accent);width:0;transition:1.5s;}
-#hero{padding:120px 20px 80px;text-align:center;color:white;position:relative;}
-#hero img{width:140px;height:140px;border-radius:50%;border:3px solid var(--accent);margin-bottom:18px;object-fit:cover;animation:photoPulse 2s infinite alternate;}
+#hero{padding:100px 20px 70px;text-align:center;color:white;position:relative;}
+#hero img{width:130px;height:130px;border-radius:50%;border:3px solid var(--accent);margin-bottom:18px;object-fit:cover;animation:photoPulse 2s infinite alternate;}
 @keyframes photoPulse{0%{transform:scale(1);}100%{transform:scale(1.05);}}
-#hero h1{font-size:32px;line-height:1.3;background:linear-gradient(90deg,#2563eb,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientMove 5s infinite alternate;}
+#hero h1{font-size:32px;line-height:1.3;background:linear-gradient(90deg,var(--accent),var(--accent-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientMove 5s infinite alternate;}
 @keyframes gradientMove{0%{background-position:0%;}100%{background-position:100%;}}
 #network-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden;background:#0f172a;}
-.node{position:absolute;width:5px;height:5px;background:#2563eb;border-radius:50%;animation:move 10s infinite linear;}
+.node{position:absolute;width:5px;height:5px;background:var(--accent);border-radius:50%;animation:move 10s infinite linear;}
 @keyframes move{from{transform:translateY(0);}to{transform:translateY(100vh);}}
 #backTop{position:fixed;bottom:18px;right:18px;background:var(--accent);color:white;padding:9px 14px;border-radius:50%;cursor:pointer;transition:0.3s;font-weight:bold;font-size:14px;}
-#backTop:hover{background:#0ea5e9;transform:scale(1.1);}
+#backTop:hover{background:var(--accent-light);transform:scale(1.1);}
+.fade{opacity:0;transform:translateY(20px);transition:0.8s;}
+.fade.show{opacity:1;transform:translateY(0);}
+
+/* Responsive Styles */
+@media (max-width:768px){
+nav{flex-direction:column;align-items:flex-start;padding:10px 20px;}
+nav a{margin:6px 0;font-size:14px;}
+#hero img{width:110px;height:110px;}
+#hero h1{font-size:28px;}
+section{padding:80px 15px;}
+.card{padding:16px;}
+.btn{padding:8px 14px;font-size:13px;}
+h2::after{width:50px;height:3px;}
+}
+@media (max-width:480px){
+#hero img{width:90px;height:90px;}
+#hero h1{font-size:24px;}
+section{padding:60px 10px;}
+.card{padding:14px;}
+.btn{padding:7px 12px;font-size:12px;}
+h2::after{width:40px;height:3px;}
+}
 </style>
 </head>
 <body>
@@ -60,24 +85,21 @@ h2,h3{margin-bottom:18px;}
 </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
+<section id="hero" class="fade">
 <img src="profile.jpg" alt="Emmanuel Ngulube">
 <h1>Network Engineering Intern | CCNA Certified</h1>
 <p>Final-year Computer Science student at UNZA specializing in Network Engineering, Routing & Switching, TCP/IP, and Enterprise LAN/WAN Infrastructure Design. Actively seeking internship opportunities in Zambia within telecoms, ISP, banking IT, and enterprise networks.</p>
 <a href="Emmanuel_Ngulube_CV.pdf" class="btn" download>Download CV</a>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
+<section id="about" class="fade">
 <h2>About Me</h2>
 <div class="card">
-I am a fourth-year Computer Science student at the University of Zambia (UNZA), specializing in Network and Information Security with strong focus on Network Engineering. My expertise includes routing & switching, IP addressing, VLAN configuration, LAN/WAN design, and enterprise network simulation.
+I am a fourth-year Computer Science student at UNZA, specializing in Network and Information Security with strong focus on Network Engineering. Expertise includes routing & switching, IP addressing, VLAN configuration, LAN/WAN design, and enterprise network simulation.
 </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills">
+<section id="skills" class="fade">
 <h2>Technical Skills</h2>
 <div class="card">
 Routing & Switching<div class="progress"><div class="bar" data-width="90%"></div></div>
@@ -96,39 +118,22 @@ Linux & Server Administration<div class="progress"><div class="bar" data-width="
 </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects">
+<section id="projects" class="fade">
 <h2>Networking Projects</h2>
-<div class="card">
-Enterprise LAN/WAN Design using VLANs and dynamic routing protocols.
-</div>
-<div class="card">
-IP Addressing Optimization and Subnetting Project.
-</div>
-<div class="card">
-Network Traffic Analysis using Wireshark.
-</div>
-<div class="card">
-Virtual Network Lab using VirtualBox and Linux Servers.
-</div>
+<div class="card">Enterprise LAN/WAN Design using VLANs and dynamic routing protocols.</div>
+<div class="card">IP Addressing Optimization and Subnetting Project.</div>
+<div class="card">Network Traffic Analysis using Wireshark.</div>
+<div class="card">Virtual Network Lab using VirtualBox and Linux Servers.</div>
 </section>
 
-<!-- CERTIFICATIONS -->
-<section id="certifications">
+<section id="certifications" class="fade">
 <h2>Certifications</h2>
-<div class="card">
-Cisco Certified Network Associate (CCNA)
-</div>
-<div class="card">
-Practical Networking Labs & Simulations
-</div>
-<div class="card">
-Zambian ISP & Enterprise Network Preparedness Training
-</div>
+<div class="card">Cisco Certified Network Associate (CCNA)</div>
+<div class="card">Practical Networking Labs & Simulations</div>
+<div class="card">Zambian ISP & Enterprise Network Preparedness Training</div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
+<section id="contact" class="fade">
 <h2>Contact</h2>
 <div class="card">
 📞 +260 979 236 667<br>
@@ -149,20 +154,20 @@ Zambian ISP & Enterprise Network Preparedness Training
 // Dark Mode Toggle
 function toggleMode(){document.body.classList.toggle("dark");}
 
-// Scroll-triggered card animation
-const cards=document.querySelectorAll(".card");
+// Scroll-triggered animations
+const cards=document.querySelectorAll(".card, .fade");
 window.addEventListener("scroll",()=>{
-  cards.forEach(card=>{
-    if(card.getBoundingClientRect().top < window.innerHeight - 100){card.classList.add("show");}
+  cards.forEach(el=>{
+    if(el.getBoundingClientRect().top < window.innerHeight - 100){el.classList.add("show");}
   });
 });
 
 // Skills progress bar animation
-const skillsBars = document.querySelectorAll(".bar");
+const skillsBars=document.querySelectorAll(".bar");
 window.addEventListener("scroll",()=>{
   skillsBars.forEach(bar=>{
     if(bar.getBoundingClientRect().top < window.innerHeight - 50){
-      bar.style.width = bar.getAttribute("data-width");
+      bar.style.width=bar.getAttribute("data-width");
     }
   });
 });
@@ -178,20 +183,19 @@ for(let i=0;i<40;i++){
 }
 
 // Navbar active section highlighting
-const sections = document.querySelectorAll('section');
+const sections=document.querySelectorAll('section');
 window.addEventListener('scroll',()=>{
-  let scrollY = window.pageYOffset;
+  let scrollY=window.pageYOffset;
   sections.forEach(sec=>{
-    const top = sec.offsetTop - 100;
-    const bottom = top + sec.offsetHeight;
-    const id = sec.getAttribute('id');
-    if(scrollY >= top && scrollY <= bottom){
+    const top=sec.offsetTop-100;
+    const bottom=top+sec.offsetHeight;
+    const id=sec.getAttribute('id');
+    if(scrollY>=top && scrollY<=bottom){
       document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
       document.querySelector('nav a[href="#'+id+'"]').classList.add('active');
     }
   });
 });
 </script>
-
 </body>
 </html>
