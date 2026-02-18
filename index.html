@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NGULUBE EMMANUEL | Network Engineering Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         :root {
             --primary: #0f172a;
@@ -32,7 +34,7 @@
             background-size: clamp(40px, 5vw, 60px) clamp(40px, 5vw, 60px);
         }
 
-        /* Navigation - Fixed Top Left Toggle */
+        /* Navigation */
         nav { 
             position: fixed; width: 100%; top: 0; background: rgba(2, 6, 23, 0.98); 
             backdrop-filter: blur(15px); padding: 15px 5%; 
@@ -45,39 +47,37 @@
             text-shadow: 0 0 15px var(--accent);
         }
 
-        /* Desktop Nav Links */
-        .nav-links { display: flex; align-items: center; }
-        .nav-links a { color: #ffffff; text-decoration: none; margin-left: 25px; font-size: 14px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
-        .nav-links a:hover { color: var(--accent-light); }
-
-        /* Mobile Menu Button (Top Left) */
+        /* Mobile Menu Toggle (Left Side) */
         .menu-toggle {
             display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100;
         }
         .menu-toggle span { display: block; width: 25px; height: 3px; background: var(--accent-light); transition: 0.4s; }
 
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { color: #ffffff; text-decoration: none; margin-left: 25px; font-size: 14px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-light); }
+
         @media (max-width: 768px) {
-            nav { justify-content: flex-start; gap: 20px; } /* Align items to left on mobile */
-            .menu-toggle { display: flex; order: -1; } /* Push hamburger to first position (left) */
+            nav { justify-content: flex-start; gap: 20px; }
+            .menu-toggle { display: flex; order: -1; }
             
             .nav-links {
-                position: fixed; top: 0; left: -100%; height: 100vh; width: 260px; 
+                position: fixed; top: 0; left: -100%; height: 100vh; width: 280px; 
                 background: var(--primary); flex-direction: column; justify-content: center;
-                transition: 0.4s ease-in-out; border-right: 2px solid var(--accent);
+                transition: 0.4s cubic-bezier(0.77,0.2,0.05,1.0); border-right: 2px solid var(--accent);
                 padding-left: 40px;
             }
             .nav-links.active { left: 0; }
-            .nav-links a { margin: 15px 0; font-size: 1.1rem; width: 100%; }
+            .nav-links a { margin: 15px 0; font-size: 1.1rem; width: 100%; margin-left: 0; }
 
-            /* X Animation */
             .menu-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .menu-toggle.open span:nth-child(2) { opacity: 0; }
             .menu-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
         }
 
-        /* Sections & Content */
+        /* Hero & Sections */
         main { max-width: 900px; margin: auto; padding: 0 5%; }
-        section { padding: clamp(60px, 12vh, 120px) 0; }
+        section { padding: clamp(80px, 15vh, 150px) 0 40px; }
         
         h2 { 
             font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 30px; font-weight: 900; 
@@ -91,29 +91,39 @@
             opacity: 0; transform: translateY(30px); transition: 0.6s ease-out;
         }
         .card.show { opacity: 1; transform: translateY(0); }
-        .card h3 { color: var(--accent-light); margin-bottom: 15px; font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 800; }
+        .card h3 { color: var(--accent-light); margin-bottom: 15px; font-size: clamp(1.1rem, 2.5vw, 1.4rem); font-weight: 800; }
 
         .status-badge {
             display: inline-flex; align-items: center; background: rgba(255, 49, 49, 0.1); 
             border: 2px solid var(--status-red); padding: 8px 20px; border-radius: 30px;
-            font-size: 0.85rem; font-weight: 900; color: #ff6b6b; margin-bottom: 30px; letter-spacing: 2px;
-            box-shadow: 0 0 15px rgba(255, 49, 49, 0.4); animation: pulseRedAlert 2s infinite ease-in-out;
+            font-size: 0.8rem; font-weight: 900; color: #ff6b6b; margin-bottom: 30px; letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(255, 49, 49, 0.4); animation: pulseAlert 2s infinite;
         }
-        @keyframes pulseRedAlert { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-        .red-dot { height: 10px; width: 10px; background-color: var(--status-red); border-radius: 50%; display: inline-block; margin-right: 10px; }
+        @keyframes pulseAlert { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+        .red-dot { height: 8px; width: 8px; background-color: var(--status-red); border-radius: 50%; display: inline-block; margin-right: 10px; }
 
         #hero { text-align: center; }
-        #hero img { width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--accent); object-fit: cover; }
-        .user-name { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 900; letter-spacing: 4px; display: block; margin: 20px 0; text-shadow: 0 0 15px rgba(34, 197, 94, 0.7); }
-        .hero-title { font-size: 1.4rem; color: var(--accent-light); font-weight: 800; letter-spacing: 2px; }
-        .hero-bio { background: rgba(15, 23, 42, 0.85); padding: 25px; border-radius: 12px; margin-top: 20px; border: 1px solid rgba(34, 197, 94, 0.2); }
+        #hero img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--accent); object-fit: cover; margin-bottom: 20px; }
+        .user-name { font-size: clamp(2.2rem, 7vw, 3.5rem); font-weight: 900; letter-spacing: 4px; display: block; text-shadow: 0 0 15px rgba(34, 197, 94, 0.5); }
+        .hero-title { font-size: 1.3rem; color: var(--accent-light); font-weight: 800; letter-spacing: 2px; margin-bottom: 20px; }
+        .hero-bio { background: rgba(15, 23, 42, 0.85); padding: 25px; border-radius: 12px; border: 1px solid rgba(34, 197, 94, 0.2); }
 
-        .progress { background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 12px; margin: 10px 0 25px; overflow: hidden; }
+        .progress { background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 10px; margin: 10px 0 25px; overflow: hidden; }
         .bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); width: 0; transition: 1.5s ease-in-out; }
 
-        .btn, .social-btn { display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); color: white !important; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 800; margin: 10px 5px; }
+        .btn, .social-btn { display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); color: white !important; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 800; margin: 10px 5px; cursor: pointer; border:none; }
 
-        footer { padding: 40px; text-align: center; color: #64748b; font-size: 12px; border-top: 1px solid rgba(34, 197, 94, 0.1); }
+        /* Sound Control */
+        #sound-control {
+            position: fixed; bottom: 30px; left: 30px; z-index: 1001;
+            background: rgba(15, 23, 42, 0.9); border: 1px solid var(--accent);
+            padding: 10px 15px; border-radius: 5px; cursor: pointer;
+            display: flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 900;
+            color: var(--accent-light); transition: 0.3s;
+        }
+        #sound-control.muted { border-color: var(--status-red); color: var(--status-red); }
+
+        footer { padding: 50px 20px; text-align: center; color: #64748b; font-size: 12px; border-top: 1px solid rgba(34, 197, 94, 0.1); letter-spacing: 2px; }
     </style>
 </head>
 <body>
@@ -128,11 +138,20 @@
     <div class="nav-links" id="nav-list">
         <a href="#hero">Home</a>
         <a href="#about">About</a>
+        <a href="#education">Education</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
     </div>
 </nav>
+
+<audio id="clickSound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" preload="auto"></audio>
+<audio id="scrollSound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" preload="auto"></audio>
+
+<div id="sound-control">
+    <i class="fas fa-volume-up" id="volume-icon"></i>
+    <span id="sound-status">AUDIO: ON</span>
+</div>
 
 <main>
     <section id="hero">
@@ -181,8 +200,8 @@
             <p>Simulated a multi-area OSPF network for UNZA campus using Cisco Packet Tracer, reducing latency by 15%.</p>
         </div>
         <div class="card">
-            <h3>Firewall Configuration Lab</h3>
-            <p>Implemented zone-based firewalls and VPN tunnels to secure remote office connectivity.</p>
+            <h3>Enterprise Firewall Lab</h3>
+            <p>Configured ASA firewalls with Zone-Based Policy (ZPF) and Remote Access VPNs for secure corporate connectivity.</p>
         </div>
     </section>
 
@@ -202,35 +221,81 @@
 <footer>© 2026 NGULUBE EMMANUEL | NETWORK ENGINEERING PORTFOLIO</footer>
 
 <script>
+    // --- UI Logic ---
     const menuBtn = document.getElementById('mobile-menu');
     const navList = document.getElementById('nav-list');
+    const clickSound = document.getElementById('clickSound');
+    const scrollSound = document.getElementById('scrollSound');
+    const soundBtn = document.getElementById('sound-control');
+    const volIcon = document.getElementById('volume-icon');
+    const statusText = document.getElementById('sound-status');
+    
+    let isMuted = false;
+    let lastSection = "";
 
+    clickSound.volume = 0.2;
+    scrollSound.volume = 0.1;
+
+    // Toggle Sound
+    soundBtn.addEventListener('click', () => {
+        isMuted = !isMuted;
+        soundBtn.classList.toggle('muted');
+        volIcon.className = isMuted ? "fas fa-volume-mute" : "fas fa-volume-up";
+        statusText.innerText = isMuted ? "AUDIO: OFF" : "AUDIO: ON";
+    });
+
+    // Sounds
+    function playClick() { if(!isMuted) { clickSound.currentTime=0; clickSound.play().catch(()=>{}); } }
+    function playScroll() { if(!isMuted) { scrollSound.currentTime=0; scrollSound.play().catch(()=>{}); } }
+
+    document.querySelectorAll('a, .btn, .social-btn, .menu-toggle').forEach(el => {
+        el.addEventListener('click', playClick);
+    });
+
+    // Mobile Menu
     menuBtn.addEventListener('click', () => {
         menuBtn.classList.toggle('open');
         navList.classList.toggle('active');
     });
 
-    // Close menu when link is clicked
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
+    document.querySelectorAll('.nav-links a').forEach(l => {
+        l.addEventListener('click', () => {
             menuBtn.classList.remove('open');
             navList.classList.remove('active');
         });
     });
 
-    function checkVisibility() {
+    // Scroll Logic (Visibility & Sounds)
+    function handleScroll() {
+        const sections = document.querySelectorAll("section");
         const cards = document.querySelectorAll(".card");
+        let fromTop = window.scrollY + 100;
+
+        sections.forEach(sec => {
+            if (sec.offsetTop <= fromTop && sec.offsetTop + sec.offsetHeight > fromTop) {
+                const id = sec.getAttribute('id');
+                if (id !== lastSection) {
+                    playScroll();
+                    lastSection = id;
+                    document.querySelectorAll('.nav-links a').forEach(a => {
+                        a.classList.remove('active');
+                        if(a.getAttribute('href') === `#${id}`) a.classList.add('active');
+                    });
+                }
+            }
+        });
+
         cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 50) {
+            if (card.getBoundingClientRect().top < window.innerHeight - 50) {
                 card.classList.add("show");
                 const bar = card.querySelector(".bar");
                 if (bar) bar.style.width = bar.getAttribute("data-width");
             }
         });
     }
-    window.addEventListener("scroll", checkVisibility);
-    window.addEventListener("load", checkVisibility);
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("load", handleScroll);
 </script>
 </body>
 </html>
