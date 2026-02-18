@@ -60,8 +60,7 @@
             .nav-links {
                 position: fixed; top: 0; left: -100%; height: 100vh; width: 280px; 
                 background: var(--primary); flex-direction: column; justify-content: center;
-                transition: 0.4s cubic-bezier(0.77,0.2,0.05,1.0); border-right: 2px solid var(--accent);
-                padding-left: 40px;
+                transition: 0.4s; border-right: 2px solid var(--accent); padding-left: 40px;
             }
             .nav-links.active { left: 0; }
             .nav-links a { margin: 15px 0; font-size: 1.1rem; width: 100%; margin-left: 0; }
@@ -70,29 +69,29 @@
             .menu-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
         }
 
-        /* Hero Section */
+        /* Hero */
         main { max-width: 900px; margin: auto; padding: 0 5%; }
-        section { padding: clamp(100px, 15vh, 150px) 0 40px; }
+        section { padding: 120px 0 60px; min-height: 90vh; }
         
         .status-badge {
             display: inline-flex; align-items: center; background: rgba(255, 49, 49, 0.1); 
             border: 2px solid var(--status-red); padding: 8px 20px; border-radius: 30px;
-            font-size: 0.8rem; font-weight: 900; color: #ff6b6b; margin-bottom: 30px; letter-spacing: 2px;
-            box-shadow: 0 0 15px rgba(255, 49, 49, 0.4); animation: pulseAlert 2s infinite;
+            font-size: 0.8rem; font-weight: 900; color: #ff6b6b; margin-bottom: 30px;
+            animation: pulseAlert 2s infinite;
         }
         @keyframes pulseAlert { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
         .red-dot { height: 8px; width: 8px; background-color: var(--status-red); border-radius: 50%; display: inline-block; margin-right: 10px; }
 
         #hero { text-align: center; }
-        #hero img { width: clamp(150px, 20vw, 180px); height: clamp(150px, 20vw, 180px); border-radius: 50%; border: 4px solid var(--accent); object-fit: cover; margin-bottom: 20px; }
-        .user-name { font-size: clamp(2rem, 7vw, 3.5rem); font-weight: 900; letter-spacing: 4px; display: block; text-shadow: 0 0 15px rgba(34, 197, 94, 0.5); text-transform: uppercase; }
+        #hero img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--accent); object-fit: cover; margin-bottom: 20px; }
+        .user-name { font-size: clamp(2.2rem, 7vw, 3.5rem); font-weight: 900; letter-spacing: 4px; display: block; text-transform: uppercase; }
         .hero-title { font-size: 1.3rem; color: var(--accent-light); font-weight: 800; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; }
-        .hero-bio { background: rgba(15, 23, 42, 0.85); padding: 25px; border-radius: 12px; border: 1px solid rgba(34, 197, 94, 0.2); font-weight: 600; }
+        .hero-bio { background: rgba(15, 23, 42, 0.85); padding: 25px; border-radius: 12px; border: 1px solid rgba(34, 197, 94, 0.2); }
 
-        /* Content Cards */
-        h2 { font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 30px; font-weight: 900; text-transform: uppercase; letter-spacing: 5px; border-left: 8px solid var(--accent); padding-left: 20px; }
+        /* Content */
+        h2 { font-size: 2rem; margin-bottom: 30px; font-weight: 900; text-transform: uppercase; letter-spacing: 5px; border-left: 8px solid var(--accent); padding-left: 20px; }
         .card { 
-            background: var(--card-bg); padding: clamp(20px, 4vw, 35px); border-radius: 15px; 
+            background: var(--card-bg); padding: 30px; border-radius: 15px; 
             margin-bottom: 30px; border: 1px solid rgba(34, 197, 94, 0.3); 
             opacity: 0; transform: translateY(30px); transition: 0.6s ease-out;
         }
@@ -100,22 +99,20 @@
         .card h3 { color: var(--accent-light); margin-bottom: 15px; font-size: 1.4rem; font-weight: 800; }
 
         .progress { background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 10px; margin: 10px 0 25px; overflow: hidden; }
-        .bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); width: 0; transition: 1.5s ease-in-out; }
+        .bar { height: 100%; background: var(--accent-light); width: 0; transition: 1.5s ease-in-out; }
 
-        .btn, .social-btn { display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); color: white !important; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 800; margin: 10px 5px; border: none; cursor: pointer; }
-
-        /* Minimal Sound Toggle */
+        /* Small Speaker Icon */
         #sound-toggle {
             position: fixed; bottom: 25px; left: 25px; z-index: 2000;
             width: 45px; height: 45px; background: rgba(15, 23, 42, 0.9);
             border: 1px solid var(--accent); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             cursor: pointer; transition: 0.3s; color: var(--accent-light);
-            box-shadow: 0 0 10px rgba(0, 176, 28, 0.3);
         }
         #sound-toggle.muted { border-color: var(--status-red); color: var(--status-red); }
 
-        footer { padding: 50px 20px; text-align: center; color: #64748b; font-size: 12px; border-top: 1px solid rgba(34, 197, 94, 0.1); letter-spacing: 2px; text-transform: uppercase; }
+        .btn, .social-btn { display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); color: white !important; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 800; margin: 10px 5px; border: none; }
+        footer { padding: 50px 20px; text-align: center; color: #64748b; font-size: 12px; border-top: 1px solid rgba(34, 197, 94, 0.1); }
     </style>
 </head>
 <body>
@@ -137,13 +134,13 @@
 
 <div id="sound-toggle"><i class="fas fa-volume-up" id="speaker-icon"></i></div>
 
-<audio id="clickSnd" src="https://noproblo.dayjo.org/ZeldaSounds/OOT/OOT_Menu_Cursor.wav" preload="auto"></audio>
-<audio id="scrollSnd" src="https://noproblo.dayjo.org/ZeldaSounds/OOT/OOT_Menu_Move.wav" preload="auto"></audio>
+<audio id="clickSnd" src="https://actions.google.com/sounds/v1/foley/button_click.ogg" preload="auto"></audio>
+<audio id="scrollSnd" src="https://actions.google.com/sounds/v1/foley/drawbridge_opening.ogg" preload="auto"></audio>
 
 <main>
     <section id="hero">
         <div class="status-badge"><span class="red-dot"></span>OPEN FOR INTERNSHIPS</div>
-        <div class="profile-container"><img src="profile.jpg" alt="NGULUBE EMMANUEL"></div>
+        <img src="profile.jpg" alt="Profile">
         <span class="user-name">NGULUBE EMMANUEL</span>
         <div class="hero-title">Network Engineer Intern</div>
         <p class="hero-bio">Final-year Computer Science student at <strong>UNZA</strong>. CCNA Certified specialist focusing on <strong>Enterprise Infrastructure</strong> and <strong>Network Security</strong>.</p>
@@ -152,7 +149,7 @@
 
     <section id="about">
         <h2>About Me</h2>
-        <div class="card">I am a results-driven fourth-year student at the University of Zambia. My expertise lies in designing robust <strong>LAN/WAN architectures</strong> and troubleshooting complex network issues for the Zambian ISP and banking sectors.</div>
+        <div class="card">I am a fourth-year student at the University of Zambia. I design robust <strong>LAN/WAN architectures</strong> and troubleshoot complex network issues for Zambian ISPs and banking sectors.</div>
     </section>
 
     <section id="education">
@@ -160,7 +157,6 @@
         <div class="card">
             <h3>Cisco Certified Network Associate (CCNA)</h3>
             <p>Verification ID: <strong>CSCO144XXXX</strong></p>
-            <p>Expertise in IP routing (OSPF, BGP), VLAN trunking, and high-availability design (HSRP).</p>
         </div>
         <div class="card">
             <h3>B.Sc. Computer Science</h3>
@@ -171,11 +167,11 @@
     <section id="skills">
         <h2>Technical Skills</h2>
         <div class="card">
-            <p><strong>Routing & Switching</strong> (OSPF, BGP)</p>
+            <p>Routing & Switching (OSPF, BGP)</p>
             <div class="progress"><div class="bar" data-width="90%"></div></div>
-            <p><strong>TCP/IP & VLSM</strong> Subnetting Expert</p>
+            <p>TCP/IP & VLSM Subnetting</p>
             <div class="progress"><div class="bar" data-width="95%"></div></div>
-            <p><strong>Network Security</strong> (ACLs, Port Security)</p>
+            <p>Network Security (ACLs)</p>
             <div class="progress"><div class="bar" data-width="85%"></div></div>
         </div>
     </section>
@@ -184,16 +180,16 @@
         <h2>Key Projects</h2>
         <div class="card">
             <h3>Campus Network Redesign</h3>
-            <p>Simulated a multi-area OSPF network for UNZA campus using Cisco Packet Tracer, reducing latency by 15%.</p>
+            <p>Simulated a multi-area OSPF network for UNZA, reducing latency by 15%.</p>
         </div>
         <div class="card">
             <h3>Enterprise Firewall Lab</h3>
-            <p>Configured ASA firewalls with Zone-Based Policy (ZPF) and Remote Access VPNs for secure corporate connectivity.</p>
+            <p>Configured ASA firewalls with Zone-Based Policy for secure connectivity.</p>
         </div>
     </section>
 
     <section id="contact">
-        <h2>Contact Details</h2>
+        <h2>Contact</h2>
         <div class="card" style="text-align: center;">
             <p>📍 Lusaka, Zambia | 📞 <strong>+260 979 236 667</strong></p>
             <p>📧 <strong>Emmanuel.ngulube@cs.unza.zm</strong></p>
@@ -205,7 +201,7 @@
     </section>
 </main>
 
-<footer>© 2026 NGULUBE EMMANUEL | NETWORK ENGINEERING PORTFOLIO</footer>
+<footer>© 2026 NGULUBE EMMANUEL</footer>
 
 <script>
     const clickSnd = document.getElementById('clickSnd');
@@ -218,64 +214,55 @@
     let isMuted = false;
     let currentSection = "";
 
-    // Audio Logic
+    // Mute/Unmute Toggle
     toggleBtn.onclick = () => {
         isMuted = !isMuted;
         toggleBtn.classList.toggle('muted');
         icon.className = isMuted ? "fas fa-volume-mute" : "fas fa-volume-up";
     };
 
-    function playSound(sound) {
+    function playSfx(sound) {
         if (!isMuted) {
             sound.currentTime = 0;
+            sound.volume = 0.2;
             sound.play().catch(() => {});
         }
     }
 
-    // Interaction Sounds
-    document.onclick = (e) => {
-        if (e.target.tagName === 'A' || e.target.closest('.btn') || e.target.closest('#sound-toggle') || e.target.closest('.menu-toggle')) {
-            playSound(clickSnd);
+    // Interaction Sound (Universal)
+    document.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A' || e.target.closest('.btn') || e.target.closest('.menu-toggle') || e.target.closest('#sound-toggle')) {
+            playSfx(clickSnd);
         }
-    };
+    });
 
-    // Mobile Menu Toggle
+    // Mobile Menu Logic
     menuBtn.onclick = () => {
         menuBtn.classList.toggle('open');
         navList.classList.toggle('active');
     };
 
-    document.querySelectorAll('.nav-links a').forEach(l => {
-        l.onclick = () => {
-            menuBtn.classList.remove('open');
-            navList.classList.remove('active');
-        };
-    });
-
-    // Observer for Animations & Scroll Sounds
+    // Scroll Observer
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Scroll Sound Trigger
                 if (entry.target.tagName === 'SECTION' && entry.target.id !== currentSection) {
                     currentSection = entry.target.id;
-                    playSound(scrollSnd);
+                    playSfx(scrollSnd); // Play sound on section entry
                     
-                    // Active Link Highlight
                     document.querySelectorAll('.nav-links a').forEach(a => {
                         a.classList.remove('active');
                         if(a.getAttribute('href') === `#${currentSection}`) a.classList.add('active');
                     });
                 }
-                // Card Entrance & Progress Bars
                 if (entry.target.classList.contains('card')) {
                     entry.target.classList.add('show');
-                    const bars = entry.target.querySelectorAll('.bar');
-                    bars.forEach(bar => bar.style.width = bar.dataset.width);
+                    const bar = entry.target.querySelector('.bar');
+                    if (bar) bar.style.width = bar.dataset.width;
                 }
             }
         });
-    }, { threshold: 0.25 });
+    }, { threshold: 0.3 });
 
     document.querySelectorAll('section, .card').forEach(el => observer.observe(el));
 </script>
