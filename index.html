@@ -18,7 +18,7 @@
             --dark-card-text: #f1f5f9;
             --divider: linear-gradient(90deg, var(--accent), var(--accent-light));
             --grid-color: rgba(0, 176, 28, 0.05);
-            --glow-burst: 0 0 40px rgba(34, 197, 94, 0.8);
+            --glow-burst: 0 0 45px rgba(34, 197, 94, 0.85);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
@@ -43,7 +43,7 @@
         }
 
         .card:active, .btn:active, #hero img:active, .social-btn:active {
-            transform: scale(0.96);
+            transform: scale(0.97);
             box-shadow: var(--glow-burst) !important;
             border-color: var(--accent-light) !important;
         }
@@ -70,9 +70,9 @@
         nav a { color: rgba(255,255,255,0.8); text-decoration: none; margin-left: 20px; font-size: 14px; font-weight: 500; }
         .toggle { background: var(--accent); padding: 6px 15px; border-radius: 20px; font-size: 12px; color: white; border: none; }
 
-        /* Main Content */
+        /* Content Sections */
         main { max-width: 900px; margin: auto; padding: 0 20px; }
-        section { padding: 80px 0; }
+        section { padding: 100px 0; }
         h2 { font-size: 32px; margin-bottom: 24px; color: #0f172a; font-weight: 700; }
         .dark h2 { color: #f1f5f9; }
         h2::after { content: ""; display: block; width: 60px; height: 4px; background: var(--divider); margin-top: 8px; }
@@ -83,30 +83,25 @@
         #hero h1 { font-size: 3rem; background: linear-gradient(90deg, #fff, var(--accent-light), #fff); background-size: 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 8s linear infinite; }
         @keyframes gradientMove { 0% { background-position: 0%; } 100% { background-position: 200%; } }
 
-        /* Cards */
-        .card { background: var(--card); padding: 25px; border-radius: 16px; margin-bottom: 20px; border: 1px solid rgba(0,0,0,0.05); opacity: 0; transform: translateY(20px); transition: 0.4s; }
+        /* Cards and Restore Details */
+        .card { background: var(--card); padding: 25px; border-radius: 16px; margin-bottom: 25px; border: 1px solid rgba(0,0,0,0.05); opacity: 0; transform: translateY(20px); transition: 0.4s; }
         .card.show { opacity: 1; transform: translateY(0); }
         .dark .card { background: var(--dark-card); border: 1px solid rgba(34, 197, 94, 0.1); }
-        .card h3 { color: var(--accent-light); margin-bottom: 10px; }
+        .card h3 { color: var(--accent-light); margin-bottom: 12px; }
+        .card ul { padding-left: 20px; margin-top: 10px; }
+        .card li { margin-bottom: 8px; font-size: 0.95rem; }
 
         /* Buttons & Socials */
         .btn, .social-btn { 
-            display: inline-block; 
-            background: var(--divider); 
-            color: white; 
-            padding: 12px 24px; 
-            border-radius: 12px; 
-            text-decoration: none; 
-            font-weight: 600; 
-            border: none; 
-            margin: 5px;
+            display: inline-block; background: var(--divider); color: white; padding: 12px 24px; border-radius: 12px; 
+            text-decoration: none; font-weight: 600; border: none; margin: 5px;
         }
-        .social-btn.github { background: #24292e; border: 1px solid #444; }
+        .social-btn.github { background: #24292e; }
         .social-btn.linkedin { background: #0077b5; }
 
         /* Progress Bars */
-        .progress { background: rgba(255,255,255,0.1); border-radius: 20px; height: 8px; margin: 8px 0 20px; overflow: hidden; }
-        .bar { height: 100%; background: var(--divider); width: 0; transition: 1.2s ease-out; }
+        .progress { background: rgba(255,255,255,0.1); border-radius: 20px; height: 8px; margin: 10px 0 25px; overflow: hidden; }
+        .bar { height: 100%; background: var(--divider); width: 0; transition: 1.5s ease-out; }
 
         @media (max-width: 768px) {
             #hero h1 { font-size: 2.2rem; }
@@ -135,7 +130,7 @@
     <section id="hero">
         <img src="profile.jpg" alt="Emmanuel Ngulube">
         <h1>Network Engineer Intern</h1>
-        <p style="color: #cbd5e1; margin-top: 15px;">Final-year Computer Science student at <strong>UNZA</strong>. CCNA Certified specialist.</p>
+        <p style="color: #cbd5e1; margin-top: 15px;">Final-year Computer Science student at <strong>UNZA</strong>. CCNA Certified specialist focusing on Enterprise Infrastructure, Routing/Switching, and Network Security.</p>
         <div style="margin-top: 30px;">
             <a href="cv.pdf" class="btn" download>Download CV</a>
         </div>
@@ -144,40 +139,64 @@
     <section id="about">
         <h2>About Me</h2>
         <div class="card">
-            I am a results-driven fourth-year student at the University of Zambia. I specialize in designing robust LAN/WAN architectures and troubleshooting complex network issues for the Zambian ISP and banking sectors.
+            I am a results-driven fourth-year student at the University of Zambia. My expertise lies in designing robust LAN/WAN architectures and troubleshooting complex network issues. I am passionate about optimizing data flow and securing enterprise infrastructures for the Zambian ISP and banking sectors.
         </div>
     </section>
 
     <section id="skills">
         <h2>Technical Skills</h2>
         <div class="card">
-            <p>Routing & Switching</p>
+            <p>Routing & Switching (OSPF, EIGRP, BGP)</p>
             <div class="progress"><div class="bar" data-width="90%"></div></div>
-            <p>IP Subnetting (VLSM)</p>
+            <p>TCP/IP & VLSM Subnetting</p>
             <div class="progress"><div class="bar" data-width="95%"></div></div>
-            <p>Network Security</p>
+            <p>VLANs, STP & Trunking (802.1Q)</p>
             <div class="progress"><div class="bar" data-width="85%"></div></div>
+            <p>Network Troubleshooting & Wireshark</p>
+            <div class="progress"><div class="bar" data-width="90%"></div></div>
         </div>
     </section>
 
     <section id="projects">
         <h2>Networking Projects</h2>
+        
         <div class="card">
-            <h3>Enterprise LAN/WAN Design</h3>
-            <p>Full-scale multi-site network simulation in GNS3 with OSPF and HSRP redundancy.</p>
+            <h3>Enterprise LAN/WAN Infrastructure Design</h3>
+            <p>Simulated a multi-site enterprise network in <strong>GNS3</strong>.</p>
+            <ul>
+                <li>Implemented <strong>802.1Q VLAN Trunking</strong> and Router-on-a-Stick routing.</li>
+                <li>Configured <strong>OSPFv2</strong> with area-based path optimization and neighbor authentication.</li>
+                <li>HSRP implementation for gateway redundancy and high availability.</li>
+            </ul>
         </div>
+
         <div class="card">
-            <h3>Security Auditing</h3>
-            <p>Packet-level analysis using Wireshark and ACL implementation for secure bank data segments.</p>
+            <h3>IP Address Optimization (VLSM)</h3>
+            <p>Designed a hierarchical IP plan for 500+ host environments.</p>
+            <ul>
+                <li>Minimized IP wastage using <strong>Variable Length Subnet Masking</strong>.</li>
+                <li>Configured Dynamic NAT/PAT and DHCP relay agents for multi-segment connectivity.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Packet-Level Security Audit</h3>
+            <p>Analyzed network vulnerabilities using <strong>Wireshark</strong>.</p>
+            <ul>
+                <li>Applied <strong>Extended ACLs</strong> to secure internal server segments from unauthorized VLANs.</li>
+                <li>Mitigated Layer 2 attacks through Port Security and DHCP Snooping.</li>
+            </ul>
         </div>
     </section>
 
     <section id="contact">
-        <h2>Contact</h2>
+        <h2>Contact Me</h2>
         <div class="card" style="text-align: center;">
-            <p>📍 Lusaka, Zambia</p>
-            <p>📞 +260 979 236 667</p>
-            <p>📧 Emmanuel.ngulube@cs.unza.zm</p>
+            <div style="margin-bottom: 20px; font-size: 1.1rem;">
+                <p>📍 Lusaka, Zambia</p>
+                <p>📞 +260 979 236 667</p>
+                <p>📧 Emmanuel.ngulube@cs.unza.zm</p>
+            </div>
             <div style="margin-top:20px;">
                 <a href="https://github.com/CHILEKEN" target="_blank" class="social-btn github">GitHub</a>
                 <a href="https://linkedin.com/in/emmanuel-ngulube" target="_blank" class="social-btn linkedin">LinkedIn</a>
@@ -185,6 +204,10 @@
         </div>
     </section>
 </main>
+
+<footer>
+    © 2026 Emmanuel Ngulube | Network Engineering Portfolio
+</footer>
 
 <script>
     function toggleMode() { document.body.classList.toggle("dark"); }
