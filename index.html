@@ -41,7 +41,6 @@
             transition: transform 0.2s, box-shadow 0.2s, text-shadow 0.2s;
             cursor: pointer;
         }
-
         .card:active, .btn:active, #hero img:active, .social-btn:active {
             transform: scale(0.97);
             box-shadow: var(--glow-burst) !important;
@@ -50,22 +49,13 @@
 
         /* Navigation */
         nav { position: fixed; width: 100%; top: 0; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid rgba(0, 176, 28, 0.3); }
-
         .welcome-msg {
             font-size: 1.4rem; font-weight: 800; letter-spacing: 3px; color: var(--accent-light);
             text-shadow: 0 0 10px var(--accent);
             animation: shake 0.4s infinite alternate, glowPulse 2s infinite alternate;
         }
-
-        @keyframes shake {
-            0% { transform: translate(1px, 1px); }
-            100% { transform: translate(-1.5px, -0.5px); }
-        }
-
-        @keyframes glowPulse {
-            from { text-shadow: 0 0 5px var(--accent); }
-            to { text-shadow: 0 0 25px var(--accent-light); }
-        }
+        @keyframes shake { 0% { transform: translate(1px, 1px); } 100% { transform: translate(-1.5px, -0.5px); } }
+        @keyframes glowPulse { from { text-shadow: 0 0 5px var(--accent); } to { text-shadow: 0 0 25px var(--accent-light); } }
 
         nav a { color: rgba(255,255,255,0.8); text-decoration: none; margin-left: 20px; font-size: 14px; font-weight: 500; }
         .toggle { background: var(--accent); padding: 6px 15px; border-radius: 20px; font-size: 12px; color: white; border: none; }
@@ -83,13 +73,17 @@
         #hero h1 { font-size: 3rem; background: linear-gradient(90deg, #fff, var(--accent-light), #fff); background-size: 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 8s linear infinite; }
         @keyframes gradientMove { 0% { background-position: 0%; } 100% { background-position: 200%; } }
 
-        /* Cards and Restore Details */
+        /* Card Restorations */
         .card { background: var(--card); padding: 25px; border-radius: 16px; margin-bottom: 25px; border: 1px solid rgba(0,0,0,0.05); opacity: 0; transform: translateY(20px); transition: 0.4s; }
         .card.show { opacity: 1; transform: translateY(0); }
         .dark .card { background: var(--dark-card); border: 1px solid rgba(34, 197, 94, 0.1); }
         .card h3 { color: var(--accent-light); margin-bottom: 12px; }
         .card ul { padding-left: 20px; margin-top: 10px; }
         .card li { margin-bottom: 8px; font-size: 0.95rem; }
+
+        /* Progress Bars */
+        .progress { background: rgba(255,255,255,0.1); border-radius: 20px; height: 8px; margin: 10px 0 25px; overflow: hidden; }
+        .bar { height: 100%; background: var(--divider); width: 0; transition: 1.5s ease-out; }
 
         /* Buttons & Socials */
         .btn, .social-btn { 
@@ -99,9 +93,7 @@
         .social-btn.github { background: #24292e; }
         .social-btn.linkedin { background: #0077b5; }
 
-        /* Progress Bars */
-        .progress { background: rgba(255,255,255,0.1); border-radius: 20px; height: 8px; margin: 10px 0 25px; overflow: hidden; }
-        .bar { height: 100%; background: var(--divider); width: 0; transition: 1.5s ease-out; }
+        footer { padding: 50px 20px; text-align: center; color: #64748b; font-size: 14px; }
 
         @media (max-width: 768px) {
             #hero h1 { font-size: 2.2rem; }
@@ -143,6 +135,18 @@
         </div>
     </section>
 
+    <section id="education">
+        <h2>Education & Certifications</h2>
+        <div class="card">
+            <h3>Cisco Certified Network Associate (CCNA)</h3>
+            <p>Verification ID: <strong>[Insert ID]</strong> | Focused on Enterprise Networking and Security.</p>
+        </div>
+        <div class="card">
+            <h3>B.Sc. Computer Science (Final Year)</h3>
+            <p>University of Zambia (UNZA) | Expected Graduation: 2026</p>
+        </div>
+    </section>
+
     <section id="skills">
         <h2>Technical Skills</h2>
         <div class="card">
@@ -152,7 +156,7 @@
             <div class="progress"><div class="bar" data-width="95%"></div></div>
             <p>VLANs, STP & Trunking (802.1Q)</p>
             <div class="progress"><div class="bar" data-width="85%"></div></div>
-            <p>Network Troubleshooting & Wireshark</p>
+            <p>Network Troubleshooting & Wireshark Analysis</p>
             <div class="progress"><div class="bar" data-width="90%"></div></div>
         </div>
     </section>
@@ -162,11 +166,11 @@
         
         <div class="card">
             <h3>Enterprise LAN/WAN Infrastructure Design</h3>
-            <p>Simulated a multi-site enterprise network in <strong>GNS3</strong>.</p>
+            <p>Full-scale multi-site enterprise network simulation in <strong>GNS3</strong>.</p>
             <ul>
-                <li>Implemented <strong>802.1Q VLAN Trunking</strong> and Router-on-a-Stick routing.</li>
-                <li>Configured <strong>OSPFv2</strong> with area-based path optimization and neighbor authentication.</li>
-                <li>HSRP implementation for gateway redundancy and high availability.</li>
+                <li>Implemented <strong>802.1Q VLAN Trunking</strong> and Router-on-a-Stick configurations.</li>
+                <li>Configured <strong>OSPFv2</strong> with area optimization and neighbor authentication.</li>
+                <li>Redundancy implementation using <strong>HSRP</strong> for gateway high availability.</li>
             </ul>
         </div>
 
@@ -174,17 +178,17 @@
             <h3>IP Address Optimization (VLSM)</h3>
             <p>Designed a hierarchical IP plan for 500+ host environments.</p>
             <ul>
-                <li>Minimized IP wastage using <strong>Variable Length Subnet Masking</strong>.</li>
+                <li>Minimized address wastage using <strong>VLSM</strong> for efficiency.</li>
                 <li>Configured Dynamic NAT/PAT and DHCP relay agents for multi-segment connectivity.</li>
             </ul>
         </div>
 
         <div class="card">
             <h3>Packet-Level Security Audit</h3>
-            <p>Analyzed network vulnerabilities using <strong>Wireshark</strong>.</p>
+            <p>Traffic analysis and network hardening using <strong>Wireshark</strong>.</p>
             <ul>
-                <li>Applied <strong>Extended ACLs</strong> to secure internal server segments from unauthorized VLANs.</li>
-                <li>Mitigated Layer 2 attacks through Port Security and DHCP Snooping.</li>
+                <li>Implemented <strong>Extended ACLs</strong> to protect internal server segments.</li>
+                <li>Mitigated Layer 2 attacks using <strong>Port Security</strong> and DHCP Snooping.</li>
             </ul>
         </div>
     </section>
