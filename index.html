@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NGULUBE EMMANUEL | Network Engineering Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 Free CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEWWZJ2b5Z8z9p9e6q0b3W5z2j3z5Y8z9p9e6q0b3" crossorigin="anonymous">
+    <!-- Font Awesome 6 Free CDN for icons (already added previously) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEWWZJ2b5Z8z9p9e6q0b3W5z2j3z5Y8z9p9e6q0b3W5z2j3z5Y8z9p9e6q0b3" crossorigin="anonymous">
     <style>
         :root {
             --primary: #0f172a;
             --accent: #00b01c; 
             --accent-light: #22c55e;
-            --status-red: #ff3131;
+            --status-red: #ff3131; /* Cinematic Alert Red */
             --dark-bg: #020617;
             --card-bg: #0f172a;
             --text-main: #ffffff;
@@ -47,11 +47,26 @@
             text-shadow: 0 0 15px var(--accent);
         }
 
-        /* Hamburger & Menu Container */
         .nav-container {
             position: relative;
         }
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a { 
+            color: #ffffff; text-decoration: none; 
+            margin-left: clamp(10px, 2vw, 25px); 
+            font-size: clamp(12px, 1.2vw, 14px); 
+            font-weight: 700; text-transform: uppercase; 
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent-light); }
+
+        /* Hamburger Toggle (Pure CSS) */
         .menu-toggle {
             display: none;
         }
@@ -65,98 +80,140 @@
             text-shadow: 0 0 10px var(--accent);
         }
 
-        .hamburger i::before {
-            transition: all 0.3s;
-        }
-
-        /* Mobile Sidebar Menu */
-        .sidebar-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 80%;
-            max-width: 300px;
-            background: rgba(2, 6, 23, 0.98);
-            backdrop-filter: blur(15px);
-            border-right: 3px solid var(--accent);
-            box-shadow: 5px 0 20px rgba(0, 176, 28, 0.3);
-            transform: translateX(-100%);
-            transition: transform 0.4s ease-out;
-            z-index: 999;
-            padding-top: 80px; /* space below nav height */
-            overflow-y: auto;
-        }
-
-        .sidebar-menu a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 20px 30px;
-            border-bottom: 1px solid rgba(34, 197, 94, 0.2);
-            transition: background 0.3s, padding-left 0.3s;
-        }
-
-        .sidebar-menu a:hover,
-        .sidebar-menu a:focus {
-            background: rgba(34, 197, 94, 0.15);
-            padding-left: 40px;
-        }
-
-        /* Backdrop overlay */
-        .menu-backdrop {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease;
-            z-index: 998;
-        }
-
-        /* When open */
-        .menu-toggle:checked \~ .sidebar-menu {
-            transform: translateX(0);
-        }
-
-        .menu-toggle:checked \~ .menu-backdrop {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Hamburger to X */
-        .menu-toggle:checked + .hamburger i::before {
-            content: "\f00d"; /* fa-times */
-        }
-
+        /* Mobile Menu Styles */
         @media (max-width: 768px) {
             .hamburger {
                 display: block;
             }
 
             .nav-links {
-                display: none; /* hide original horizontal links on mobile */
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(2, 6, 23, 0.98);
+                border-top: 2px solid var(--accent);
+                padding: 20px 0;
+                backdrop-filter: blur(15px);
+                transform: translateY(-20px);
+                opacity: 0;
+                transition: all 0.4s ease;
             }
-        }
 
-        @media (min-width: 769px) {
-            .sidebar-menu, .hamburger, .menu-backdrop {
-                display: none !important;
+            .nav-links a {
+                margin: 15px 0;
+                text-align: center;
+                font-size: 1.1rem;
+                padding: 10px;
+                border-bottom: 1px solid rgba(34, 197, 94, 0.2);
             }
-            .nav-links {
-                display: flex !important;
+
+            .nav-links a:last-child { border-bottom: none; }
+
+            /* Show menu when checkbox is checked */
+            .menu-toggle:checked \~ .nav-links {
+                display: flex;
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            /* Animate hamburger to X on open */
+            .menu-toggle:checked + .hamburger::before {
+                content: "\f00d"; /* fa-times */
             }
         }
 
         /* HERO SECTION */
         #hero { text-align: center; padding: clamp(120px, 15vh, 200px) 20px clamp(40px, 8vh, 80px); }
         
-        /* ... (rest of your existing styles for status-badge, profile, typography, cards, progress, btn, footer, skill-icon, etc. remain unchanged) ... */
+        /* THE RED STATUS BADGE - CINEMATIC GLOW */
+        .status-badge {
+            display: inline-flex; align-items: center; 
+            background: rgba(255, 49, 49, 0.1); 
+            border: 2px solid var(--status-red); 
+            padding: 8px 20px; border-radius: 30px;
+            font-size: clamp(0.75rem, 1.5vw, 0.9rem); font-weight: 900; color: #ff6b6b;
+            margin-bottom: 30px; letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(255, 49, 49, 0.4);
+            animation: pulseRedAlert 2s infinite ease-in-out;
+        }
 
-        /* Keep your existing media queries and other styles */
+        @keyframes pulseRedAlert {
+            0%, 100% { box-shadow: 0 0 10px var(--status-red), inset 0 0 5px var(--status-red); opacity: 1; }
+            50% { box-shadow: 0 0 25px var(--status-red), inset 0 0 10px var(--status-red); opacity: 0.8; }
+        }
+
+        .red-dot { height: 10px; width: 10px; background-color: var(--status-red); border-radius: 50%; display: inline-block; margin-right: 10px; box-shadow: 0 0 10px var(--status-red); }
+
+        /* PROFILE IMAGE - BACK TO GREEN */
+        #hero img { 
+            width: clamp(140px, 25vw, 180px); height: clamp(140px, 25vw, 180px); border-radius: 50%; 
+            border: 4px solid var(--accent); object-fit: cover;
+            box-shadow: 0 0 20px rgba(0, 176, 28, 0.3);
+            transition: 0.3s;
+        }
+
+        /* BLOCKY TYPOGRAPHY */
+        .user-name {
+            font-size: clamp(1.8rem, 6.5vw, 3.5rem); font-weight: 900; color: #FFFFFF; 
+            letter-spacing: clamp(3px, 1.2vw, 10px); text-transform: uppercase; 
+            display: block; line-height: 1.1; margin: 20px 0 12px;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+            text-shadow: 0 0 15px rgba(34, 197, 94, 0.7);
+        }
+
+        .hero-title {
+            font-size: clamp(1rem, 3vw, 1.6rem); color: var(--accent-light); 
+            letter-spacing: 4px; text-transform: uppercase; font-weight: 800; margin-bottom: 25px;
+        }
+
+        .hero-bio {
+            color: #FFFFFF; max-width: 750px; margin: 0 auto; 
+            font-size: clamp(1.1rem, 2vw, 1.25rem); font-weight: 600; line-height: 1.8;
+            background: rgba(15, 23, 42, 0.85); padding: 25px; border-radius: 12px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        /* CONTENT STYLING */
+        main { max-width: 900px; margin: auto; padding: 0 clamp(15px, 5%, 50px); }
+        section { padding: clamp(40px, 10vh, 100px) 0; }
+        
+        h2 { 
+            font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 30px; font-weight: 900; 
+            color: #ffffff; text-transform: uppercase; letter-spacing: 5px; 
+            border-left: 8px solid var(--accent); padding-left: 20px;
+        }
+
+        .card { 
+            background: var(--card-bg); padding: clamp(20px, 4vw, 35px); border-radius: 15px; 
+            margin-bottom: clamp(20px, 3vw, 40px); border: 1px solid rgba(34, 197, 94, 0.3); 
+            opacity: 0; transform: translateY(30px); transition: 0.6s ease-out;
+        }
+        .card.show { opacity: 1; transform: translateY(0); }
+        .card h3 { color: var(--accent-light); margin-bottom: 15px; font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 800; }
+
+        /* Skill icons styling */
+        .skill-icon {
+            color: var(--accent-light);
+            font-size: 1.6rem;
+            margin-right: 12px;
+            vertical-align: middle;
+            text-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+        }
+
+        .progress { background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 12px; margin: 10px 0 25px; overflow: hidden; }
+        .bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); width: 0; transition: 1.5s ease-in-out; }
+
+        .btn, .social-btn { 
+            display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); 
+            color: white !important; padding: 16px 35px; border-radius: 10px; 
+            text-decoration: none; font-weight: 800; border: none; margin: 10px 5px; font-size: 16px;
+        }
+
+        footer { padding: 40px 20px; text-align: center; color: #64748b; font-size: 12px; font-weight: 700; letter-spacing: 3px; border-top: 1px solid rgba(34, 197, 94, 0.1); text-transform: uppercase; }
+
         @media (max-width: 600px) {
             h2 { letter-spacing: 2px; }
             .user-name { letter-spacing: 2px; -webkit-text-stroke: 0px; }
@@ -172,15 +229,14 @@
     <div class="welcome-msg">WELCOME</div>
     
     <div class="nav-container">
-        <!-- Checkbox trigger -->
+        <!-- Hidden checkbox for pure CSS toggle -->
         <input type="checkbox" id="menu-toggle" class="menu-toggle">
         
-        <!-- Hamburger label -->
+        <!-- Hamburger icon (changes to X when open) -->
         <label for="menu-toggle" class="hamburger" aria-label="Toggle navigation menu">
             <i class="fas fa-bars"></i>
         </label>
-
-        <!-- Original desktop links (hidden on mobile) -->
+        
         <div class="nav-links">
             <a href="#hero">Home</a>
             <a href="#about">About</a>
@@ -188,23 +244,10 @@
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
         </div>
-
-        <!-- Slide-in sidebar for mobile -->
-        <div class="sidebar-menu">
-            <a href="#hero">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </div>
-
-        <!-- Clickable backdrop to close -->
-        <label for="menu-toggle" class="menu-backdrop"></label>
     </div>
 </nav>
 
 <main>
-    <!-- Your existing main content: hero, about, education, skills, projects, contact -->
     <section id="hero">
         <div class="status-badge"><span class="red-dot"></span>OPEN FOR INTERNSHIPS</div>
         <br>
@@ -223,8 +266,106 @@
         </div>
     </section>
 
-    <!-- ... rest of sections unchanged ... -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="card">
+            I am a results-driven fourth-year student at the University of Zambia. My expertise lies in designing robust <strong>LAN/WAN architectures</strong> and troubleshooting complex network issues for the Zambian ISP and banking sectors.
+        </div>
+    </section>
 
+    <section id="education">
+        <h2>Education & Certs</h2>
+        <div class="card">
+            <h3>Cisco Certified Network Associate (CCNA)</h3>
+            <p>Verification ID: <strong>CSCO144XXXX</strong></p>
+            <p>Expertise in IP routing (OSPF, BGP), VLAN trunking, and high-availability design (HSRP).</p>
+        </div>
+        <div class="card">
+            <h3>B.Sc. Computer Science</h3>
+            <p><strong>The University of Zambia (UNZA)</strong> | Class of 2026</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="card">
+            <h3><i class="fas fa-globe skill-icon"></i>Network Fundamentals (20% of CCNA exam weight)</h3>
+            <p>OSI & TCP/IP models, network components (routers, switches, APs), topologies (2-tier/3-tier, WAN, cloud), IP addressing & subnetting (VLSM, IPv4/IPv6), cabling types & Ethernet standards</p>
+            <div class="progress"><div class="bar" data-width="95%"></div></div>
+
+            <h3><i class="fas fa-plug skill-icon"></i>Network Access (20%)</h3>
+            <p>VLANs & trunking (802.1Q), EtherChannel, switchport security, wireless LAN basics (RF concepts, WPA3, controller-based vs autonomous APs)</p>
+            <div class="progress"><div class="bar" data-width="90%"></div></div>
+
+            <h3><i class="fas fa-route skill-icon"></i>IP Connectivity (25%)</h3>
+            <p>Static & dynamic routing (OSPF single-area/multi-area, basic eBGP), routing table interpretation, IPv4/IPv6 routing, first-hop redundancy (HSRP)</p>
+            <div class="progress"><div class="bar" data-width="92%"></div></div>
+
+            <h3><i class="fas fa-server skill-icon"></i>IP Services (10%)</h3>
+            <p>DHCP client/server/relay, NAT/PAT (static/dynamic), NTP, SNMP basics, QoS concepts (classification & marking)</p>
+            <div class="progress"><div class="bar" data-width="85%"></div></div>
+
+            <h3><i class="fas fa-shield-halved skill-icon"></i>Security Fundamentals (15%)</h3>
+            <p>Key threats/vulnerabilities, device hardening (SSH, passwords, AAA basics), ACLs (standard/extended), Layer 2 security (port security, DHCP snooping, BPDU guard), VPN concepts (site-to-site, remote access)</p>
+            <div class="progress"><div class="bar" data-width="88%"></div></div>
+
+            <h3><i class="fas fa-robot skill-icon"></i>Automation & Programmability (10%)</h3>
+            <p>Controller-based vs traditional networking, APIs & configuration management basics (REST, JSON), device management with Python/scripts (intro level), SDN concepts</p>
+            <div class="progress"><div class="bar" data-width="75%"></div></div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects & Labs</h2>
+        
+        <div class="card">
+            <h3>Multi-VLAN Enterprise LAN with Router-on-a-Stick & Security Hardening</h3>
+            <p>Designed a segmented corporate network for multiple departments (e.g., Finance, IT, Guest) using VLANs, 802.1Q trunking, router-on-a-stick inter-VLAN routing, DHCP services, port security (sticky MAC + violation shutdown), and extended ACLs to restrict guest access to internal resources. Simulated troubleshooting of trunk mismatches and connectivity issues.</p>
+            <p><strong>Tools:</strong> Cisco Packet Tracer | Key CCNA topics: VLANs, Trunking, Inter-VLAN Routing, ACLs, Port Security</p>
+            <a href="https://github.com/CHILEKEN/CCNA-Projects" target="_blank" class="btn">View on GitHub</a>
+        </div>
+
+        <div class="card">
+            <h3>Branch Office Network with OSPF Dynamic Routing & HSRP Redundancy</h3>
+            <p>Implemented a multi-router branch topology mimicking a Zambian bank/ISP site. Configured single-area OSPF for dynamic route advertisement, HSRP for default gateway redundancy, NAT/PAT for simulated internet access, and basic VLANs with trunking. Verified failover and route selection using show commands.</p>
+            <p><strong>Tools:</strong> Cisco Packet Tracer / GNS3 | Key CCNA topics: OSPF, HSRP, NAT, Subnetting</p>
+            <a href="https://github.com/CHILEKEN/CCNA-Projects" target="_blank" class="btn">View on GitHub</a>
+        </div>
+
+        <div class="card">
+            <h3>Network Security Hardening: ACLs, AAA Basics & Layer-2 Protections</h3>
+            <p>Secured a core enterprise network by enabling SSH over Telnet, local AAA authentication, extended ACLs for traffic filtering (e.g., block unauthorized protocols to servers), DHCP snooping, BPDU guard, and port security on switches. Focused on preventing common attacks like MAC flooding and unauthorized access.</p>
+            <p><strong>Tools:</strong> Cisco Packet Tracer | Key CCNA topics: ACLs, SSH, Port Security, Layer-2 Security Features</p>
+            <a href="https://github.com/CHILEKEN/CCNA-Projects" target="_blank" class="btn">View on GitHub</a>
+        </div>
+
+        <div class="card">
+            <h3>ISP-Style Edge Routing with Basic BGP Peering & Prefix Filtering</h3>
+            <p>Simulated customer-to-ISP connectivity with eBGP between autonomous systems, route advertisement of customer prefixes, prefix-list filtering to prevent unwanted routes, and integration with internal OSPF. Demonstrated basic BGP neighbor establishment and route verification.</p>
+            <p><strong>Tools:</strong> GNS3 (or Packet Tracer limited BGP) | Key CCNA topics: BGP Basics, Route Filtering, AS Numbers</p>
+            <a href="https://github.com/CHILEKEN/CCNA-Projects" target="_blank" class="btn">View on GitHub</a>
+        </div>
+
+        <div class="card">
+            <h3>Secure Wireless Branch Network with Guest Isolation</h3>
+            <p>Configured a branch network with wireless access (WLC/AP simulation), WPA3-Enterprise authentication via RADIUS, separate guest VLAN with ACL isolation from corporate resources, DHCP for clients, and port security on wired ports. Ensured end-to-end secure connectivity.</p>
+            <p><strong>Tools:</strong> Cisco Packet Tracer | Key CCNA topics: Wireless Fundamentals, VLANs, ACLs, Security</p>
+            <a href="https://github.com/CHILEKEN/CCNA-Projects" target="_blank" class="btn">View on GitHub</a>
+        </div>
+
+    </section>
+
+    <section id="contact">
+        <h2>Contact Details</h2>
+        <div class="card" style="text-align: center;">
+            <p>📍 Lusaka, Zambia | 📞 <strong>+260 979 236 667</strong></p>
+            <p>📧 <strong>Emmanuel.ngulube@cs.unza.zm</strong></p>
+            <div style="margin-top:30px;">
+                <a href="https://github.com/CHILEKEN" target="_blank" class="social-btn github">GitHub</a>
+                <a href="https://linkedin.com/in/emmanuel-ngulube" target="_blank" class="social-btn linkedin">LinkedIn</a>
+            </div>
+        </div>
+    </section>
 </main>
 
 <footer>
