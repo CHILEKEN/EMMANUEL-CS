@@ -3,225 +3,287 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emmanuel Ngulube | Network & Information Security</title>
+<title>Emmanuel Ngulube | Cybersecurity Specialist</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+:root{
+--primary:#0a192f;
+--accent:#00c896;
+--light:#f4f6f9;
+--dark:#0f172a;
+--card:#ffffff;
+--dark-card:#1e293b;
 }
 
-body {
-    background-color: #f4f6f9;
-    color: #1a1a1a;
-    line-height: 1.6;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
 }
 
-header {
-    background: #0a192f;
-    color: white;
-    padding: 60px 20px;
-    text-align: center;
+body{
+background:var(--light);
+color:#111;
+transition:0.4s;
 }
 
-header h1 {
-    font-size: 40px;
-    margin-bottom: 10px;
+.dark{
+background:var(--dark);
+color:#fff;
 }
 
-header h2 {
-    font-weight: 400;
-    color: #64ffda;
+nav{
+position:fixed;
+width:100%;
+top:0;
+background:rgba(10,25,47,0.95);
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
 }
 
-header p {
-    max-width: 600px;
-    margin: 20px auto;
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-size:14px;
 }
 
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #64ffda;
-    color: #0a192f;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    margin-top: 15px;
+.toggle{
+cursor:pointer;
+background:var(--accent);
+padding:5px 12px;
+border-radius:20px;
+font-size:12px;
 }
 
-section {
-    padding: 50px 20px;
-    max-width: 1000px;
-    margin: auto;
+header{
+padding:140px 20px 80px;
+text-align:center;
+background:linear-gradient(135deg,#0a192f,#112240);
+color:white;
 }
 
-h3 {
-    margin-bottom: 20px;
-    color: #0a192f;
-    border-left: 5px solid #64ffda;
-    padding-left: 10px;
+header img{
+width:160px;
+height:160px;
+border-radius:50%;
+border:4px solid var(--accent);
+margin-bottom:20px;
+object-fit:cover;
 }
 
-.card {
-    background: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+header h1{
+font-size:36px;
 }
 
-ul {
-    padding-left: 20px;
+header h2{
+color:var(--accent);
+font-weight:400;
+margin:5px 0 15px;
 }
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #0a192f;
-    color: white;
+.btn{
+display:inline-block;
+margin:8px;
+padding:10px 20px;
+background:var(--accent);
+color:white;
+text-decoration:none;
+border-radius:5px;
+font-weight:600;
 }
 
-a {
-    color: #0a192f;
-    text-decoration: none;
-    font-weight: bold;
+section{
+max-width:1000px;
+margin:auto;
+padding:80px 20px;
 }
 
-.contact a {
-    display: block;
-    margin-bottom: 8px;
+h3{
+margin-bottom:30px;
+border-left:5px solid var(--accent);
+padding-left:10px;
 }
 
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 28px;
-    }
+.card{
+background:var(--card);
+padding:25px;
+margin-bottom:20px;
+border-radius:10px;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
+transition:0.4s;
+opacity:0;
+transform:translateY(40px);
 }
+
+.dark .card{
+background:var(--dark-card);
+}
+
+.card.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.skill{
+margin-bottom:15px;
+}
+
+.progress{
+background:#ddd;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress-bar{
+height:10px;
+width:0;
+background:var(--accent);
+transition:1.5s;
+}
+
+footer{
+text-align:center;
+padding:30px;
+background:#0a192f;
+color:white;
+}
+
+@media(max-width:768px){
+nav{flex-direction:column;}
+header h1{font-size:26px;}
+}
+
 </style>
 </head>
 
 <body>
 
+<nav>
+<div><strong>EN</strong></div>
+<div>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#education">Education</a>
+<a href="#certifications">Certifications</a>
+<a href="#contact">Contact</a>
+<span class="toggle" onclick="toggleMode()">Mode</span>
+</div>
+</nav>
+
 <header>
-    <h1>EMMANUEL NGULUBE</h1>
-    <h2>Network & Information Security Specialist</h2>
-    <p>
-        Final-year Computer Science student specializing in Network and Information Security. 
-        Passionate about cybersecurity, secure systems design, network infrastructure protection, 
-        and proactive threat mitigation.
-    </p>
-    <a href="mailto:Emmanuel.ngulube@cs.unza.zm" class="btn">Contact Me</a>
+<img src="profile.jpg" alt="Emmanuel Ngulube">
+<h1>EMMANUEL NGULUBE</h1>
+<h2>Network & Information Security Specialist</h2>
+<p>
+Final-year Computer Science student specializing in cybersecurity, secure network architecture,
+and digital infrastructure protection.
+</p>
+<a href="Emmanuel_Ngulube_CV.pdf" class="btn" download>Download CV</a>
+<a href="mailto:Emmanuel.ngulube@cs.unza.zm" class="btn">Hire Me</a>
 </header>
 
-<section>
-    <h3>About Me</h3>
-    <div class="card">
-        <p>
-            I am a fourth-year Bachelor of Science in Computer Science student at the University of Zambia (UNZA), 
-            majoring in Network and Information Security. My academic training and hands-on lab experience 
-            have equipped me with strong skills in network configuration, cybersecurity principles, 
-            system hardening, vulnerability assessment, and secure software practices.
-            <br><br>
-            I am committed to protecting digital infrastructure and continuously expanding my knowledge 
-            in modern cybersecurity technologies and best practices.
-        </p>
-    </div>
+<section id="about">
+<h3>About Me</h3>
+<div class="card">
+I am a fourth-year Computer Science student at the University of Zambia (UNZA), majoring in Network and Information Security. My expertise includes network defense, vulnerability assessment, secure configuration, and enterprise infrastructure protection. I am passionate about identifying threats and implementing proactive cybersecurity solutions.
+</div>
 </section>
 
-<section>
-    <h3>Technical Skills</h3>
-    <div class="card">
-        <ul>
-            <li><strong>Networking:</strong> TCP/IP, Subnetting, VLAN Configuration, Routing & Switching, Network Troubleshooting</li>
-            <li><strong>Network Security:</strong> Firewall Configuration, Access Control Lists (ACLs), VPN Concepts, IDS/IPS Fundamentals</li>
-            <li><strong>Cybersecurity Practices:</strong> Vulnerability Assessment, Risk Analysis, Cryptography Basics, Secure System Configuration</li>
-            <li><strong>Operating Systems:</strong> Windows Server, Linux (Ubuntu/Kali), Command Line Administration</li>
-            <li><strong>Tools & Platforms:</strong> Cisco Packet Tracer, Wireshark, Nmap, VirtualBox</li>
-            <li><strong>Programming:</strong> Python, C, Java (Security-focused applications & scripting)</li>
-            <li><strong>Soft Skills:</strong> Analytical Thinking, Problem Solving, Technical Documentation, Team Collaboration</li>
-        </ul>
-    </div>
+<section id="skills">
+<h3>Technical Skills</h3>
+<div class="card">
+<div class="skill">Networking<div class="progress"><div class="progress-bar" style="width:90%"></div></div></div>
+<div class="skill">Network Security<div class="progress"><div class="progress-bar" style="width:85%"></div></div></div>
+<div class="skill">Linux Administration<div class="progress"><div class="progress-bar" style="width:80%"></div></div></div>
+<div class="skill">Python Programming<div class="progress"><div class="progress-bar" style="width:75%"></div></div></div>
+<div class="skill">Vulnerability Assessment<div class="progress"><div class="progress-bar" style="width:85%"></div></div></div>
+</div>
 </section>
 
-<section>
-    <h3>Academic & Practical Projects</h3>
+<section id="projects">
+<h3>Projects</h3>
 
-    <div class="card">
-        <h4>Secure Network Infrastructure Design</h4>
-        <p>
-            Designed and simulated a secure enterprise network using Cisco Packet Tracer. 
-            Implemented VLAN segmentation, routing protocols, and access control lists 
-            to enhance internal security and reduce attack surfaces.
-        </p>
-    </div>
+<div class="card">
+<h4>Enterprise Network Security Design</h4>
+Designed and simulated a segmented enterprise network implementing VLAN isolation, ACL enforcement, and secure routing strategies.
+</div>
 
-    <div class="card">
-        <h4>Vulnerability Scanning & Network Analysis</h4>
-        <p>
-            Conducted network reconnaissance and vulnerability analysis using Wireshark and Nmap. 
-            Identified open ports, potential misconfigurations, and documented security recommendations 
-            to improve system resilience.
-        </p>
-    </div>
+<div class="card">
+<h4>Network Traffic & Vulnerability Analysis</h4>
+Used Wireshark and Nmap to analyze traffic patterns, identify open ports, and document security improvement recommendations.
+</div>
 
-    <div class="card">
-        <h4>Password Strength Checker (Python)</h4>
-        <p>
-            Developed a Python-based password validation tool that enforces strong password policies 
-            using complexity rules and secure coding practices.
-        </p>
-    </div>
+<div class="card">
+<h4>Python Password Security Tool</h4>
+Developed a secure password validation system implementing complexity standards aligned with cybersecurity best practices.
+</div>
 
-    <div class="card">
-        <h4>System Hardening & Virtual Lab Environment</h4>
-        <p>
-            Configured and secured virtual machines in a controlled lab environment using VirtualBox. 
-            Applied system hardening techniques including user privilege management and firewall rules.
-        </p>
-    </div>
+<div class="card">
+<h4>Virtual Cybersecurity Lab</h4>
+Built secure virtual machines using VirtualBox and Kali Linux to simulate penetration testing and defensive configurations.
+</div>
 
 </section>
 
-<section>
-    <h3>Education</h3>
-    <div class="card">
-        <p>
-            <strong>University of Zambia (UNZA)</strong><br>
-            Bachelor of Science in Computer Science<br>
-            Major: Network and Information Security<br>
-            Fourth Year Student
-        </p>
-    </div>
+<section id="education">
+<h3>Education</h3>
+<div class="card">
+<strong>University of Zambia (UNZA)</strong><br>
+Bachelor of Science in Computer Science<br>
+Major: Network & Information Security<br>
+Fourth Year Student
+</div>
 </section>
 
-<section>
-    <h3>Certifications & Professional Development</h3>
-    <div class="card">
-        <p>
-            • Cybersecurity and Networking online coursework<br>
-            • Practical security labs and simulations<br>
-            • Continuous learning in modern security technologies
-        </p>
-    </div>
+<section id="certifications">
+<h3>Certifications</h3>
+<div class="card">
+• Cisco Certified Network Associate (CCNA)<br>
+• Practical Cybersecurity Labs & Simulations<br>
+• Continuous Professional Development in Network Security
+</div>
 </section>
 
-<section>
-    <h3>Contact Information</h3>
-    <div class="card contact">
-        <a href="tel:+260979236667">📞 +260 979 236 667</a>
-        <a href="mailto:Emmanuel.ngulube@cs.unza.zm">📧 Emmanuel.ngulube@cs.unza.zm</a>
-        <a href="https://github.com/CHILEKEN" target="_blank">GitHub: CHILEKEN</a>
-        <a href="#">LinkedIn Profile</a>
-        <p>Lusaka, Zambia</p>
-    </div>
+<section id="contact">
+<h3>Contact</h3>
+<div class="card">
+📞 +260 979 236 667<br>
+📧 Emmanuel.ngulube@cs.unza.zm<br>
+🌍 Lusaka, Zambia<br>
+<a href="https://github.com/CHILEKEN" target="_blank">GitHub</a><br>
+<a href="https://www.linkedin.com/in/emmanuel-ngulube" target="_blank">LinkedIn</a>
+</div>
 </section>
 
 <footer>
-    © 2026 Emmanuel Ngulube | Network & Information Security
+© 2026 Emmanuel Ngulube | Cybersecurity Specialist
 </footer>
+
+<script>
+function toggleMode(){
+document.body.classList.toggle("dark");
+}
+
+const cards=document.querySelectorAll('.card');
+window.addEventListener('scroll',()=>{
+cards.forEach(card=>{
+const top=card.getBoundingClientRect().top;
+if(top<window.innerHeight-100){
+card.classList.add('show');
+}
+});
+});
+</script>
 
 </body>
 </html>
