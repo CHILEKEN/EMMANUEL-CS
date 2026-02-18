@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NGULUBE EMMANUEL | Network Engineering Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary: #0f172a;
@@ -33,10 +32,10 @@
             background-size: clamp(40px, 5vw, 60px) clamp(40px, 5vw, 60px);
         }
 
-        /* Navigation */
+        /* Navigation - Fixed Top Left Toggle */
         nav { 
             position: fixed; width: 100%; top: 0; background: rgba(2, 6, 23, 0.98); 
-            backdrop-filter: blur(15px); padding: 15px clamp(15px, 5%, 50px); 
+            backdrop-filter: blur(15px); padding: 15px 5%; 
             display: flex; justify-content: space-between; align-items: center; 
             z-index: 1000; border-bottom: 2px solid var(--accent); 
         }
@@ -48,86 +47,37 @@
 
         /* Desktop Nav Links */
         .nav-links { display: flex; align-items: center; }
-        .nav-links a { color: #ffffff; text-decoration: none; margin-left: clamp(10px, 2vw, 25px); font-size: clamp(12px, 1.2vw, 14px); font-weight: 700; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a { color: #ffffff; text-decoration: none; margin-left: 25px; font-size: 14px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent-light); }
 
-        /* Mobile Menu Toggle */
+        /* Mobile Menu Button (Top Left) */
         .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1100;
+            display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100;
         }
-        .menu-toggle span {
-            display: block; width: 25px; height: 3px; background: var(--accent-light); transition: 0.4s;
-        }
+        .menu-toggle span { display: block; width: 25px; height: 3px; background: var(--accent-light); transition: 0.4s; }
 
-        /* Mobile Nav Styling */
         @media (max-width: 768px) {
-            .menu-toggle { display: flex; }
+            nav { justify-content: flex-start; gap: 20px; } /* Align items to left on mobile */
+            .menu-toggle { display: flex; order: -1; } /* Push hamburger to first position (left) */
+            
             .nav-links {
-                position: fixed; top: 0; right: -100%; height: 100vh; width: 70%; 
+                position: fixed; top: 0; left: -100%; height: 100vh; width: 260px; 
                 background: var(--primary); flex-direction: column; justify-content: center;
-                transition: 0.5s; box-shadow: -10px 0 30px rgba(0,0,0,0.5); border-left: 2px solid var(--accent);
+                transition: 0.4s ease-in-out; border-right: 2px solid var(--accent);
+                padding-left: 40px;
             }
-            .nav-links.active { right: 0; }
-            .nav-links a { margin: 20px 0; font-size: 1.2rem; }
+            .nav-links.active { left: 0; }
+            .nav-links a { margin: 15px 0; font-size: 1.1rem; width: 100%; }
 
-            /* Hamburger to X animation */
+            /* X Animation */
             .menu-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .menu-toggle.open span:nth-child(2) { opacity: 0; }
             .menu-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
         }
 
-        /* HERO SECTION */
-        #hero { text-align: center; padding: clamp(120px, 15vh, 200px) 20px clamp(40px, 8vh, 80px); }
-        
-        .status-badge {
-            display: inline-flex; align-items: center; 
-            background: rgba(255, 49, 49, 0.1); 
-            border: 2px solid var(--status-red); 
-            padding: 8px 20px; border-radius: 30px;
-            font-size: clamp(0.75rem, 1.5vw, 0.9rem); font-weight: 900; color: #ff6b6b;
-            margin-bottom: 30px; letter-spacing: 2px;
-            box-shadow: 0 0 15px rgba(255, 49, 49, 0.4);
-            animation: pulseRedAlert 2s infinite ease-in-out;
-        }
-
-        @keyframes pulseRedAlert {
-            0%, 100% { box-shadow: 0 0 10px var(--status-red), inset 0 0 5px var(--status-red); opacity: 1; }
-            50% { box-shadow: 0 0 25px var(--status-red), inset 0 0 10px var(--status-red); opacity: 0.8; }
-        }
-
-        .red-dot { height: 10px; width: 10px; background-color: var(--status-red); border-radius: 50%; display: inline-block; margin-right: 10px; box-shadow: 0 0 10px var(--status-red); }
-
-        #hero img { 
-            width: clamp(140px, 25vw, 180px); height: clamp(140px, 25vw, 180px); border-radius: 50%; 
-            border: 4px solid var(--accent); object-fit: cover;
-            box-shadow: 0 0 20px rgba(0, 176, 28, 0.3);
-        }
-
-        .user-name {
-            font-size: clamp(1.8rem, 6.5vw, 3.5rem); font-weight: 900; color: #FFFFFF; 
-            letter-spacing: clamp(2px, 1vw, 10px); text-transform: uppercase; 
-            display: block; line-height: 1.1; margin: 20px 0 12px;
-            text-shadow: 0 0 15px rgba(34, 197, 94, 0.7);
-        }
-
-        .hero-title {
-            font-size: clamp(1rem, 3vw, 1.6rem); color: var(--accent-light); 
-            letter-spacing: 4px; text-transform: uppercase; font-weight: 800; margin-bottom: 25px;
-        }
-
-        .hero-bio {
-            color: #FFFFFF; max-width: 750px; margin: 0 auto; 
-            font-size: clamp(1.1rem, 2vw, 1.25rem); font-weight: 600; line-height: 1.8;
-            background: rgba(15, 23, 42, 0.85); padding: 25px; border-radius: 12px;
-            border: 1px solid rgba(34, 197, 94, 0.2);
-        }
-
-        main { max-width: 900px; margin: auto; padding: 0 clamp(15px, 5%, 50px); }
-        section { padding: clamp(40px, 10vh, 100px) 0; }
+        /* Sections & Content */
+        main { max-width: 900px; margin: auto; padding: 0 5%; }
+        section { padding: clamp(60px, 12vh, 120px) 0; }
         
         h2 { 
             font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 30px; font-weight: 900; 
@@ -137,22 +87,33 @@
 
         .card { 
             background: var(--card-bg); padding: clamp(20px, 4vw, 35px); border-radius: 15px; 
-            margin-bottom: clamp(20px, 3vw, 40px); border: 1px solid rgba(34, 197, 94, 0.3); 
+            margin-bottom: 30px; border: 1px solid rgba(34, 197, 94, 0.3); 
             opacity: 0; transform: translateY(30px); transition: 0.6s ease-out;
         }
         .card.show { opacity: 1; transform: translateY(0); }
         .card h3 { color: var(--accent-light); margin-bottom: 15px; font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 800; }
 
+        .status-badge {
+            display: inline-flex; align-items: center; background: rgba(255, 49, 49, 0.1); 
+            border: 2px solid var(--status-red); padding: 8px 20px; border-radius: 30px;
+            font-size: 0.85rem; font-weight: 900; color: #ff6b6b; margin-bottom: 30px; letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(255, 49, 49, 0.4); animation: pulseRedAlert 2s infinite ease-in-out;
+        }
+        @keyframes pulseRedAlert { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .red-dot { height: 10px; width: 10px; background-color: var(--status-red); border-radius: 50%; display: inline-block; margin-right: 10px; }
+
+        #hero { text-align: center; }
+        #hero img { width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--accent); object-fit: cover; }
+        .user-name { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 900; letter-spacing: 4px; display: block; margin: 20px 0; text-shadow: 0 0 15px rgba(34, 197, 94, 0.7); }
+        .hero-title { font-size: 1.4rem; color: var(--accent-light); font-weight: 800; letter-spacing: 2px; }
+        .hero-bio { background: rgba(15, 23, 42, 0.85); padding: 25px; border-radius: 12px; margin-top: 20px; border: 1px solid rgba(34, 197, 94, 0.2); }
+
         .progress { background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 12px; margin: 10px 0 25px; overflow: hidden; }
         .bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); width: 0; transition: 1.5s ease-in-out; }
 
-        .btn, .social-btn { 
-            display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); 
-            color: white !important; padding: 16px 35px; border-radius: 10px; 
-            text-decoration: none; font-weight: 800; border: none; margin: 10px 5px; font-size: 16px;
-        }
+        .btn, .social-btn { display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); color: white !important; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 800; margin: 10px 5px; }
 
-        footer { padding: 40px 20px; text-align: center; color: #64748b; font-size: 12px; font-weight: 700; letter-spacing: 3px; border-top: 1px solid rgba(34, 197, 94, 0.1); text-transform: uppercase; }
+        footer { padding: 40px; text-align: center; color: #64748b; font-size: 12px; border-top: 1px solid rgba(34, 197, 94, 0.1); }
     </style>
 </head>
 <body>
@@ -160,12 +121,10 @@
 <div class="bg-container"></div>
 
 <nav>
-    <div class="welcome-msg">WELCOME</div>
     <div class="menu-toggle" id="mobile-menu">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
     </div>
+    <div class="welcome-msg">WELCOME</div>
     <div class="nav-links" id="nav-list">
         <a href="#hero">Home</a>
         <a href="#about">About</a>
@@ -178,27 +137,16 @@
 <main>
     <section id="hero">
         <div class="status-badge"><span class="red-dot"></span>OPEN FOR INTERNSHIPS</div>
-        <br>
-        <div class="profile-container">
-            <img src="profile.jpg" alt="NGULUBE EMMANUEL">
-        </div>
+        <div class="profile-container"><img src="profile.jpg" alt="NGULUBE EMMANUEL"></div>
         <span class="user-name">NGULUBE EMMANUEL</span>
         <div class="hero-title">Network Engineer Intern</div>
-        <p class="hero-bio">
-            Final-year Computer Science student at <strong>UNZA</strong>. 
-            CCNA Certified specialist focusing on <strong>Enterprise Infrastructure</strong> 
-            and <strong>Network Security</strong>.
-        </p>
-        <div style="margin-top: 40px;">
-            <a href="cv.pdf" class="btn" download>Download CV</a>
-        </div>
+        <p class="hero-bio">Final-year Computer Science student at <strong>UNZA</strong>. CCNA Certified specialist focusing on <strong>Enterprise Infrastructure</strong> and <strong>Network Security</strong>.</p>
+        <div style="margin-top: 30px;"><a href="cv.pdf" class="btn" download>Download CV</a></div>
     </section>
 
     <section id="about">
         <h2>About Me</h2>
-        <div class="card">
-            I am a results-driven fourth-year student at the University of Zambia. My expertise lies in designing robust <strong>LAN/WAN architectures</strong> and troubleshooting complex network issues for the Zambian ISP and banking sectors.
-        </div>
+        <div class="card">I am a results-driven fourth-year student at the University of Zambia. My expertise lies in designing robust <strong>LAN/WAN architectures</strong> and troubleshooting complex network issues for the Zambian ISP and banking sectors.</div>
     </section>
 
     <section id="education">
@@ -226,25 +174,50 @@
         </div>
     </section>
 
+    <section id="projects">
+        <h2>Key Projects</h2>
+        <div class="card">
+            <h3>Campus Network Redesign</h3>
+            <p>Simulated a multi-area OSPF network for UNZA campus using Cisco Packet Tracer, reducing latency by 15%.</p>
+        </div>
+        <div class="card">
+            <h3>Firewall Configuration Lab</h3>
+            <p>Implemented zone-based firewalls and VPN tunnels to secure remote office connectivity.</p>
+        </div>
+    </section>
+
     <section id="contact">
         <h2>Contact Details</h2>
         <div class="card" style="text-align: center;">
             <p>📍 Lusaka, Zambia | 📞 <strong>+260 979 236 667</strong></p>
             <p>📧 <strong>Emmanuel.ngulube@cs.unza.zm</strong></p>
-            <div style="margin-top:30px;">
-                <a href="https://github.com/CHILEKEN" target="_blank" class="social-btn github">GitHub</a>
-                <a href="https://linkedin.com/in/emmanuel-ngulube" target="_blank" class="social-btn linkedin">LinkedIn</a>
+            <div style="margin-top:20px;">
+                <a href="https://github.com/CHILEKEN" target="_blank" class="social-btn">GitHub</a>
+                <a href="https://linkedin.com/in/emmanuel-ngulube" target="_blank" class="social-btn">LinkedIn</a>
             </div>
         </div>
     </section>
 </main>
 
-<footer>
-    © 2026 NGULUBE EMMANUEL | NETWORK ENGINEERING PORTFOLIO
-</footer>
+<footer>© 2026 NGULUBE EMMANUEL | NETWORK ENGINEERING PORTFOLIO</footer>
 
 <script>
-    // Visibility/Progress Bar logic
+    const menuBtn = document.getElementById('mobile-menu');
+    const navList = document.getElementById('nav-list');
+
+    menuBtn.addEventListener('click', () => {
+        menuBtn.classList.toggle('open');
+        navList.classList.toggle('active');
+    });
+
+    // Close menu when link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuBtn.classList.remove('open');
+            navList.classList.remove('active');
+        });
+    });
+
     function checkVisibility() {
         const cards = document.querySelectorAll(".card");
         cards.forEach(card => {
@@ -256,24 +229,6 @@
             }
         });
     }
-
-    // Mobile Menu Toggle logic
-    const menuToggle = document.getElementById('mobile-menu');
-    const navList = document.getElementById('nav-list');
-
-    menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('open');
-        navList.classList.toggle('active');
-    });
-
-    // Close menu when link is clicked
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            menuToggle.classList.remove('open');
-            navList.classList.remove('active');
-        });
-    });
-
     window.addEventListener("scroll", checkVisibility);
     window.addEventListener("load", checkVisibility);
 </script>
