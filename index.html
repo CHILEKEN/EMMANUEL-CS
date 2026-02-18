@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0f172a; /* Deep Navy for Light Mode Headings */
+            --primary: #0f172a;
             --accent: #2563eb;
             --accent-light: #0ea5e9;
             --bg: #f1f5f9;
@@ -38,15 +38,26 @@
 
         /* Main Content */
         main { max-width: 900px; margin: auto; padding: 0 20px; }
-        section { padding: 100px 0; scroll-margin-top: 80px; }
+        section { padding: 80px 0; scroll-margin-top: 80px; }
         
-        /* VISIBILITY FIX: Heading colors */
+        /* Heading Visibility */
         h2 { font-size: 32px; margin-bottom: 24px; position: relative; color: #0f172a !important; font-weight: 700; }
         .dark h2 { color: #f1f5f9 !important; }
         h2::after { content: ""; display: block; width: 60px; height: 4px; background: var(--divider); border-radius: 2px; margin-top: 8px; }
 
-        /* Hero Section */
-        #hero { text-align: center; padding-top: 150px; }
+        /* FIX: Immediate Visibility for Hero */
+        #hero { 
+            text-align: center; 
+            padding-top: 150px; 
+            opacity: 1; 
+            transform: none; 
+            animation: fadeIn 1s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         #hero img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--accent); margin-bottom: 25px; object-fit: cover; box-shadow: 0 0 20px rgba(37, 99, 235, 0.4); }
         #hero h1 { font-size: 3rem; margin-bottom: 15px; background: linear-gradient(90deg, #fff, var(--accent-light), #fff); background-size: 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 8s linear infinite; }
         #hero p { font-size: 1.1rem; color: #cbd5e1; max-width: 700px; margin: 0 auto 30px; }
@@ -56,27 +67,40 @@
         .btn { display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); color: white; padding: 12px 24px; border-radius: 12px; text-decoration: none; transition: 0.3s; font-size: 15px; font-weight: 600; border: none; cursor: pointer; }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3); }
 
-        /* Cards */
-        .card { background: var(--card); padding: 25px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.05); opacity: 0; transform: translateY(30px); transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1); color: var(--card-text); }
-        .dark .card { background: var(--dark-card); color: var(--dark-card-text); border-color: rgba(255,255,255,0.05); }
+        /* Cards Visibility Adjustments */
+        .card { 
+            background: var(--card); 
+            padding: 25px; 
+            border-radius: 16px; 
+            margin-bottom: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+            border: 1px solid rgba(0,0,0,0.05); 
+            opacity: 0; 
+            transform: translateY(20px); 
+            transition: 0.5s ease-out; 
+            color: var(--card-text); 
+        }
+        /* Ensure first card is likely visible or ready */
         .card.show { opacity: 1; transform: translateY(0); }
+        .dark .card { background: var(--dark-card); color: var(--dark-card-text); border-color: rgba(255,255,255,0.05); }
         .card h3 { margin-bottom: 10px; color: var(--accent); }
         .dark .card h3 { color: var(--accent-light); }
 
-        /* Skills/Progress */
-        .skill-label { display: flex; justify-content: space-between; font-weight: 600; font-size: 14px; color: inherit; }
+        /* Progress Bars */
+        .skill-label { display: flex; justify-content: space-between; font-weight: 600; font-size: 14px; }
         .progress { background: rgba(0,0,0,0.1); border-radius: 20px; overflow: hidden; height: 8px; margin: 8px 0 20px; }
         .dark .progress { background: rgba(255,255,255,0.1); }
-        .bar { height: 100%; background: var(--divider); width: 0; transition: 1.5s ease-out; }
+        .bar { height: 100%; background: var(--divider); width: 0; transition: 1.2s ease-out; }
 
         /* Footer & Back to Top */
-        footer { padding: 50px 20px; text-align: center; color: #64748b; font-size: 14px; border-top: 1px solid rgba(0,0,0,0.05); }
+        footer { padding: 50px 20px; text-align: center; color: #64748b; font-size: 14px; }
         #backTop { position: fixed; bottom: 25px; right: 25px; background: var(--accent); color: white; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; transition: 0.3s; opacity: 0; visibility: hidden; z-index: 100; font-weight: bold; }
         #backTop.visible { opacity: 1; visibility: visible; }
 
         @media (max-width: 768px) {
             #hero h1 { font-size: 2.2rem; }
             nav a { margin-left: 10px; font-size: 12px; }
+            #hero { padding-top: 120px; }
         }
     </style>
 </head>
@@ -167,7 +191,8 @@
 <script>
     function toggleMode() { document.body.classList.toggle("dark"); }
 
-    window.addEventListener("scroll", () => {
+    // Run animation check immediately on load
+    function checkVisibility() {
         const navbar = document.getElementById("navbar");
         const backTop = document.getElementById("backTop");
         const cards = document.querySelectorAll(".card");
@@ -181,20 +206,26 @@
         }
 
         cards.forEach(card => {
-            if (card.getBoundingClientRect().top < window.innerHeight - 100) {
+            const rect = card.getBoundingClientRect();
+            // Trigger if card is 85% visible from bottom
+            if (rect.top < window.innerHeight - 50) {
                 card.classList.add("show");
                 const bar = card.querySelector(".bar");
                 if (bar) bar.style.width = bar.getAttribute("data-width");
             }
         });
-    });
+    }
+
+    window.addEventListener("scroll", checkVisibility);
+    window.addEventListener("load", checkVisibility); // Ensure it runs when page opens
 
     const bg = document.getElementById("network-bg");
     for (let i = 0; i < 40; i++) {
         let node = document.createElement("div");
         node.className = "node";
-        node.style.width = Math.random() * 5 + "px";
-        node.style.height = node.style.width;
+        let sz = Math.random() * 5 + "px";
+        node.style.width = sz;
+        node.style.height = sz;
         node.style.left = Math.random() * 100 + "vw";
         node.style.top = Math.random() * 100 + "vh";
         node.animate([{ transform: 'translate(0,0)' }, { transform: `translate(${Math.random()*30}px, ${Math.random()*30}px)` }], { duration: 3000, iterations: Infinity, direction: 'alternate' });
