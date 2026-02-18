@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NGULUBE EMMANUEL | Network Engineering Portfolio</title>
+    <title>NGULUBE EMMANUEL | NOC Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -16,43 +16,31 @@
             --dark-bg: #020617;
             --card-bg: #0f172a;
             --text-main: #ffffff;
-            --text-dim: #cbd5e1;
-            --grid-color: rgba(0, 176, 28, 0.12);
+            --grid-color: rgba(0, 176, 28, 0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
-        
-        body { background: var(--dark-bg); color: var(--text-main); overflow-x: hidden; line-height: 1.6; width: 100%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
+        body { background: var(--dark-bg); color: var(--text-main); overflow-x: hidden; line-height: 1.6; padding-bottom: 60px; }
 
-        /* Background Grid */
         .bg-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background-image: 
-                linear-gradient(var(--grid-color) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
             background-size: 50px 50px;
         }
 
-        /* Navigation */
         nav { 
-            position: fixed; width: 100%; top: 0; background: rgba(2, 6, 23, 0.98); 
-            backdrop-filter: blur(15px); padding: 15px 5%; 
+            position: fixed; width: 100%; top: 0; background: rgba(2, 6, 23, 0.95); 
+            backdrop-filter: blur(10px); padding: 15px 5%; 
             display: flex; justify-content: space-between; align-items: center; 
             z-index: 1000; border-bottom: 2px solid var(--accent); 
         }
 
-        .welcome-msg {
-            font-size: clamp(1rem, 2vw, 1.4rem); font-weight: 900; letter-spacing: 4px; color: var(--accent-light);
-            text-shadow: 0 0 15px var(--accent);
-        }
-
-        /* Mobile Hamburger (Top Left) */
         .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100; }
         .menu-toggle span { display: block; width: 25px; height: 3px; background: var(--accent-light); transition: 0.4s; }
 
         .nav-links { display: flex; align-items: center; }
-        .nav-links a { color: #ffffff; text-decoration: none; margin-left: 25px; font-size: 14px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
-        .nav-links a.active, .nav-links a:hover { color: var(--accent-light); }
+        .nav-links a { color: #ffffff; text-decoration: none; margin-left: 25px; font-size: 14px; font-weight: 700; text-transform: uppercase; }
+        .nav-links a.active { color: var(--accent-light); text-shadow: 0 0 10px var(--accent); }
 
         @media (max-width: 768px) {
             nav { justify-content: flex-start; gap: 20px; }
@@ -63,13 +51,12 @@
                 transition: 0.4s; border-right: 2px solid var(--accent); padding-left: 40px;
             }
             .nav-links.active { left: 0; }
-            .nav-links a { margin: 15px 0; font-size: 1.1rem; width: 100%; margin-left: 0; }
+            .nav-links a { margin: 15px 0; margin-left: 0; font-size: 1.2rem; }
             .menu-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .menu-toggle.open span:nth-child(2) { opacity: 0; }
             .menu-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
         }
 
-        /* Hero */
         main { max-width: 900px; margin: auto; padding: 0 5%; }
         section { padding: 120px 0 60px; min-height: 90vh; }
         
@@ -80,39 +67,40 @@
             animation: pulseAlert 2s infinite;
         }
         @keyframes pulseAlert { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
-        .red-dot { height: 8px; width: 8px; background-color: var(--status-red); border-radius: 50%; display: inline-block; margin-right: 10px; }
 
-        #hero { text-align: center; }
-        #hero img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--accent); object-fit: cover; margin-bottom: 20px; }
-        .user-name { font-size: clamp(2.2rem, 7vw, 3.5rem); font-weight: 900; letter-spacing: 4px; display: block; text-transform: uppercase; }
-        .hero-title { font-size: 1.3rem; color: var(--accent-light); font-weight: 800; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; }
-        .hero-bio { background: rgba(15, 23, 42, 0.85); padding: 25px; border-radius: 12px; border: 1px solid rgba(34, 197, 94, 0.2); }
-
-        /* Content */
-        h2 { font-size: 2rem; margin-bottom: 30px; font-weight: 900; text-transform: uppercase; letter-spacing: 5px; border-left: 8px solid var(--accent); padding-left: 20px; }
         .card { 
             background: var(--card-bg); padding: 30px; border-radius: 15px; 
-            margin-bottom: 30px; border: 1px solid rgba(34, 197, 94, 0.3); 
-            opacity: 0; transform: translateY(30px); transition: 0.6s ease-out;
+            margin-bottom: 30px; border: 1px solid rgba(34, 197, 94, 0.2); 
+            opacity: 0; transform: translateY(20px); transition: 0.6s ease-out;
         }
         .card.show { opacity: 1; transform: translateY(0); }
-        .card h3 { color: var(--accent-light); margin-bottom: 15px; font-size: 1.4rem; font-weight: 800; }
 
         .progress { background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 10px; margin: 10px 0 25px; overflow: hidden; }
         .bar { height: 100%; background: var(--accent-light); width: 0; transition: 1.5s ease-in-out; }
 
-        /* Small Speaker Icon */
         #sound-toggle {
-            position: fixed; bottom: 25px; left: 25px; z-index: 2000;
-            width: 45px; height: 45px; background: rgba(15, 23, 42, 0.9);
+            position: fixed; bottom: 85px; left: 25px; z-index: 2000;
+            width: 45px; height: 45px; background: var(--primary);
             border: 1px solid var(--accent); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: 0.3s; color: var(--accent-light);
+            cursor: pointer; color: var(--accent-light);
         }
         #sound-toggle.muted { border-color: var(--status-red); color: var(--status-red); }
 
-        .btn, .social-btn { display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); color: white !important; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 800; margin: 10px 5px; border: none; }
-        footer { padding: 50px 20px; text-align: center; color: #64748b; font-size: 12px; border-top: 1px solid rgba(34, 197, 94, 0.1); }
+        /* --- NETWORK CONSOLE FOOTER --- */
+        .net-footer {
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 60px;
+            background: rgba(2, 6, 23, 0.95); border-top: 1px solid var(--accent);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 25px; z-index: 1000; font-family: monospace; font-size: 11px;
+            color: var(--accent-light); text-transform: uppercase;
+        }
+
+        .console-log { display: flex; gap: 20px; overflow: hidden; }
+        .log-item { display: flex; align-items: center; gap: 8px; }
+        .dot { height: 6px; width: 6px; background: var(--accent); border-radius: 50%; display: inline-block; }
+
+        .btn { display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); color: white !important; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 800; margin-top: 20px; cursor: pointer; border: none; }
     </style>
 </head>
 <body>
@@ -121,7 +109,7 @@
 
 <nav>
     <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
-    <div class="welcome-msg">WELCOME</div>
+    <div style="font-weight:900; color:var(--accent-light); letter-spacing:4px;">SYS_OS v4.0</div>
     <div class="nav-links" id="nav-list">
         <a href="#hero">Home</a>
         <a href="#about">About</a>
@@ -134,74 +122,68 @@
 
 <div id="sound-toggle"><i class="fas fa-volume-up" id="speaker-icon"></i></div>
 
-<audio id="clickSnd" src="https://actions.google.com/sounds/v1/foley/button_click.ogg" preload="auto"></audio>
-<audio id="scrollSnd" src="https://actions.google.com/sounds/v1/foley/drawbridge_opening.ogg" preload="auto"></audio>
+<audio id="clickSnd" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" preload="auto"></audio>
+<audio id="scrollSnd" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" preload="auto"></audio>
 
 <main>
-    <section id="hero">
-        <div class="status-badge"><span class="red-dot"></span>OPEN FOR INTERNSHIPS</div>
-        <img src="profile.jpg" alt="Profile">
-        <span class="user-name">NGULUBE EMMANUEL</span>
-        <div class="hero-title">Network Engineer Intern</div>
-        <p class="hero-bio">Final-year Computer Science student at <strong>UNZA</strong>. CCNA Certified specialist focusing on <strong>Enterprise Infrastructure</strong> and <strong>Network Security</strong>.</p>
-        <div style="margin-top: 30px;"><a href="cv.pdf" class="btn" download>Download CV</a></div>
+    <section id="hero" style="text-align: center;">
+        <div class="status-badge"><span style="height:8px; width:8px; background:var(--status-red); border-radius:50%; display:inline-block; margin-right:10px;"></span>LUSAKA_NOC_ACTIVE</div>
+        <br>
+        <img src="profile.jpg" alt="Emmanuel" style="width:160px; height:160px; border-radius:50%; border:4px solid var(--accent); margin-bottom:20px;">
+        <h1 style="font-size:3rem; font-weight:900;">NGULUBE EMMANUEL</h1>
+        <p style="color:var(--accent-light); font-weight:800; font-size:1.2rem;">Network Engineer Intern</p>
+        <div class="card" style="opacity:1; transform:none; margin-top:20px;">
+            4th Year Computer Science Student at <strong>The University of Zambia (UNZA)</strong>. 
+            CCNA Certified specialist focusing on Enterprise Infrastructure and Network Security.
+        </div>
+        <a href="cv.pdf" class="btn" download>Download CV</a>
     </section>
 
     <section id="about">
-        <h2>About Me</h2>
-        <div class="card">I am a fourth-year student at the University of Zambia. I design robust <strong>LAN/WAN architectures</strong> and troubleshoot complex network issues for Zambian ISPs and banking sectors.</div>
+        <h2>System Profile</h2>
+        <div class="card">Expertise in designing robust <strong>LAN/WAN architectures</strong>. Focused on troubleshooting complex network layers and implementing security protocols for Zambian ISPs and the banking sector.</div>
     </section>
 
     <section id="education">
-        <h2>Education & Certs</h2>
-        <div class="card">
-            <h3>Cisco Certified Network Associate (CCNA)</h3>
-            <p>Verification ID: <strong>CSCO144XXXX</strong></p>
-        </div>
-        <div class="card">
-            <h3>B.Sc. Computer Science</h3>
-            <p><strong>The University of Zambia (UNZA)</strong> | Class of 2026</p>
-        </div>
+        <h2>Credentials</h2>
+        <div class="card"><h3>CCNA Certification</h3><p>Cisco ID: <strong>CSCO144XXXX</strong></p></div>
+        <div class="card"><h3>B.Sc. Computer Science</h3><p>University of Zambia | Graduating 2026</p></div>
     </section>
 
     <section id="skills">
-        <h2>Technical Skills</h2>
+        <h2>Network Topology Skills</h2>
         <div class="card">
-            <p>Routing & Switching (OSPF, BGP)</p>
+            <p>Layer 2/3 Switching & Routing</p>
             <div class="progress"><div class="bar" data-width="90%"></div></div>
-            <p>TCP/IP & VLSM Subnetting</p>
+            <p>VLANs, OSPF, BGP & STP</p>
             <div class="progress"><div class="bar" data-width="95%"></div></div>
-            <p>Network Security (ACLs)</p>
+            <p>Firewall & ACL Configuration</p>
             <div class="progress"><div class="bar" data-width="85%"></div></div>
         </div>
     </section>
 
     <section id="projects">
-        <h2>Key Projects</h2>
-        <div class="card">
-            <h3>Campus Network Redesign</h3>
-            <p>Simulated a multi-area OSPF network for UNZA, reducing latency by 15%.</p>
-        </div>
-        <div class="card">
-            <h3>Enterprise Firewall Lab</h3>
-            <p>Configured ASA firewalls with Zone-Based Policy for secure connectivity.</p>
-        </div>
+        <h2>Field Deployment</h2>
+        <div class="card"><h3>UNZA Campus Redesign</h3><p>Optimized campus backbone using OSPF multi-area routing.</p></div>
     </section>
 
     <section id="contact">
-        <h2>Contact</h2>
+        <h2>Terminal Access</h2>
         <div class="card" style="text-align: center;">
-            <p>📍 Lusaka, Zambia | 📞 <strong>+260 979 236 667</strong></p>
-            <p>📧 <strong>Emmanuel.ngulube@cs.unza.zm</strong></p>
-            <div style="margin-top:20px;">
-                <a href="https://github.com/CHILEKEN" target="_blank" class="social-btn">GitHub</a>
-                <a href="https://linkedin.com/in/emmanuel-ngulube" target="_blank" class="social-btn">LinkedIn</a>
-            </div>
+            <p>📍 Lusaka, Zambia | 📞 +260 979 236 667</p>
+            <p>📧 Emmanuel.ngulube@cs.unza.zm</p>
         </div>
     </section>
 </main>
 
-<footer>© 2026 NGULUBE EMMANUEL</footer>
+<div class="net-footer">
+    <div class="console-log">
+        <div class="log-item"><span class="dot"></span> STATUS: CONNECTED</div>
+        <div class="log-item"><span class="dot"></span> LOC: LUSAKA, ZM</div>
+        <div class="log-item" id="sys-time"><span class="dot"></span> TIME: --:--:--</div>
+    </div>
+    <div id="sys-ip">IP: 192.168.1.1</div>
+</div>
 
 <script>
     const clickSnd = document.getElementById('clickSnd');
@@ -214,7 +196,15 @@
     let isMuted = false;
     let currentSection = "";
 
-    // Mute/Unmute Toggle
+    // Clock Logic
+    function updateTime() {
+        const now = new Date();
+        document.getElementById('sys-time').innerHTML = `<span class="dot"></span> TIME: ${now.toLocaleTimeString('en-GB')}`;
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    // Sound Logic
     toggleBtn.onclick = () => {
         isMuted = !isMuted;
         toggleBtn.classList.toggle('muted');
@@ -229,27 +219,23 @@
         }
     }
 
-    // Interaction Sound (Universal)
     document.addEventListener('click', (e) => {
         if (e.target.tagName === 'A' || e.target.closest('.btn') || e.target.closest('.menu-toggle') || e.target.closest('#sound-toggle')) {
             playSfx(clickSnd);
         }
     });
 
-    // Mobile Menu Logic
     menuBtn.onclick = () => {
         menuBtn.classList.toggle('open');
         navList.classList.toggle('active');
     };
 
-    // Scroll Observer
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 if (entry.target.tagName === 'SECTION' && entry.target.id !== currentSection) {
                     currentSection = entry.target.id;
-                    playSfx(scrollSnd); // Play sound on section entry
-                    
+                    playSfx(scrollSnd);
                     document.querySelectorAll('.nav-links a').forEach(a => {
                         a.classList.remove('active');
                         if(a.getAttribute('href') === `#${currentSection}`) a.classList.add('active');
