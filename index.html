@@ -23,7 +23,7 @@
         
         body { background: var(--dark-bg); color: var(--text-main); overflow-x: hidden; line-height: 1.6; width: 100%; }
 
-        /* Background Grid Visibility (RESTORED) */
+        /* Background Grid */
         .bg-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
@@ -33,119 +33,112 @@
             background-size: clamp(40px, 5vw, 60px) clamp(40px, 5vw, 60px);
         }
 
-        /* Navigation (RESTORED WITH BLUR) */
+        /* FIXED NAVIGATION FOR MOBILE */
         nav { 
-            position: fixed; width: 100%; top: 0; background: rgba(2, 6, 23, 0.98); 
-            backdrop-filter: blur(15px); padding: 15px clamp(15px, 5%, 50px); 
-            display: flex; justify-content: space-between; align-items: center; 
+            position: fixed; width: 100%; top: 0; 
+            background: rgba(2, 6, 23, 0.98); 
+            backdrop-filter: blur(15px); 
+            padding: 12px 10px; 
+            display: flex; flex-direction: column; align-items: center; 
             z-index: 1000; border-bottom: 2px solid var(--accent); 
         }
 
         .welcome-msg {
-            font-size: clamp(1rem, 2vw, 1.4rem); font-weight: 900; letter-spacing: 4px; color: var(--accent-light);
+            font-size: 1.1rem; font-weight: 900; letter-spacing: 3px; color: var(--accent-light);
             text-shadow: 0 0 15px var(--accent);
-            animation: shake 0.4s infinite alternate;
+            margin-bottom: 8px;
         }
-        @keyframes shake { 0% { transform: translate(1px, 1px); } 100% { transform: translate(-1px, -1px); } }
 
-        .nav-links a { color: #ffffff; text-decoration: none; margin-left: clamp(10px, 2vw, 25px); font-size: clamp(12px, 1.2vw, 14px); font-weight: 700; text-transform: uppercase; }
-        .nav-links a:hover { color: var(--accent-light); text-shadow: 0 0 10px var(--accent-light); }
+        .nav-links {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 15px;
+        }
+
+        .nav-links a { 
+            color: #ffffff; text-decoration: none; 
+            font-size: 11px; font-weight: 800; text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+
+        /* Desktop Adjustment for Nav */
+        @media (min-width: 768px) {
+            nav { flex-direction: row; justify-content: space-between; padding: 15px 50px; }
+            .welcome-msg { margin-bottom: 0; font-size: 1.4rem; }
+            .nav-links a { font-size: 13px; margin-left: 25px; }
+        }
 
         /* HERO SECTION */
-        #hero { text-align: center; padding: clamp(120px, 15vh, 200px) 20px clamp(40px, 8vh, 80px); }
+        #hero { text-align: center; padding: 140px 20px 60px; }
 
-        /* STATUS BADGE (RESTORED RED GLOW) */
         .status-badge {
             display: inline-flex; align-items: center; 
             background: rgba(255, 49, 49, 0.1); border: 2px solid var(--status-red); 
             padding: 8px 20px; border-radius: 30px;
-            font-size: clamp(0.75rem, 1.5vw, 0.9rem); font-weight: 900; color: #ff6b6b;
-            margin-bottom: 30px; letter-spacing: 2px;
+            font-size: 0.8rem; font-weight: 900; color: #ff6b6b;
+            margin-bottom: 25px; letter-spacing: 2px;
             animation: pulseRedAlert 2s infinite ease-in-out;
         }
         @keyframes pulseRedAlert {
-            0%, 100% { box-shadow: 0 0 10px var(--status-red); opacity: 1; }
-            50% { box-shadow: 0 0 25px var(--status-red); opacity: 0.8; }
+            0%, 100% { box-shadow: 0 0 10px var(--status-red); }
+            50% { box-shadow: 0 0 25px var(--status-red); }
         }
-        .red-dot { height: 10px; width: 10px; background-color: var(--status-red); border-radius: 50%; display: inline-block; margin-right: 10px; }
+        .red-dot { height: 8px; width: 8px; background-color: var(--status-red); border-radius: 50%; display: inline-block; margin-right: 8px; }
 
-        /* PROFILE IMAGE (RESTORED GREEN RING) */
         #hero img { 
-            width: clamp(140px, 25vw, 180px); height: clamp(140px, 25vw, 180px); border-radius: 50%; 
+            width: 160px; height: 160px; border-radius: 50%; 
             border: 4px solid var(--accent); object-fit: cover;
             box-shadow: 0 0 20px rgba(0, 176, 28, 0.3);
-            transition: 0.3s; cursor: pointer;
+            margin-bottom: 20px;
         }
-        #hero img:active { transform: scale(0.95); box-shadow: var(--glow-burst) !important; }
 
-        /* BLOCKY TYPOGRAPHY (RESTORED & OPTIMIZED) */
         .user-name {
-            font-size: clamp(1.8rem, 6.5vw, 3.5rem); font-weight: 900; color: #FFFFFF; 
-            letter-spacing: clamp(3px, 1.2vw, 10px); text-transform: uppercase; 
-            display: block; line-height: 1.1; margin: 20px 0 12px;
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+            font-size: clamp(1.8rem, 6vw, 3.5rem); font-weight: 900; color: #FFFFFF; 
+            letter-spacing: 3px; text-transform: uppercase; 
+            display: block; line-height: 1.1; margin-bottom: 10px;
             text-shadow: 0 0 15px rgba(34, 197, 94, 0.7);
         }
 
         .hero-title {
-            font-size: clamp(1rem, 3vw, 1.6rem); color: var(--accent-light); 
-            letter-spacing: 4px; text-transform: uppercase; font-weight: 800; margin-bottom: 25px;
+            font-size: 1.1rem; color: var(--accent-light); 
+            letter-spacing: 3px; text-transform: uppercase; font-weight: 800; margin-bottom: 25px;
         }
 
         .hero-bio {
             color: #FFFFFF; max-width: 750px; margin: 0 auto; 
-            font-size: clamp(1.1rem, 2vw, 1.25rem); font-weight: 600; line-height: 1.8;
-            background: rgba(15, 23, 42, 0.85); padding: 25px; border-radius: 12px;
+            font-size: 1.1rem; font-weight: 600; line-height: 1.7;
+            background: rgba(15, 23, 42, 0.85); padding: 20px; border-radius: 12px;
             border: 1px solid rgba(34, 197, 94, 0.2);
         }
 
-        /* SECTION HEADERS (RESTORED DASHBOARD STYLE) */
-        main { max-width: 900px; margin: auto; padding: 0 clamp(15px, 5%, 50px); }
-        section { padding: clamp(40px, 10vh, 100px) 0; }
+        /* CONTENT SECTIONS */
+        main { max-width: 900px; margin: auto; padding: 0 20px; }
+        section { padding: 60px 0; }
         
         h2 { 
-            font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 30px; font-weight: 900; 
-            color: #ffffff; text-transform: uppercase; letter-spacing: 5px; 
-            border-left: 8px solid var(--accent); padding-left: 20px;
-            text-shadow: 2px 2px 0px rgba(0, 176, 28, 0.3);
+            font-size: 1.8rem; margin-bottom: 25px; font-weight: 900; 
+            color: #ffffff; text-transform: uppercase; letter-spacing: 3px; 
+            border-left: 6px solid var(--accent); padding-left: 15px;
         }
 
-        /* CARDS (RESTORED ANIMATION & TACTILE GLOW) */
         .card { 
-            background: var(--card-bg); padding: clamp(20px, 4vw, 35px); border-radius: 15px; 
-            margin-bottom: clamp(20px, 3vw, 40px); border: 1px solid rgba(34, 197, 94, 0.3); 
-            opacity: 0; transform: translateY(30px); transition: 0.6s ease-out;
-            cursor: pointer;
+            background: var(--card-bg); padding: 25px; border-radius: 15px; 
+            margin-bottom: 25px; border: 1px solid rgba(34, 197, 94, 0.3); 
+            opacity: 0; transform: translateY(20px); transition: 0.6s ease-out;
         }
         .card.show { opacity: 1; transform: translateY(0); }
-        .card:active { transform: scale(0.98); box-shadow: var(--glow-burst) !important; }
-        .card h3 { color: var(--accent-light); margin-bottom: 15px; font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 800; }
-        .card p { color: var(--text-dim); }
+        .card h3 { color: var(--accent-light); margin-bottom: 12px; font-size: 1.3rem; font-weight: 800; }
 
-        /* SKILLS PROGRESS (RESTORED ANIMATED BARS) */
-        .progress { background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 12px; margin: 10px 0 25px; overflow: hidden; }
+        .progress { background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 10px; margin: 10px 0 20px; overflow: hidden; }
         .bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); width: 0; transition: 1.5s ease-in-out; }
 
-        /* BUTTONS (RESTORED GRADIENTS) */
         .btn, .social-btn { 
             display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); 
-            color: white !important; padding: clamp(12px, 2vw, 18px) clamp(20px, 4vw, 40px); border-radius: 10px; 
-            text-decoration: none; font-weight: 800; border: none; margin: 10px 5px; font-size: 16px;
-            transition: 0.2s;
+            color: white !important; padding: 15px 30px; border-radius: 10px; 
+            text-decoration: none; font-weight: 800; border: none; margin: 5px; font-size: 14px;
+            width: 100%; max-width: 300px; text-align: center;
         }
-        .btn:active, .social-btn:active { transform: scale(0.95); box-shadow: var(--glow-burst); }
 
-        .social-btn.github { background: #161b22; border: 2px solid var(--accent); }
-        .social-btn.linkedin { background: #0077b5; border: 2px solid #00a0dc; }
+        footer { padding: 40px 20px; text-align: center; color: #64748b; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
 
-        footer { padding: 40px 20px; text-align: center; color: #64748b; font-size: 12px; font-weight: 700; letter-spacing: 3px; border-top: 1px solid rgba(34, 197, 94, 0.1); text-transform: uppercase; }
-
-        @media (max-width: 600px) {
-            .nav-links { display: none; }
-            h2 { letter-spacing: 2px; }
-            .user-name { letter-spacing: 2px; -webkit-text-stroke: 0px; }
-            .btn, .social-btn { width: 100%; margin: 5px 0; }
-        }
     </style>
 </head>
 <body>
@@ -175,7 +168,7 @@
             CCNA Certified specialist focusing on <strong>Enterprise Infrastructure</strong> 
             and <strong>Network Security</strong>.
         </p>
-        <div style="margin-top: 40px;">
+        <div style="margin-top: 30px;">
             <a href="cv.pdf" class="btn" download>Download CV</a>
         </div>
     </section>
@@ -187,42 +180,15 @@
         </div>
     </section>
 
-    <section id="education">
-        <h2>Education & Certs</h2>
-        <div class="card">
-            <h3>Cisco Certified Network Associate (CCNA)</h3>
-            <p>Verification ID: <strong>CSCO144XXXX</strong></p>
-            <p>Mastery in OSPF, BGP, VLSM, and Enterprise Security protocols.</p>
-        </div>
-        <div class="card">
-            <h3>B.Sc. Computer Science</h3>
-            <p><strong>The University of Zambia (UNZA)</strong> | Class of 2026</p>
-        </div>
-    </section>
-
     <section id="skills">
         <h2>Technical Skills</h2>
         <div class="card">
-            <p><strong>Routing & Switching</strong> (OSPF, BGP, EIGRP)</p>
+            <p><strong>Routing & Switching</strong> (OSPF, BGP)</p>
             <div class="progress"><div class="bar" data-width="90%"></div></div>
             <p><strong>TCP/IP & VLSM</strong> Subnetting Expert</p>
             <div class="progress"><div class="bar" data-width="95%"></div></div>
-            <p><strong>Network Security</strong> (ACLs, Port Security, VPNs)</p>
+            <p><strong>Network Security</strong> (ACLs, Port Security)</p>
             <div class="progress"><div class="bar" data-width="85%"></div></div>
-            <p><strong>Analysis Tools</strong> (Wireshark, GNS3, Packet Tracer)</p>
-            <div class="progress"><div class="bar" data-width="90%"></div></div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>Networking Projects</h2>
-        <div class="card">
-            <h3>Enterprise LAN/WAN Infrastructure</h3>
-            <p>Full implementation of <strong>802.1Q VLAN Trunking</strong> and <strong>OSPFv2</strong> with gateway redundancy via <strong>HSRP</strong>.</p>
-        </div>
-        <div class="card">
-            <h3>Security Audit & Hardening</h3>
-            <p>Implemented <strong>Extended ACLs</strong> and Port Security to prevent Layer 2 attacks and rogue device access.</p>
         </div>
     </section>
 
@@ -231,7 +197,7 @@
         <div class="card" style="text-align: center;">
             <p>📍 Lusaka, Zambia | 📞 <strong>+260 979 236 667</strong></p>
             <p>📧 <strong>Emmanuel.ngulube@cs.unza.zm</strong></p>
-            <div style="margin-top:30px;">
+            <div style="margin-top:20px;">
                 <a href="https://github.com/CHILEKEN" target="_blank" class="social-btn github">GitHub Profile</a>
                 <a href="https://linkedin.com/in/emmanuel-ngulube" target="_blank" class="social-btn linkedin">LinkedIn</a>
             </div>
