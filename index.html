@@ -1,391 +1,368 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NGULUBE EMMANUEL | Network Engineering Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 Free CDN for icons (already added previously) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEWWZJ2b5Z8z9p9e6q0b3W5z2j3z5Y8z9p9e6q0b3W5z2j3z5Y8z9p9e6q0b3" crossorigin="anonymous">
-    <style>
-        :root {
-            --primary: #0f172a;
-            --accent: #00b01c; 
-            --accent-light: #22c55e;
-            --status-red: #ff3131; /* Cinematic Alert Red */
-            --dark-bg: #020617;
-            --card-bg: #0f172a;
-            --text-main: #ffffff;
-            --text-dim: #cbd5e1;
-            --grid-color: rgba(0, 176, 28, 0.12);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Emmanuel | Networking & Information Security | CCNA Certified</title>
+  <meta name="description" content="UNZA Computer Science student specializing in Networking and Information Security. CCNA certified with hands-on labs and projects."/>
+  
+  <!-- Tailwind CDN for easy styling (you can download later for production) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#10b981',    // emerald-500 (cyber green)
+            secondary: '#1e293b',
+          }
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
-        
-        body { background: var(--dark-bg); color: var(--text-main); overflow-x: hidden; line-height: 1.6; width: 100%; }
-
-        /* Background Grid */
-        .bg-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background-image: 
-                linear-gradient(var(--grid-color) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-            background-size: clamp(40px, 5vw, 60px) clamp(40px, 5vw, 60px);
-        }
-
-        /* Navigation */
-        nav { 
-            position: fixed; width: 100%; top: 0; background: rgba(2, 6, 23, 0.98); 
-            backdrop-filter: blur(15px); padding: 15px clamp(15px, 5%, 50px); 
-            display: flex; justify-content: space-between; align-items: center; 
-            z-index: 1000; border-bottom: 2px solid var(--accent); 
-        }
-
-        .welcome-msg {
-            font-size: clamp(1rem, 2vw, 1.4rem); font-weight: 900; letter-spacing: 4px; color: var(--accent-light);
-            text-shadow: 0 0 15px var(--accent);
-        }
-
-        .nav-container {
-            position: relative;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-links a { 
-            color: #ffffff; text-decoration: none; 
-            margin-left: clamp(10px, 2vw, 25px); 
-            font-size: clamp(12px, 1.2vw, 14px); 
-            font-weight: 700; text-transform: uppercase; 
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover { color: var(--accent-light); }
-
-        /* Hamburger Toggle (Pure CSS) */
-        .menu-toggle {
-            display: none;
-        }
-
-        .hamburger {
-            display: none;
-            font-size: 1.8rem;
-            color: var(--accent-light);
-            cursor: pointer;
-            padding: 10px;
-            text-shadow: 0 0 10px var(--accent);
-        }
-
-        /* Mobile Menu Styles */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(2, 6, 23, 0.98);
-                border-top: 2px solid var(--accent);
-                padding: 20px 0;
-                backdrop-filter: blur(15px);
-                transform: translateY(-20px);
-                opacity: 0;
-                transition: all 0.4s ease;
-            }
-
-            .nav-links a {
-                margin: 15px 0;
-                text-align: center;
-                font-size: 1.1rem;
-                padding: 10px;
-                border-bottom: 1px solid rgba(34, 197, 94, 0.2);
-            }
-
-            .nav-links a:last-child { border-bottom: none; }
-
-            /* Show menu when checkbox is checked */
-            .menu-toggle:checked \~ .nav-links {
-                display: flex;
-                transform: translateY(0);
-                opacity: 1;
-            }
-
-            /* Animate hamburger to X on open */
-            .menu-toggle:checked + .hamburger::before {
-                content: "\f00d"; /* fa-times */
-            }
-        }
-
-        /* HERO SECTION */
-        #hero { text-align: center; padding: clamp(120px, 15vh, 200px) 20px clamp(40px, 8vh, 80px); }
-        
-        /* THE RED STATUS BADGE - CINEMATIC GLOW */
-        .status-badge {
-            display: inline-flex; align-items: center; 
-            background: rgba(255, 49, 49, 0.1); 
-            border: 2px solid var(--status-red); 
-            padding: 8px 20px; border-radius: 30px;
-            font-size: clamp(0.75rem, 1.5vw, 0.9rem); font-weight: 900; color: #ff6b6b;
-            margin-bottom: 30px; letter-spacing: 2px;
-            box-shadow: 0 0 15px rgba(255, 49, 49, 0.4);
-            animation: pulseRedAlert 2s infinite ease-in-out;
-        }
-
-        @keyframes pulseRedAlert {
-            0%, 100% { box-shadow: 0 0 10px var(--status-red), inset 0 0 5px var(--status-red); opacity: 1; }
-            50% { box-shadow: 0 0 25px var(--status-red), inset 0 0 10px var(--status-red); opacity: 0.8; }
-        }
-
-        .red-dot { height: 10px; width: 10px; background-color: var(--status-red); border-radius: 50%; display: inline-block; margin-right: 10px; box-shadow: 0 0 10px var(--status-red); }
-
-        /* PROFILE IMAGE - BACK TO GREEN */
-        #hero img { 
-            width: clamp(140px, 25vw, 180px); height: clamp(140px, 25vw, 180px); border-radius: 50%; 
-            border: 4px solid var(--accent); object-fit: cover;
-            box-shadow: 0 0 20px rgba(0, 176, 28, 0.3);
-            transition: 0.3s;
-        }
-
-        /* BLOCKY TYPOGRAPHY */
-        .user-name {
-            font-size: clamp(1.8rem, 6.5vw, 3.5rem); font-weight: 900; color: #FFFFFF; 
-            letter-spacing: clamp(3px, 1.2vw, 10px); text-transform: uppercase; 
-            display: block; line-height: 1.1; margin: 20px 0 12px;
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
-            text-shadow: 0 0 15px rgba(34, 197, 94, 0.7);
-        }
-
-        .hero-title {
-            font-size: clamp(1rem, 3vw, 1.6rem); color: var(--accent-light); 
-            letter-spacing: 4px; text-transform: uppercase; font-weight: 800; margin-bottom: 25px;
-        }
-
-        .hero-bio {
-            color: #FFFFFF; max-width: 750px; margin: 0 auto; 
-            font-size: clamp(1.1rem, 2vw, 1.25rem); font-weight: 600; line-height: 1.8;
-            background: rgba(15, 23, 42, 0.85); padding: 25px; border-radius: 12px;
-            border: 1px solid rgba(34, 197, 94, 0.2);
-        }
-
-        /* CONTENT STYLING */
-        main { max-width: 900px; margin: auto; padding: 0 clamp(15px, 5%, 50px); }
-        section { padding: clamp(40px, 10vh, 100px) 0; }
-        
-        h2 { 
-            font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 30px; font-weight: 900; 
-            color: #ffffff; text-transform: uppercase; letter-spacing: 5px; 
-            border-left: 8px solid var(--accent); padding-left: 20px;
-        }
-
-        .card { 
-            background: var(--card-bg); padding: clamp(20px, 4vw, 35px); border-radius: 15px; 
-            margin-bottom: clamp(20px, 3vw, 40px); border: 1px solid rgba(34, 197, 94, 0.3); 
-            opacity: 0; transform: translateY(30px); transition: 0.6s ease-out;
-        }
-        .card.show { opacity: 1; transform: translateY(0); }
-        .card h3 { color: var(--accent-light); margin-bottom: 15px; font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 800; }
-
-        /* Skill icons styling */
-        .skill-icon {
-            color: var(--accent-light);
-            font-size: 1.6rem;
-            margin-right: 12px;
-            vertical-align: middle;
-            text-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
-        }
-
-        .progress { background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 12px; margin: 10px 0 25px; overflow: hidden; }
-        .bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); width: 0; transition: 1.5s ease-in-out; }
-
-        .btn, .social-btn { 
-            display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); 
-            color: white !important; padding: 16px 35px; border-radius: 10px; 
-            text-decoration: none; font-weight: 800; border: none; margin: 10px 5px; font-size: 16px;
-        }
-
-        footer { padding: 40px 20px; text-align: center; color: #64748b; font-size: 12px; font-weight: 700; letter-spacing: 3px; border-top: 1px solid rgba(34, 197, 94, 0.1); text-transform: uppercase; }
-
-        @media (max-width: 600px) {
-            h2 { letter-spacing: 2px; }
-            .user-name { letter-spacing: 2px; -webkit-text-stroke: 0px; }
-            .skill-icon { font-size: 1.4rem; margin-right: 10px; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="bg-container"></div>
-
-<nav>
-    <div class="welcome-msg">WELCOME</div>
-    
-    <div class="nav-container">
-        <!-- Hidden checkbox for pure CSS toggle -->
-        <input type="checkbox" id="menu-toggle" class="menu-toggle">
-        
-        <!-- Hamburger icon (changes to X when open) -->
-        <label for="menu-toggle" class="hamburger" aria-label="Toggle navigation menu">
-            <i class="fas fa-bars"></i>
-        </label>
-        
-        <div class="nav-links">
-            <a href="#hero">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </div>
-</nav>
-
-<main>
-    <section id="hero">
-        <div class="status-badge"><span class="red-dot"></span>OPEN FOR INTERNSHIPS</div>
-        <br>
-        <div class="profile-container">
-            <img src="profile.jpg" alt="NGULUBE EMMANUEL">
-        </div>
-        <span class="user-name">NGULUBE EMMANUEL</span>
-        <div class="hero-title">Network Engineer Intern</div>
-        <p class="hero-bio">
-            Final-year Computer Science student at <strong>UNZA</strong>. 
-            CCNA Certified specialist focusing on <strong>Enterprise Infrastructure</strong> 
-            and <strong>Network Security</strong>.
-        </p>
-        <div style="margin-top: 40px;">
-            <a href="cv.pdf" class="btn" download>Download CV</a>
-        </div>
-    </section>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <div class="card">
-            I am a results-driven fourth-year student at the University of Zambia. My expertise lies in designing robust <strong>LAN/WAN architectures</strong> and troubleshooting complex network issues for the Zambian ISP and banking sectors.
-        </div>
-    </section>
-
-    <section id="education">
-        <h2>Education & Certs</h2>
-        <div class="card">
-            <h3>Cisco Certified Network Associate (CCNA)</h3>
-            <p>Verification ID: <strong>CSCO144XXXX</strong></p>
-            <p>Expertise in IP routing (OSPF, BGP), VLAN trunking, and high-availability design (HSRP).</p>
-        </div>
-        <div class="card">
-            <h3>B.Sc. Computer Science</h3>
-            <p><strong>The University of Zambia (UNZA)</strong> | Class of 2026</p>
-        </div>
-    </section>
-
-    <section id="skills">
-        <h2>Technical Skills</h2>
-        <div class="card">
-            <h3><i class="fas fa-globe skill-icon"></i>Network Fundamentals (20% of CCNA exam weight)</h3>
-            <p>OSI & TCP/IP models, network components (routers, switches, APs), topologies (2-tier/3-tier, WAN, cloud), IP addressing & subnetting (VLSM, IPv4/IPv6), cabling types & Ethernet standards</p>
-            <div class="progress"><div class="bar" data-width="95%"></div></div>
-
-            <h3><i class="fas fa-plug skill-icon"></i>Network Access (20%)</h3>
-            <p>VLANs & trunking (802.1Q), EtherChannel, switchport security, wireless LAN basics (RF concepts, WPA3, controller-based vs autonomous APs)</p>
-            <div class="progress"><div class="bar" data-width="90%"></div></div>
-
-            <h3><i class="fas fa-route skill-icon"></i>IP Connectivity (25%)</h3>
-            <p>Static & dynamic routing (OSPF single-area/multi-area, basic eBGP), routing table interpretation, IPv4/IPv6 routing, first-hop redundancy (HSRP)</p>
-            <div class="progress"><div class="bar" data-width="92%"></div></div>
-
-            <h3><i class="fas fa-server skill-icon"></i>IP Services (10%)</h3>
-            <p>DHCP client/server/relay, NAT/PAT (static/dynamic), NTP, SNMP basics, QoS concepts (classification & marking)</p>
-            <div class="progress"><div class="bar" data-width="85%"></div></div>
-
-            <h3><i class="fas fa-shield-halved skill-icon"></i>Security Fundamentals (15%)</h3>
-            <p>Key threats/vulnerabilities, device hardening (SSH, passwords, AAA basics), ACLs (standard/extended), Layer 2 security (port security, DHCP snooping, BPDU guard), VPN concepts (site-to-site, remote access)</p>
-            <div class="progress"><div class="bar" data-width="88%"></div></div>
-
-            <h3><i class="fas fa-robot skill-icon"></i>Automation & Programmability (10%)</h3>
-            <p>Controller-based vs traditional networking, APIs & configuration management basics (REST, JSON), device management with Python/scripts (intro level), SDN concepts</p>
-            <div class="progress"><div class="bar" data-width="75%"></div></div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>Projects & Labs</h2>
-        
-        <div class="card">
-            <h3>Multi-VLAN Enterprise LAN with Router-on-a-Stick & Security Hardening</h3>
-            <p>Designed a segmented corporate network for multiple departments (e.g., Finance, IT, Guest) using VLANs, 802.1Q trunking, router-on-a-stick inter-VLAN routing, DHCP services, port security (sticky MAC + violation shutdown), and extended ACLs to restrict guest access to internal resources. Simulated troubleshooting of trunk mismatches and connectivity issues.</p>
-            <p><strong>Tools:</strong> Cisco Packet Tracer | Key CCNA topics: VLANs, Trunking, Inter-VLAN Routing, ACLs, Port Security</p>
-            <a href="https://github.com/CHILEKEN/CCNA-Projects" target="_blank" class="btn">View on GitHub</a>
-        </div>
-
-        <div class="card">
-            <h3>Branch Office Network with OSPF Dynamic Routing & HSRP Redundancy</h3>
-            <p>Implemented a multi-router branch topology mimicking a Zambian bank/ISP site. Configured single-area OSPF for dynamic route advertisement, HSRP for default gateway redundancy, NAT/PAT for simulated internet access, and basic VLANs with trunking. Verified failover and route selection using show commands.</p>
-            <p><strong>Tools:</strong> Cisco Packet Tracer / GNS3 | Key CCNA topics: OSPF, HSRP, NAT, Subnetting</p>
-            <a href="https://github.com/CHILEKEN/CCNA-Projects" target="_blank" class="btn">View on GitHub</a>
-        </div>
-
-        <div class="card">
-            <h3>Network Security Hardening: ACLs, AAA Basics & Layer-2 Protections</h3>
-            <p>Secured a core enterprise network by enabling SSH over Telnet, local AAA authentication, extended ACLs for traffic filtering (e.g., block unauthorized protocols to servers), DHCP snooping, BPDU guard, and port security on switches. Focused on preventing common attacks like MAC flooding and unauthorized access.</p>
-            <p><strong>Tools:</strong> Cisco Packet Tracer | Key CCNA topics: ACLs, SSH, Port Security, Layer-2 Security Features</p>
-            <a href="https://github.com/CHILEKEN/CCNA-Projects" target="_blank" class="btn">View on GitHub</a>
-        </div>
-
-        <div class="card">
-            <h3>ISP-Style Edge Routing with Basic BGP Peering & Prefix Filtering</h3>
-            <p>Simulated customer-to-ISP connectivity with eBGP between autonomous systems, route advertisement of customer prefixes, prefix-list filtering to prevent unwanted routes, and integration with internal OSPF. Demonstrated basic BGP neighbor establishment and route verification.</p>
-            <p><strong>Tools:</strong> GNS3 (or Packet Tracer limited BGP) | Key CCNA topics: BGP Basics, Route Filtering, AS Numbers</p>
-            <a href="https://github.com/CHILEKEN/CCNA-Projects" target="_blank" class="btn">View on GitHub</a>
-        </div>
-
-        <div class="card">
-            <h3>Secure Wireless Branch Network with Guest Isolation</h3>
-            <p>Configured a branch network with wireless access (WLC/AP simulation), WPA3-Enterprise authentication via RADIUS, separate guest VLAN with ACL isolation from corporate resources, DHCP for clients, and port security on wired ports. Ensured end-to-end secure connectivity.</p>
-            <p><strong>Tools:</strong> Cisco Packet Tracer | Key CCNA topics: Wireless Fundamentals, VLANs, ACLs, Security</p>
-            <a href="https://github.com/CHILEKEN/CCNA-Projects" target="_blank" class="btn">View on GitHub</a>
-        </div>
-
-    </section>
-
-    <section id="contact">
-        <h2>Contact Details</h2>
-        <div class="card" style="text-align: center;">
-            <p>📍 Lusaka, Zambia | 📞 <strong>+260 979 236 667</strong></p>
-            <p>📧 <strong>Emmanuel.ngulube@cs.unza.zm</strong></p>
-            <div style="margin-top:30px;">
-                <a href="https://github.com/CHILEKEN" target="_blank" class="social-btn github">GitHub</a>
-                <a href="https://linkedin.com/in/emmanuel-ngulube" target="_blank" class="social-btn linkedin">LinkedIn</a>
-            </div>
-        </div>
-    </section>
-</main>
-
-<footer>
-    © 2026 NGULUBE EMMANUEL | NETWORK ENGINEERING PORTFOLIO
-</footer>
-
-<script>
-    function checkVisibility() {
-        const cards = document.querySelectorAll(".card");
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 50) {
-                card.classList.add("show");
-                const bar = card.querySelector(".bar");
-                if (bar) bar.style.width = bar.getAttribute("data-width");
-            }
-        });
+      }
     }
-    window.addEventListener("scroll", checkVisibility);
-    window.addEventListener("load", checkVisibility);
-</script>
+  </script>
+
+  <!-- AOS for scroll animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <style>
+    /* Custom cyber loading animation */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #0f172a;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #10b981;
+      font-family: 'Courier New', monospace;
+    }
+    .terminal {
+      border: 2px solid #10b981;
+      padding: 1.5rem;
+      min-width: 320px;
+      animation: blink 1.2s infinite;
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    .particle-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .particle {
+      position: absolute;
+      background: #10b981;
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: float 25s infinite linear;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.2); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(-20vh) scale(0.8); opacity: 0; }
+    }
+    /* Counter animation */
+    .counter { opacity: 0; transform: translateY(20px); transition: all 1s; }
+    .counter.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+
+  <!-- Loading Screen -->
+  <div id="loader">
+    <div class="terminal">
+      <p>Initializing Emmanuel's Cyber Portfolio...</p>
+      <p>CCNA Module Loaded [OK]</p>
+      <p>Network Nodes Online...</p>
+    </div>
+  </div>
+
+  <!-- Hero with particle background -->
+  <section id="hero" class="min-h-screen relative flex items-center justify-center overflow-hidden">
+    <div class="particle-bg" id="particles"></div>
+    <div class="text-center z-10 px-6" data-aos="fade-up">
+      <h1 class="text-5xl md:text-7xl font-bold mb-4">
+        Emmanuel
+      </h1>
+      <p class="text-xl md:text-3xl mb-8 text-primary">
+        UNZA Computer Science | Networking & Information Security<br>CCNA Certified
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#projects" class="bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-emerald-600 transition">View Projects</a>
+        <a href="resume.pdf" download class="border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold hover:bg-primary hover:text-white transition">Download Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Navigation (sticky) -->
+  <nav class="fixed top-0 left-0 right-0 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md z-50 border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-primary">Emmanuel</a>
+      <div class="hidden md:flex gap-8">
+        <a href="#about" class="hover:text-primary transition">About</a>
+        <a href="#skills" class="hover:text-primary transition">Skills</a>
+        <a href="#certs" class="hover:text-primary transition">Certifications</a>
+        <a href="#lab" class="hover:text-primary transition">Lab</a>
+        <a href="#projects" class="hover:text-primary transition">Projects</a>
+        <a href="#blog" class="hover:text-primary transition">Blog</a>
+        <a href="#contact" class="hover:text-primary transition">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-7xl mx-auto px-6 pt-24 pb-20">
+
+    <!-- About Me -->
+    <section id="about" class="py-20" data-aos="fade-up">
+      <h2 class="text-4xl font-bold mb-8 text-center">About Me</h2>
+      <p class="text-lg leading-relaxed max-w-3xl mx-auto text-center">
+        I'm a passionate Computer Science student at the University of Zambia (UNZA), majoring in Networking and Information Security. 
+        With CCNA certification and hands-on experience in network design, troubleshooting, security hardening, and ethical hacking labs, 
+        I'm building skills to contribute to Zambia's growing digital infrastructure and cybersecurity landscape.
+      </p>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-20 bg-slate-100 dark:bg-slate-900 rounded-2xl my-10" data-aos="fade-up">
+      <h2 class="text-4xl font-bold mb-12 text-center">CCNA-Aligned Skills</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6 bg-white dark:bg-slate-800 rounded-xl shadow-lg">
+          <h3 class="text-2xl font-semibold mb-4 text-primary">Networking Fundamentals</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>OSI & TCP/IP Models</li>
+            <li>Subnetting & IP Addressing</li>
+            <li>Routing (Static, OSPF, EIGRP)</li>
+            <li>Switching (VLANs, STP, EtherChannel)</li>
+          </ul>
+        </div>
+        <div class="p-6 bg-white dark:bg-slate-800 rounded-xl shadow-lg">
+          <h3 class="text-2xl font-semibold mb-4 text-primary">Security Essentials</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Access Control Lists (ACLs)</li>
+            <li>Firewalls & NAT</li>
+            <li>VPNs (Site-to-Site, Remote)</li>
+            <li>Basic Threat Detection (Wireshark)</li>
+          </ul>
+        </div>
+        <div class="p-6 bg-white dark:bg-slate-800 rounded-xl shadow-lg">
+          <h3 class="text-2xl font-semibold mb-4 text-primary">Tools & Protocols</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Packet Tracer & GNS3</li>
+            <li>Wireshark & Nmap</li>
+            <li>Linux CLI & Python scripting</li>
+            <li>Wireless LANs (WPA3, Controller-based)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certs" class="py-20" data-aos="fade-up">
+      <h2 class="text-4xl font-bold mb-12 text-center">Certifications & Achievements</h2>
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="p-8 bg-white dark:bg-slate-800 rounded-xl shadow-lg text-center">
+          <h3 class="text-3xl font-bold text-primary mb-4">CCNA</h3>
+          <p class="text-lg">Cisco Certified Network Associate</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Issued 2025 | Valid until 2028</p>
+        </div>
+        <div class="p-8 bg-white dark:bg-slate-800 rounded-xl shadow-lg text-center">
+          <h3 class="text-3xl font-bold text-primary mb-4">Academic Excellence</h3>
+          <p class="text-lg">Dean's List – UNZA Computer Science</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Consistent high performance in networking modules</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lab Environment -->
+    <section id="lab" class="py-20 bg-slate-100 dark:bg-slate-900 rounded-2xl my-10" data-aos="fade-up">
+      <h2 class="text-4xl font-bold mb-8 text-center">Home Lab Environment</h2>
+      <p class="text-center text-lg mb-12 max-w-3xl mx-auto">
+        My virtualized lab for practicing enterprise networking, security configurations, and protocol analysis.
+      </p>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="p-6 bg-white dark:bg-slate-800 rounded-xl">
+          <h3 class="text-2xl font-semibold mb-4">Core Tools</h3>
+          <ul class="space-y-3">
+            <li>• Cisco Packet Tracer (daily labs)</li>
+            <li>• GNS3 (advanced multi-vendor topologies)</li>
+            <li>• Wireshark (packet capture & analysis)</li>
+            <li>• VirtualBox / VMware (Kali, pfSense, Windows Servers)</li>
+          </ul>
+        </div>
+        <div class="p-6 bg-white dark:bg-slate-800 rounded-xl">
+          <h3 class="text-2xl font-semibold mb-4">Typical Setups</h3>
+          <ul class="space-y-3">
+            <li>• Multi-site VPN with IPsec</li>
+            <li>• VLAN segmentation + ACL security</li>
+            <li>• OSPF routing + NAT troubleshooting</li>
+            <li>• Wireless LAN controller simulation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-20" data-aos="fade-up">
+      <h2 class="text-4xl font-bold mb-12 text-center">Networking & Security Projects</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Project 1 -->
+        <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+          <div class="h-48 bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-2xl font-bold">
+            Secure Enterprise Network
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3">Secure Multi-Site Network Design</h3>
+            <p class="text-slate-600 dark:text-slate-300 mb-4">
+              Designed & implemented VLANs, inter-VLAN routing, ACLs, and site-to-site VPN in GNS3.
+            </p>
+            <a href="#" class="text-primary hover:underline">View Details →</a>
+          </div>
+        </div>
+        <!-- Add 2-4 more project cards here with your real content -->
+      </div>
+    </section>
+
+    <!-- Live Stats -->
+    <section class="py-20 text-center" data-aos="zoom-in">
+      <h2 class="text-4xl font-bold mb-12">Live Stats</h2>
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <div class="text-5xl font-bold text-primary counter" data-target="150">0</div>
+          <p class="text-lg">Lab Hours</p>
+        </div>
+        <div>
+          <div class="text-5xl font-bold text-primary counter" data-target="12">0</div>
+          <p class="text-lg">Projects Completed</p>
+        </div>
+        <div>
+          <div class="text-5xl font-bold text-primary counter" data-target="1">0</div>
+          <p class="text-lg">Certifications</p>
+        </div>
+        <div>
+          <div class="text-5xl font-bold text-primary counter" data-target="5">0</div>
+          <p class="text-lg">Blog Posts</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog" class="py-20 bg-slate-100 dark:bg-slate-900 rounded-2xl my-10" data-aos="fade-up">
+      <h2 class="text-4xl font-bold mb-12 text-center">Blog / Insights</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="p-8 bg-white dark:bg-slate-800 rounded-xl">
+          <h3 class="text-2xl font-bold mb-4">Understanding ACLs for Network Security</h3>
+          <p class="mb-4">A beginner-friendly walkthrough of extended ACLs with real lab examples.</p>
+          <a href="#" class="text-primary hover:underline">Read More →</a>
+        </div>
+        <!-- Add more blog cards -->
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20" data-aos="fade-up">
+      <h2 class="text-4xl font-bold mb-12 text-center">Testimonials</h2>
+      <div class="max-w-4xl mx-auto space-y-10">
+        <blockquote class="p-8 bg-white dark:bg-slate-800 rounded-xl italic">
+          "Emmanuel demonstrated strong grasp of networking concepts during group labs." — UNZA Lecturer
+        </blockquote>
+        <!-- Add 1-2 more -->
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20" data-aos="fade-up">
+      <h2 class="text-4xl font-bold mb-12 text-center">Get In Touch</h2>
+      <form class="max-w-2xl mx-auto space-y-6">
+        <input type="text" placeholder="Your Name" class="w-full p-4 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:outline-none focus:border-primary"/>
+        <input type="email" placeholder="Your Email" class="w-full p-4 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:outline-none focus:border-primary"/>
+        <textarea rows="6" placeholder="Message" class="w-full p-4 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:outline-none focus:border-primary"></textarea>
+        <button type="submit" class="bg-primary text-white px-10 py-4 rounded-lg font-semibold w-full md:w-auto hover:bg-emerald-600 transition">Send Message</button>
+      </form>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="text-center py-20" data-aos="zoom-in">
+      <h2 class="text-5xl font-bold mb-8">Let's Secure the Future Together</h2>
+      <p class="text-xl mb-10">Open to internships, freelance security audits, networking collaborations, or just a chat about cyber in Zambia.</p>
+      <a href="#contact" class="bg-primary text-white px-12 py-6 rounded-xl text-xl font-bold hover:bg-emerald-600 transition">Reach Out Now</a>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-300 py-12">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="mb-4">&copy; 2026 Emmanuel. Built with security in mind.</p>
+      <div class="flex justify-center gap-8 mb-6">
+        <a href="#" class="hover:text-primary">GitHub</a>
+        <a href="#" class="hover:text-primary">LinkedIn</a>
+        <a href="#" class="hover:text-primary">Twitter/X</a>
+      </div>
+      <button id="theme-toggle" class="text-sm hover:text-primary transition">Toggle Dark/Light Mode</button>
+    </div>
+  </footer>
+
+  <script>
+    // Hide loader after 2-3 seconds
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').style.display = 'none';
+      }, 2500);
+    });
+
+    // Particle background in hero
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.width = `${Math.random() * 4 + 2}px`;
+      particle.style.height = particle.style.width;
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.animationDelay = `${Math.random() * 20}s`;
+      particle.style.animationDuration = `${20 + Math.random() * 20}s`;
+      particlesContainer.appendChild(particle);
+    }
+
+    // Dark mode toggle
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+
+    // Counter animation
+    const counters = document.querySelectorAll('.counter');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          counters.forEach(counter => {
+            const updateCount = () => {
+              const target = +counter.getAttribute('data-target');
+              const count = +counter.innerText;
+              const increment = target / 100;
+              if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCount, 20);
+              } else {
+                counter.innerText = target;
+              }
+            };
+            updateCount();
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    observer.observe(document.querySelector('#projects')); // trigger near projects
+
+    // Init AOS
+    AOS.init({ duration: 1000, once: true });
+  </script>
 </body>
 </html>
