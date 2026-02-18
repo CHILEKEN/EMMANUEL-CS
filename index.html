@@ -25,7 +25,6 @@
         body { background: var(--bg); color: var(--card-text); transition: background 0.4s; overflow-x: hidden; line-height: 1.6; }
         body.dark { background: var(--dark-bg); color: var(--dark-card-text); --grid-color: rgba(34, 197, 94, 0.08); }
 
-        /* Background Grid */
         .bg-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -37,14 +36,13 @@
         }
 
         /* TACTILE GLOW SYSTEM */
-        .card, .btn, #hero img, nav a, .toggle, .social-btn {
+        .card, .btn, #hero img, nav a, .toggle, .social-btn, .user-name {
             transition: transform 0.2s, box-shadow 0.2s, text-shadow 0.2s;
             cursor: pointer;
         }
         .card:active, .btn:active, #hero img:active, .social-btn:active {
             transform: scale(0.97);
             box-shadow: var(--glow-burst) !important;
-            border-color: var(--accent-light) !important;
         }
 
         /* Navigation */
@@ -60,44 +58,52 @@
         nav a { color: rgba(255,255,255,0.8); text-decoration: none; margin-left: 20px; font-size: 14px; font-weight: 500; }
         .toggle { background: var(--accent); padding: 6px 15px; border-radius: 20px; font-size: 12px; color: white; border: none; }
 
-        /* Content Sections */
+        /* Hero */
+        #hero { text-align: center; padding-top: 150px; }
+        #hero img { width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--accent); margin-bottom: 15px; object-fit: cover; }
+        
+        /* THE NAME BELOW PICTURE */
+        .user-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: block;
+            text-shadow: 0 0 10px rgba(0, 176, 28, 0.3);
+        }
+        .user-name:active {
+            text-shadow: 0 0 20px var(--accent-light);
+        }
+
+        #hero h1 { font-size: 2.8rem; background: linear-gradient(90deg, #fff, var(--accent-light), #fff); background-size: 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 8s linear infinite; }
+        @keyframes gradientMove { 0% { background-position: 0%; } 100% { background-position: 200%; } }
+
+        /* Content */
         main { max-width: 900px; margin: auto; padding: 0 20px; }
-        section { padding: 100px 0; }
-        h2 { font-size: 32px; margin-bottom: 24px; color: #0f172a; font-weight: 700; }
+        section { padding: 80px 0; }
+        h2 { font-size: 32px; margin-bottom: 24px; font-weight: 700; color: #0f172a; }
         .dark h2 { color: #f1f5f9; }
         h2::after { content: ""; display: block; width: 60px; height: 4px; background: var(--divider); margin-top: 8px; }
 
-        /* Hero */
-        #hero { text-align: center; padding-top: 150px; }
-        #hero img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--accent); margin-bottom: 25px; object-fit: cover; }
-        #hero h1 { font-size: 3rem; background: linear-gradient(90deg, #fff, var(--accent-light), #fff); background-size: 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 8s linear infinite; }
-        @keyframes gradientMove { 0% { background-position: 0%; } 100% { background-position: 200%; } }
-
-        /* Card Restorations */
         .card { background: var(--card); padding: 25px; border-radius: 16px; margin-bottom: 25px; border: 1px solid rgba(0,0,0,0.05); opacity: 0; transform: translateY(20px); transition: 0.4s; }
         .card.show { opacity: 1; transform: translateY(0); }
         .dark .card { background: var(--dark-card); border: 1px solid rgba(34, 197, 94, 0.1); }
         .card h3 { color: var(--accent-light); margin-bottom: 12px; }
-        .card ul { padding-left: 20px; margin-top: 10px; }
-        .card li { margin-bottom: 8px; font-size: 0.95rem; }
 
-        /* Progress Bars */
         .progress { background: rgba(255,255,255,0.1); border-radius: 20px; height: 8px; margin: 10px 0 25px; overflow: hidden; }
         .bar { height: 100%; background: var(--divider); width: 0; transition: 1.5s ease-out; }
 
-        /* Buttons & Socials */
-        .btn, .social-btn { 
-            display: inline-block; background: var(--divider); color: white; padding: 12px 24px; border-radius: 12px; 
-            text-decoration: none; font-weight: 600; border: none; margin: 5px;
-        }
+        .btn, .social-btn { display: inline-block; background: var(--divider); color: white; padding: 12px 24px; border-radius: 12px; text-decoration: none; font-weight: 600; border: none; margin: 5px; }
         .social-btn.github { background: #24292e; }
         .social-btn.linkedin { background: #0077b5; }
 
         footer { padding: 50px 20px; text-align: center; color: #64748b; font-size: 14px; }
 
         @media (max-width: 768px) {
-            #hero h1 { font-size: 2.2rem; }
-            .welcome-msg { font-size: 1rem; }
+            #hero h1 { font-size: 2rem; }
+            .user-name { font-size: 1.4rem; }
             nav a { margin-left: 8px; font-size: 11px; }
         }
     </style>
@@ -121,8 +127,9 @@
 <main>
     <section id="hero">
         <img src="profile.jpg" alt="Emmanuel Ngulube">
+        <span class="user-name">NGULUBE EMMANUEL</span>
         <h1>Network Engineer Intern</h1>
-        <p style="color: #cbd5e1; margin-top: 15px;">Final-year Computer Science student at <strong>UNZA</strong>. CCNA Certified specialist focusing on Enterprise Infrastructure, Routing/Switching, and Network Security.</p>
+        <p style="color: #cbd5e1; margin-top: 15px;">Final-year Computer Science student at <strong>UNZA</strong>. CCNA Certified specialist focusing on Enterprise Infrastructure and Security.</p>
         <div style="margin-top: 30px;">
             <a href="cv.pdf" class="btn" download>Download CV</a>
         </div>
@@ -139,7 +146,7 @@
         <h2>Education & Certifications</h2>
         <div class="card">
             <h3>Cisco Certified Network Associate (CCNA)</h3>
-            <p>Verification ID: <strong>[Insert ID]</strong> | Focused on Enterprise Networking and Security.</p>
+            <p>Verification ID: <strong>CSCO144XXXX</strong> | Expert in Routing, Switching, and Security.</p>
         </div>
         <div class="card">
             <h3>B.Sc. Computer Science (Final Year)</h3>
@@ -150,57 +157,38 @@
     <section id="skills">
         <h2>Technical Skills</h2>
         <div class="card">
-            <p>Routing & Switching (OSPF, EIGRP, BGP)</p>
+            <p>Routing & Switching (OSPF, BGP)</p>
             <div class="progress"><div class="bar" data-width="90%"></div></div>
             <p>TCP/IP & VLSM Subnetting</p>
             <div class="progress"><div class="bar" data-width="95%"></div></div>
             <p>VLANs, STP & Trunking (802.1Q)</p>
             <div class="progress"><div class="bar" data-width="85%"></div></div>
-            <p>Network Troubleshooting & Wireshark Analysis</p>
+            <p>Network Security & Wireshark</p>
             <div class="progress"><div class="bar" data-width="90%"></div></div>
         </div>
     </section>
 
     <section id="projects">
         <h2>Networking Projects</h2>
-        
         <div class="card">
             <h3>Enterprise LAN/WAN Infrastructure Design</h3>
-            <p>Full-scale multi-site enterprise network simulation in <strong>GNS3</strong>.</p>
-            <ul>
-                <li>Implemented <strong>802.1Q VLAN Trunking</strong> and Router-on-a-Stick configurations.</li>
-                <li>Configured <strong>OSPFv2</strong> with area optimization and neighbor authentication.</li>
-                <li>Redundancy implementation using <strong>HSRP</strong> for gateway high availability.</li>
-            </ul>
+            <p>Implemented <strong>802.1Q VLAN Trunking</strong> and <strong>OSPFv2</strong> with gateway redundancy using <strong>HSRP</strong> in GNS3.</p>
         </div>
-
         <div class="card">
             <h3>IP Address Optimization (VLSM)</h3>
-            <p>Designed a hierarchical IP plan for 500+ host environments.</p>
-            <ul>
-                <li>Minimized address wastage using <strong>VLSM</strong> for efficiency.</li>
-                <li>Configured Dynamic NAT/PAT and DHCP relay agents for multi-segment connectivity.</li>
-            </ul>
+            <p>Designed hierarchical IP plans for 500+ host environments using <strong>VLSM</strong> to minimize wastage.</p>
         </div>
-
         <div class="card">
             <h3>Packet-Level Security Audit</h3>
-            <p>Traffic analysis and network hardening using <strong>Wireshark</strong>.</p>
-            <ul>
-                <li>Implemented <strong>Extended ACLs</strong> to protect internal server segments.</li>
-                <li>Mitigated Layer 2 attacks using <strong>Port Security</strong> and DHCP Snooping.</li>
-            </ul>
+            <p>Implemented <strong>Extended ACLs</strong> and Port Security to harden network segments against Layer 2 attacks.</p>
         </div>
     </section>
 
     <section id="contact">
         <h2>Contact Me</h2>
         <div class="card" style="text-align: center;">
-            <div style="margin-bottom: 20px; font-size: 1.1rem;">
-                <p>📍 Lusaka, Zambia</p>
-                <p>📞 +260 979 236 667</p>
-                <p>📧 Emmanuel.ngulube@cs.unza.zm</p>
-            </div>
+            <p>📍 Lusaka, Zambia | 📞 +260 979 236 667</p>
+            <p>📧 Emmanuel.ngulube@cs.unza.zm</p>
             <div style="margin-top:20px;">
                 <a href="https://github.com/CHILEKEN" target="_blank" class="social-btn github">GitHub</a>
                 <a href="https://linkedin.com/in/emmanuel-ngulube" target="_blank" class="social-btn linkedin">LinkedIn</a>
@@ -210,12 +198,11 @@
 </main>
 
 <footer>
-    © 2026 Emmanuel Ngulube | Network Engineering Portfolio
+    © 2026 NGULUBE EMMANUEL | Network Engineering Portfolio
 </footer>
 
 <script>
     function toggleMode() { document.body.classList.toggle("dark"); }
-
     function checkVisibility() {
         const cards = document.querySelectorAll(".card");
         cards.forEach(card => {
