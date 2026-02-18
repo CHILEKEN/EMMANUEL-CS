@@ -3,288 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Full-Feature Portfolio</title>
+    <title>NGULUBE EMMANUEL | Network Engineering Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* --- 1. THEME & RESET --- */
         :root {
-            --bg-color: #020617; /* Original dark navy from screenshot */
-            --accent-color: #00ff88; /* The green accent line color */
+            --primary: #0f172a;
+            --accent: #00b01c; 
+            --accent-light: #22c55e;
+            --status-red: #ff3131; 
+            --dark-bg: #020617;
+            --card-bg: #0f172a;
             --text-main: #ffffff;
-            --text-dim: #94a3b8;
-            --glass-bg: rgba(255, 255, 255, 0.05);
+            --text-dim: #cbd5e1;
+            --grid-color: rgba(0, 176, 28, 0.12);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+        
+        body { background: var(--dark-bg); color: var(--text-main); overflow-x: hidden; line-height: 1.6; width: 100%; }
 
-        /* --- 2. NAVIGATION & HAMBURGER --- */
-        .navbar {
+        /* Background Grid */
+        .bg-container {
             position: fixed;
-            top: 0; width: 100%; height: 75px;
-            background-color: var(--bg-color);
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 5%; z-index: 1000;
-            border-bottom: 2px solid var(--accent-color); /* The specific green line */
+            top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: clamp(40px, 5vw, 60px) clamp(40px, 5vw, 60px);
         }
 
-        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 2px; }
-
-        .nav-links { display: flex; list-style: none; gap: 30px; }
-        .nav-links a {
-            color: var(--text-main); text-decoration: none; font-size: 0.9rem;
-            font-weight: 700; transition: 0.3s; display: flex; align-items: center; gap: 8px;
+        /* Navigation */
+        nav { 
+            position: fixed; width: 100%; top: 0; background: rgba(2, 6, 23, 0.98); 
+            backdrop-filter: blur(15px); padding: 15px clamp(15px, 5%, 50px); 
+            display: flex; justify-content: space-between; align-items: center; 
+            z-index: 1000; border-bottom: 2px solid var(--accent); 
         }
-        .nav-links a.active-link, .nav-links a:hover { color: var(--accent-color); }
 
-        /* Hamburger Icon */
-        .menu-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1100; }
-        .bar { width: 30px; height: 3px; background-color: white; transition: 0.4s; border-radius: 2px; }
+        .welcome-msg {
+            font-size: clamp(1rem, 2vw, 1.4rem); font-weight: 900; letter-spacing: 4px; color: var(--accent-light);
+            text-shadow: 0 0 15px var(--accent);
+        }
 
-        /* Mobile Slide-in Drawer */
+        /* Desktop Nav Links */
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { color: #ffffff; text-decoration: none; margin-left: clamp(10px, 2vw, 25px); font-size: clamp(12px, 1.2vw, 14px); font-weight: 700; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent-light); }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1100;
+        }
+        .menu-toggle span {
+            display: block; width: 25px; height: 3px; background: var(--accent-light); transition: 0.4s;
+        }
+
+        /* Mobile Nav Styling */
         @media (max-width: 768px) {
             .menu-toggle { display: flex; }
             .nav-links {
-                position: fixed; top: 0; left: 0; height: 100vh; width: 280px;
-                background: var(--bg-color); flex-direction: column; padding: 100px 40px;
-                transform: translateX(-100%); transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-                z-index: 1080; border-right: 1px solid var(--accent-color);
+                position: fixed; top: 0; right: -100%; height: 100vh; width: 70%; 
+                background: var(--primary); flex-direction: column; justify-content: center;
+                transition: 0.5s; box-shadow: -10px 0 30px rgba(0,0,0,0.5); border-left: 2px solid var(--accent);
             }
-            .nav-links.active { transform: translateX(0); }
-            /* Staggered Link Animation */
-            .nav-links li { opacity: 0; transform: translateX(-20px); transition: 0.4s; }
-            .nav-links.active li { opacity: 1; transform: translateX(0); }
-            .nav-links.active li:nth-child(1) { transition-delay: 0.1s; }
-            .nav-links.active li:nth-child(2) { transition-delay: 0.2s; }
-            .nav-links.active li:nth-child(3) { transition-delay: 0.3s; }
-            .nav-links.active li:nth-child(4) { transition-delay: 0.4s; }
-            .nav-links.active li:nth-child(5) { transition-delay: 0.5s; }
+            .nav-links.active { right: 0; }
+            .nav-links a { margin: 20px 0; font-size: 1.2rem; }
 
-            /* X Transformation */
-            .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
-            .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-            .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+            /* Hamburger to X animation */
+            .menu-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .menu-toggle.open span:nth-child(2) { opacity: 0; }
+            .menu-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
         }
 
-        .menu-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); opacity: 0; visibility: hidden;
-            transition: 0.3s; z-index: 1050; backdrop-filter: blur(4px);
-        }
-        .menu-overlay.active { opacity: 1; visibility: visible; }
-
-        /* --- 3. SECTIONS --- */
-        section { padding: 120px 10% 80px; min-height: 100vh; }
-        .section-title { font-size: 2.5rem; margin-bottom: 50px; color: var(--accent-color); text-transform: uppercase; }
-
-        /* Skills Bars */
-        .skills-container { max-width: 800px; }
-        .skill-item { margin-bottom: 30px; }
-        .skill-info { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold; }
-        .progress-line { height: 12px; background: #1e293b; border-radius: 10px; overflow: hidden; }
-        .progress-line span { 
-            display: block; height: 100%; width: 0%; background: var(--accent-color); 
-            box-shadow: 0 0 15px var(--accent-color); transition: width 1.5s ease-in-out; 
+        /* HERO SECTION */
+        #hero { text-align: center; padding: clamp(120px, 15vh, 200px) 20px clamp(40px, 8vh, 80px); }
+        
+        .status-badge {
+            display: inline-flex; align-items: center; 
+            background: rgba(255, 49, 49, 0.1); 
+            border: 2px solid var(--status-red); 
+            padding: 8px 20px; border-radius: 30px;
+            font-size: clamp(0.75rem, 1.5vw, 0.9rem); font-weight: 900; color: #ff6b6b;
+            margin-bottom: 30px; letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(255, 49, 49, 0.4);
+            animation: pulseRedAlert 2s infinite ease-in-out;
         }
 
-        /* Projects Glassmorphism */
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .project-card { position: relative; border-radius: 20px; overflow: hidden; height: 300px; background: #1e293b; }
-        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .project-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(8px);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transform: translateY(100%); transition: 0.5s ease; padding: 20px; text-align: center;
-        }
-        .project-card:hover .project-overlay { transform: translateY(0); }
-        .project-card:hover img { transform: scale(1.1); }
-
-        /* Contact Form Floating Labels */
-        form { max-width: 650px; }
-        .input-group { position: relative; margin-bottom: 40px; }
-        .input-group input, .input-group textarea {
-            width: 100%; padding: 15px; background: transparent; border: 1px solid #334155;
-            color: white; border-radius: 8px; outline: none; font-size: 1rem;
-        }
-        .input-group label { position: absolute; left: 15px; top: 15px; color: #64748b; transition: 0.3s; pointer-events: none; }
-        .input-group input:focus + label, .input-group input:not(:placeholder-shown) + label,
-        .input-group textarea:focus + label, .input-group textarea:not(:placeholder-shown) + label {
-            top: -28px; left: 5px; color: var(--accent-color); font-size: 0.85rem;
+        @keyframes pulseRedAlert {
+            0%, 100% { box-shadow: 0 0 10px var(--status-red), inset 0 0 5px var(--status-red); opacity: 1; }
+            50% { box-shadow: 0 0 25px var(--status-red), inset 0 0 10px var(--status-red); opacity: 0.8; }
         }
 
-        #submitBtn {
-            width: 100%; padding: 15px; background: var(--accent-color); border: none;
-            border-radius: 8px; font-weight: 800; cursor: pointer; transition: 0.3s;
-        }
-        #submitBtn.success { background: #28a745; color: white; }
+        .red-dot { height: 10px; width: 10px; background-color: var(--status-red); border-radius: 50%; display: inline-block; margin-right: 10px; box-shadow: 0 0 10px var(--status-red); }
 
-        /* Back to Top */
-        #backToTop {
-            position: fixed; bottom: 30px; right: 30px; background: var(--accent-color);
-            border: none; width: 55px; height: 55px; border-radius: 50%; cursor: pointer;
-            display: none; opacity: 0; transition: 0.4s; z-index: 100; color: #020617; font-size: 1.2rem;
+        #hero img { 
+            width: clamp(140px, 25vw, 180px); height: clamp(140px, 25vw, 180px); border-radius: 50%; 
+            border: 4px solid var(--accent); object-fit: cover;
+            box-shadow: 0 0 20px rgba(0, 176, 28, 0.3);
         }
+
+        .user-name {
+            font-size: clamp(1.8rem, 6.5vw, 3.5rem); font-weight: 900; color: #FFFFFF; 
+            letter-spacing: clamp(2px, 1vw, 10px); text-transform: uppercase; 
+            display: block; line-height: 1.1; margin: 20px 0 12px;
+            text-shadow: 0 0 15px rgba(34, 197, 94, 0.7);
+        }
+
+        .hero-title {
+            font-size: clamp(1rem, 3vw, 1.6rem); color: var(--accent-light); 
+            letter-spacing: 4px; text-transform: uppercase; font-weight: 800; margin-bottom: 25px;
+        }
+
+        .hero-bio {
+            color: #FFFFFF; max-width: 750px; margin: 0 auto; 
+            font-size: clamp(1.1rem, 2vw, 1.25rem); font-weight: 600; line-height: 1.8;
+            background: rgba(15, 23, 42, 0.85); padding: 25px; border-radius: 12px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        main { max-width: 900px; margin: auto; padding: 0 clamp(15px, 5%, 50px); }
+        section { padding: clamp(40px, 10vh, 100px) 0; }
+        
+        h2 { 
+            font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 30px; font-weight: 900; 
+            color: #ffffff; text-transform: uppercase; letter-spacing: 5px; 
+            border-left: 8px solid var(--accent); padding-left: 20px;
+        }
+
+        .card { 
+            background: var(--card-bg); padding: clamp(20px, 4vw, 35px); border-radius: 15px; 
+            margin-bottom: clamp(20px, 3vw, 40px); border: 1px solid rgba(34, 197, 94, 0.3); 
+            opacity: 0; transform: translateY(30px); transition: 0.6s ease-out;
+        }
+        .card.show { opacity: 1; transform: translateY(0); }
+        .card h3 { color: var(--accent-light); margin-bottom: 15px; font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 800; }
+
+        .progress { background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 12px; margin: 10px 0 25px; overflow: hidden; }
+        .bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); width: 0; transition: 1.5s ease-in-out; }
+
+        .btn, .social-btn { 
+            display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); 
+            color: white !important; padding: 16px 35px; border-radius: 10px; 
+            text-decoration: none; font-weight: 800; border: none; margin: 10px 5px; font-size: 16px;
+        }
+
+        footer { padding: 40px 20px; text-align: center; color: #64748b; font-size: 12px; font-weight: 700; letter-spacing: 3px; border-top: 1px solid rgba(34, 197, 94, 0.1); text-transform: uppercase; }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">DESIGNER</div>
-        <div class="menu-toggle" id="mobile-menu">
-            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#home"><i class="fas fa-home"></i> HOME</a></li>
-            <li><a href="#about"><i class="fas fa-user"></i> ABOUT</a></li>
-            <li><a href="#skills"><i class="fas fa-code"></i> SKILLS</a></li>
-            <li><a href="#projects"><i class="fas fa-briefcase"></i> PROJECTS</a></li>
-            <li><a href="#contact"><i class="fas fa-envelope"></i> CONTACT</a></li>
-        </ul>
-        <div class="menu-overlay" id="overlay"></div>
-    </nav>
+<div class="bg-container"></div>
 
-    <section id="home">
-        <h1 style="font-size: 4rem; line-height: 1;">Creative <br><span style="color: var(--accent-color);">Developer</span></h1>
-        <p style="margin-top: 20px; color: var(--text-dim); font-size: 1.3rem;">Bringing high-end interactive concepts to life.</p>
+<nav>
+    <div class="welcome-msg">WELCOME</div>
+    <div class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="nav-links" id="nav-list">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<main>
+    <section id="hero">
+        <div class="status-badge"><span class="red-dot"></span>OPEN FOR INTERNSHIPS</div>
+        <br>
+        <div class="profile-container">
+            <img src="profile.jpg" alt="NGULUBE EMMANUEL">
+        </div>
+        <span class="user-name">NGULUBE EMMANUEL</span>
+        <div class="hero-title">Network Engineer Intern</div>
+        <p class="hero-bio">
+            Final-year Computer Science student at <strong>UNZA</strong>. 
+            CCNA Certified specialist focusing on <strong>Enterprise Infrastructure</strong> 
+            and <strong>Network Security</strong>.
+        </p>
+        <div style="margin-top: 40px;">
+            <a href="cv.pdf" class="btn" download>Download CV</a>
+        </div>
     </section>
 
     <section id="about">
-        <h2 class="section-title">About Me</h2>
-        <p style="max-width: 800px; font-size: 1.1rem; line-height: 1.8;">
-            I specialize in crafting high-performance, responsive websites with a focus on clean code and exceptional user experience. Every project is an opportunity to push the boundaries of modern web technology.
-        </p>
-    </section>
-
-    <section id="skills">
-        <h2 class="section-title">My Skills</h2>
-        <div class="skills-container">
-            <div class="skill-item">
-                <div class="skill-info"><span>UI/UX DESIGN</span><span>90%</span></div>
-                <div class="progress-line" data-percent="90%"><span></span></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-info"><span>FRONTEND (REACT/NEXT)</span><span>85%</span></div>
-                <div class="progress-line" data-percent="85%"><span></span></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-info"><span>BACKEND (NODE/SQL)</span><span>75%</span></div>
-                <div class="progress-line" data-percent="75%"><span></span></div>
-            </div>
+        <h2>About Me</h2>
+        <div class="card">
+            I am a results-driven fourth-year student at the University of Zambia. My expertise lies in designing robust <strong>LAN/WAN architectures</strong> and troubleshooting complex network issues for the Zambian ISP and banking sectors.
         </div>
     </section>
 
-    <section id="projects">
-        <h2 class="section-title">Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=60" alt="Proj 1">
-                <div class="project-overlay">
-                    <h3>Digital Agency</h3>
-                    <p>Complete branding and development</p>
-                    <a href="#" style="color: var(--accent-color); margin-top: 10px; text-decoration: none;">View Project</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1551288049-bbbda536639a?auto=format&fit=crop&w=500&q=60" alt="Proj 2">
-                <div class="project-overlay">
-                    <h3>Fintech App</h3>
-                    <p>Secure real-time transaction dashboard</p>
-                    <a href="#" style="color: var(--accent-color); margin-top: 10px; text-decoration: none;">View Project</a>
-                </div>
-            </div>
+    <section id="education">
+        <h2>Education & Certs</h2>
+        <div class="card">
+            <h3>Cisco Certified Network Associate (CCNA)</h3>
+            <p>Verification ID: <strong>CSCO144XXXX</strong></p>
+            <p>Expertise in IP routing (OSPF, BGP), VLAN trunking, and high-availability design (HSRP).</p>
+        </div>
+        <div class="card">
+            <h3>B.Sc. Computer Science</h3>
+            <p><strong>The University of Zambia (UNZA)</strong> | Class of 2026</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="card">
+            <p><strong>Routing & Switching</strong> (OSPF, BGP)</p>
+            <div class="progress"><div class="bar" data-width="90%"></div></div>
+            <p><strong>TCP/IP & VLSM</strong> Subnetting Expert</p>
+            <div class="progress"><div class="bar" data-width="95%"></div></div>
+            <p><strong>Network Security</strong> (ACLs, Port Security)</p>
+            <div class="progress"><div class="bar" data-width="85%"></div></div>
         </div>
     </section>
 
     <section id="contact">
-        <h2 class="section-title">Contact</h2>
-        <form id="contactForm">
-            <div class="input-group">
-                <input type="text" id="name" required placeholder=" ">
-                <label>Full Name</label>
+        <h2>Contact Details</h2>
+        <div class="card" style="text-align: center;">
+            <p>📍 Lusaka, Zambia | 📞 <strong>+260 979 236 667</strong></p>
+            <p>📧 <strong>Emmanuel.ngulube@cs.unza.zm</strong></p>
+            <div style="margin-top:30px;">
+                <a href="https://github.com/CHILEKEN" target="_blank" class="social-btn github">GitHub</a>
+                <a href="https://linkedin.com/in/emmanuel-ngulube" target="_blank" class="social-btn linkedin">LinkedIn</a>
             </div>
-            <div class="input-group">
-                <input type="email" id="email" required placeholder=" ">
-                <label>Email Address</label>
-            </div>
-            <div class="input-group">
-                <textarea id="message" rows="5" required placeholder=" "></textarea>
-                <label>Your Message</label>
-            </div>
-            <button type="submit" id="submitBtn">
-                <span class="btn-text">SEND MESSAGE</span>
-                <i class="fas fa-check check-icon" style="display:none;"></i>
-            </button>
-        </form>
+        </div>
     </section>
+</main>
 
-    <button id="backToTop"><i class="fas fa-chevron-up"></i></button>
+<footer>
+    © 2026 NGULUBE EMMANUEL | NETWORK ENGINEERING PORTFOLIO
+</footer>
 
-    <script>
-        // 1. MOBILE MENU TOGGLE
-        const menuBtn = document.getElementById('mobile-menu');
-        const navList = document.querySelector('.nav-links');
-        const overlay = document.getElementById('overlay');
-
-        const toggleMenu = () => {
-            menuBtn.classList.toggle('is-active');
-            navList.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.style.overflow = navList.classList.contains('active') ? 'hidden' : 'initial';
-        };
-
-        menuBtn.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
-        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', toggleMenu));
-
-        // 2. SCROLL LOGIC (BackToTop & ScrollSpy)
-        window.addEventListener('scroll', () => {
-            const btt = document.getElementById('backToTop');
-            if (window.scrollY > 400) { btt.style.display = "block"; setTimeout(() => btt.style.opacity = "1", 10); }
-            else { btt.style.opacity = "0"; setTimeout(() => btt.style.display = "none", 400); }
-
-            // ScrollSpy
-            let fromTop = window.scrollY + 100;
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                let section = document.querySelector(link.hash);
-                if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
-                    link.classList.add('active-link');
-                } else {
-                    link.classList.remove('active-link');
-                }
-            });
+<script>
+    // Visibility/Progress Bar logic
+    function checkVisibility() {
+        const cards = document.querySelectorAll(".card");
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 50) {
+                card.classList.add("show");
+                const bar = card.querySelector(".bar");
+                if (bar) bar.style.width = bar.getAttribute("data-width");
+            }
         });
+    }
 
-        // 3. SKILL BARS OBSERVER
-        const skillObs = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    const span = e.target.querySelector('span');
-                    span.style.width = e.target.getAttribute('data-percent');
-                }
-            });
-        }, { threshold: 0.5 });
-        document.querySelectorAll('.progress-line').forEach(line => skillObs.observe(line));
+    // Mobile Menu Toggle logic
+    const menuToggle = document.getElementById('mobile-menu');
+    const navList = document.getElementById('nav-list');
 
-        // 4. FORM SUCCESS
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            const txt = btn.querySelector('.btn-text');
-            const icon = btn.querySelector('.check-icon');
-            btn.classList.add('success');
-            txt.style.display = "none";
-            icon.style.display = "inline-block";
-            setTimeout(() => {
-                btn.classList.remove('success');
-                txt.style.display = "inline-block";
-                icon.style.display = "none";
-                this.reset();
-            }, 3000);
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('open');
+        navList.classList.toggle('active');
+    });
+
+    // Close menu when link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuToggle.classList.remove('open');
+            navList.classList.remove('active');
         });
+    });
 
-        document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
-    </script>
+    window.addEventListener("scroll", checkVisibility);
+    window.addEventListener("load", checkVisibility);
+</script>
 </body>
 </html>
