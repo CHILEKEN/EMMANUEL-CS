@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NGULUBE EMMANUEL| Networking & Information Security | CCNA Certified</title>
+  <title>Emmanuel | Networking & Information Security | CCNA Certified</title>
   <meta name="description" content="UNZA Computer Science student specializing in Networking and Information Security. CCNA certified with hands-on labs, projects and insights."/>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -21,7 +21,7 @@
           animation: {
             'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
             'glitch': 'glitch 0.4s linear infinite',
-            'typing': 'typing 4s steps(60, end) forwards',
+            'typing': 'typing 1.8s steps(60, end) forwards',  // shortened for laser-fast feel
             'blink': 'blink-caret 0.8s step-end infinite',
             'float': 'float 20s infinite ease-in-out',
           },
@@ -118,10 +118,10 @@
     </div>
   </div>
 
-  <!-- Hero Section -->
+  <!-- Hero Section – now appears laser-fast -->
   <section id="hero" class="min-h-screen relative flex items-center justify-center overflow-hidden">
     <div class="particle-bg" id="particles"></div>
-    <div class="text-center z-10 px-6" data-aos="fade-up" data-aos-duration="1400">
+    <div class="text-center z-10 px-6">
       <img 
         src="profile.jpg" 
         alt="Emmanuel - UNZA Networking & Information Security Student" 
@@ -185,14 +185,8 @@
         <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary/30"></div>
         <div class="space-y-16">
           <div class="flex items-center justify-between flex-row-reverse md:flex-row">
-            <div class="w-5/12 text-right md:text-left">
-              <p class="text-xl font-bold">2025</p>
-              <p>CCNA Certification</p>
-            </div>
-            <div class="w-5/12">
-              <p class="text-xl font-bold">2023–Present</p>
-              <p>UNZA B.Sc. Computer Science – Networking & InfoSec Major</p>
-            </div>
+            <div class="w-5/12 text-right md:text-left"><p class="text-xl font-bold">2025</p><p>CCNA Certification</p></div>
+            <div class="w-5/12"><p class="text-xl font-bold">2023–Present</p><p>UNZA B.Sc. Computer Science – Networking & InfoSec Major</p></div>
           </div>
         </div>
       </div>
@@ -350,21 +344,19 @@
   </footer>
 
   <script>
-    // Loading screen + force scroll to top fix
+    // Loading screen hide (\~1 second total) + force scroll to top
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('loader').style.opacity = '0';
         setTimeout(() => {
           document.getElementById('loader').style.display = 'none';
-          // Force page to start at the very top (Hero section)
           window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-          // Clean URL from any accidental hash
           history.replaceState(null, null, ' ');
         }, 300);
       }, 700);
     });
 
-    // Particles background
+    // Particles
     const particles = document.getElementById('particles');
     for (let i = 0; i < 60; i++) {
       const p = document.createElement('div');
@@ -377,12 +369,12 @@
       particles.appendChild(p);
     }
 
-    // Dark/light mode toggle
+    // Theme toggle
     document.getElementById('theme-toggle').addEventListener('click', () => {
       document.documentElement.classList.toggle('dark');
     });
 
-    // Animated counters
+    // Counters
     const counters = document.querySelectorAll('.counter');
     const observer = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
@@ -404,8 +396,8 @@
     }, { threshold: 0.4 });
     observer.observe(document.getElementById('stats') || document.body);
 
-    // Initialize AOS
-    AOS.init({ duration: 1000, once: true, easing: 'ease-out-cubic' });
+    // AOS – shorter duration for snappier feel overall
+    AOS.init({ duration: 800, once: true, easing: 'ease-out-cubic' });
   </script>
 </body>
 </html>
