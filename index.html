@@ -3,258 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emmanuel Ngulube | Network Engineer</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+<title>Emmanuel Ngulube | Network Engineering Intern</title>
+<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
 --primary:#0f172a;
 --accent:#2563eb;
---light:#f4f6f9;
---dark:#0b1220;
+--bg:#f1f5f9;
+--dark-bg:#0b1220;
 --card:#ffffff;
 --dark-card:#1e293b;
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-scroll-behavior:smooth;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;scroll-behavior:smooth;}
+body{background:var(--bg);color:#111;transition:0.4s;}
+.dark{background:var(--dark-bg);color:white;}
 
-body{
-background:var(--light);
-color:#111;
-transition:0.4s;
-}
+nav{position:fixed;width:100%;top:0;background:var(--primary);padding:15px 40px;display:flex;justify-content:space-between;align-items:center;z-index:1000;}
+nav a{color:white;text-decoration:none;margin-left:20px;font-size:14px;}
+nav a:hover{color:var(--accent);}
+.toggle{cursor:pointer;background:var(--accent);padding:5px 12px;border-radius:20px;font-size:12px;color:white;}
 
-.dark{
-background:var(--dark);
-color:#fff;
-}
+section{padding:100px 20px;max-width:1100px;margin:auto;}
+h2,h3{margin-bottom:20px;}
+.btn{display:inline-block;background:var(--accent);color:white;padding:10px 20px;border-radius:5px;text-decoration:none;margin-top:10px;}
+.card{background:var(--card);padding:25px;border-radius:10px;margin-bottom:20px;box-shadow:0 4px 12px rgba(0,0,0,0.08);opacity:0;transform:translateY(30px);transition:0.6s;}
+.dark .card{background:var(--dark-card);}
+.card.show{opacity:1;transform:translateY(0);}
+.skill{margin-bottom:15px;}
+.progress{background:#ddd;border-radius:20px;overflow:hidden;height:10px;margin-top:5px;}
+.bar{height:10px;background:var(--accent);width:0;transition:1.5s;}
+footer{background:var(--primary);color:white;text-align:center;padding:20px;margin-top:40px;}
 
-nav{
-position:fixed;
-width:100%;
-top:0;
-background:rgba(15,23,42,0.95);
-padding:15px 40px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-z-index:1000;
-}
+/* Hero Section */
+#hero{padding:140px 20px 80px;text-align:center;color:white;background:linear-gradient(135deg,#0f172a,#1e293b);}
+#hero img{width:160px;height:160px;border-radius:50%;border:4px solid var(--accent);margin-bottom:20px;object-fit:cover;}
 
-nav a{
-color:white;
-text-decoration:none;
-margin-left:20px;
-font-size:14px;
-}
-
-.toggle{
-cursor:pointer;
-background:var(--accent);
-padding:5px 12px;
-border-radius:20px;
-font-size:12px;
-color:white;
-}
-
-header{
-padding:140px 20px 80px;
-text-align:center;
-background:linear-gradient(135deg,#0f172a,#1e293b);
-color:white;
-}
-
-header img{
-width:160px;
-height:160px;
-border-radius:50%;
-border:4px solid var(--accent);
-margin-bottom:20px;
-object-fit:cover;
-}
-
-header h1{
-font-size:36px;
-}
-
-header h2{
-color:var(--accent);
-font-weight:400;
-margin:5px 0 15px;
-}
-
-.btn{
-display:inline-block;
-margin:8px;
-padding:10px 20px;
-background:var(--accent);
-color:white;
-text-decoration:none;
-border-radius:5px;
-font-weight:600;
-}
-
-section{
-max-width:1000px;
-margin:auto;
-padding:80px 20px;
-}
-
-h3{
-margin-bottom:30px;
-border-left:5px solid var(--accent);
-padding-left:10px;
-}
-
-.card{
-background:var(--card);
-padding:25px;
-margin-bottom:20px;
-border-radius:10px;
-box-shadow:0 6px 18px rgba(0,0,0,0.08);
-transition:0.4s;
-opacity:0;
-transform:translateY(40px);
-}
-
-.dark .card{
-background:var(--dark-card);
-}
-
-.card.show{
-opacity:1;
-transform:translateY(0);
-}
-
-.skill{
-margin-bottom:15px;
-}
-
-.progress{
-background:#ddd;
-border-radius:20px;
-overflow:hidden;
-}
-
-.progress-bar{
-height:10px;
-background:var(--accent);
-width:0;
-transition:1.5s;
-}
-
-footer{
-text-align:center;
-padding:30px;
-background:#0f172a;
-color:white;
-}
-
-@media(max-width:768px){
-nav{flex-direction:column;}
-header h1{font-size:26px;}
-}
+/* Animated Network Background */
+#network-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden;background:#0f172a;}
+.node{position:absolute;width:6px;height:6px;background:#2563eb;border-radius:50%;animation:move 10s infinite linear;}
+@keyframes move{from{transform:translateY(0);}to{transform:translateY(100vh);}}
 </style>
 </head>
-
 <body>
 
+<div id="network-bg"></div>
+
 <nav>
-<div><strong>EN</strong></div>
+<div><strong>Emmanuel Ngulube</strong></div>
 <div>
+<a href="#hero">Home</a>
 <a href="#about">About</a>
 <a href="#skills">Skills</a>
 <a href="#projects">Projects</a>
-<a href="#education">Education</a>
+<a href="#network">Network Diagram</a>
 <a href="#certifications">Certifications</a>
 <a href="#contact">Contact</a>
 <span class="toggle" onclick="toggleMode()">Mode</span>
 </div>
 </nav>
 
-<header>
+<!-- HERO -->
+<section id="hero">
 <img src="profile.jpg" alt="Emmanuel Ngulube">
-<h1>EMMANUEL NGULUBE</h1>
-<h2>Network Engineer | Infrastructure & Routing Specialist</h2>
-<p>
-Final-year Computer Science student specializing in network engineering, routing & switching,
-enterprise infrastructure design, and network performance optimization.
-</p>
+<h1>Network Engineering Intern | CCNA Certified</h1>
+<p>Final-year Computer Science student at the University of Zambia specializing in Network Engineering, Routing & Switching, TCP/IP configuration, and Enterprise LAN/WAN Infrastructure Design. Seeking internship opportunities in Zambia within telecoms, ISP infrastructure, banking IT departments, and enterprise networks.</p>
 <a href="Emmanuel_Ngulube_CV.pdf" class="btn" download>Download CV</a>
-<a href="mailto:Emmanuel.ngulube@cs.unza.zm" class="btn">Contact Me</a>
-</header>
+</section>
 
+<!-- ABOUT -->
 <section id="about">
-<h3>Professional Profile</h3>
+<h2>About Me</h2>
 <div class="card">
-I am a fourth-year Computer Science student at the University of Zambia (UNZA), specializing in Network and Information Security with a strong focus on network engineering. I have hands-on experience in routing and switching, network segmentation, IP addressing, and enterprise network simulation. My goal is to design, implement, and maintain reliable and scalable network infrastructures.
+I am a fourth-year Computer Science student at the University of Zambia (UNZA), specializing in Network and Information Security with strong focus on Network Engineering. My expertise includes routing & switching, IP addressing, VLAN configuration, LAN/WAN design, and enterprise network simulation.
 </div>
 </section>
 
+<!-- SKILLS -->
 <section id="skills">
-<h3>Core Competencies</h3>
+<h2>Technical Skills</h2>
 <div class="card">
-<div class="skill">Routing & Switching<div class="progress"><div class="progress-bar" style="width:90%"></div></div></div>
-<div class="skill">TCP/IP & Subnetting<div class="progress"><div class="progress-bar" style="width:95%"></div></div></div>
-<div class="skill">VLAN & Network Segmentation<div class="progress"><div class="progress-bar" style="width:85%"></div></div></div>
-<div class="skill">Network Troubleshooting<div class="progress"><div class="progress-bar" style="width:90%"></div></div></div>
-<div class="skill">Linux & Server Administration<div class="progress"><div class="progress-bar" style="width:80%"></div></div></div>
+Routing & Switching<div class="progress"><div class="bar" style="width:90%"></div></div>
+</div>
+<div class="card">
+TCP/IP & Subnetting<div class="progress"><div class="bar" style="width:95%"></div></div>
+</div>
+<div class="card">
+VLAN Configuration<div class="progress"><div class="bar" style="width:85%"></div></div>
+</div>
+<div class="card">
+Network Troubleshooting<div class="progress"><div class="bar" style="width:90%"></div></div>
+</div>
+<div class="card">
+Linux & Server Administration<div class="progress"><div class="bar" style="width:80%"></div></div>
 </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects">
-<h3>Networking Projects</h3>
-
+<h2>Networking Projects</h2>
 <div class="card">
-<h4>Enterprise LAN/WAN Design</h4>
-Designed a scalable enterprise LAN and WAN topology implementing VLANs, inter-VLAN routing, and dynamic routing protocols using Cisco Packet Tracer.
+Enterprise LAN/WAN Design using VLANs and dynamic routing protocols.
 </div>
-
 <div class="card">
-<h4>IP Addressing & Subnet Optimization Project</h4>
-Developed efficient subnetting strategies to optimize IP allocation and reduce broadcast domains within a simulated enterprise network.
+IP Addressing Optimization and Subnetting Project.
 </div>
-
 <div class="card">
-<h4>Network Performance Monitoring</h4>
-Captured and analyzed traffic using Wireshark to diagnose latency, congestion, and packet loss issues.
+Network Traffic Analysis using Wireshark.
 </div>
-
 <div class="card">
-<h4>Virtual Network Lab Implementation</h4>
-Built and configured virtualized network environments using VirtualBox and Linux servers to simulate real-world network scenarios.
-</div>
-
-</section>
-
-<section id="education">
-<h3>Education</h3>
-<div class="card">
-<strong>University of Zambia (UNZA)</strong><br>
-Bachelor of Science in Computer Science<br>
-Major: Network & Information Security<br>
-Fourth Year Student
+Virtual Network Lab using VirtualBox and Linux Servers.
 </div>
 </section>
 
+<!-- NETWORK DIAGRAMS -->
+<section id="network">
+<h2>Network Architecture</h2>
+<div class="card">
+<h3>Enterprise LAN Design</h3>
+<img src="lan-diagram.png" width="100%">
+<p>Segmented VLAN-based LAN with inter-VLAN routing and centralized core switch configuration.</p>
+</div>
+<div class="card">
+<h3>WAN Topology Simulation</h3>
+<img src="wan-diagram.png" width="100%">
+<p>Simulated WAN connectivity using dynamic routing protocols to ensure redundancy and scalability.</p>
+</div>
+</section>
+
+<!-- CERTIFICATIONS -->
 <section id="certifications">
-<h3>Certifications</h3>
+<h2>Certifications</h2>
 <div class="card">
-• Cisco Certified Network Associate (CCNA)<br>
-• Advanced Networking Labs & Simulations<br>
-• Continuous Professional Development in Network Engineering
+Cisco Certified Network Associate (CCNA)
+</div>
+<div class="card">
+Practical Networking Labs & Simulations
+</div>
+<div class="card">
+Zambian ISP & Enterprise Network Preparedness Training
 </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
-<h3>Contact</h3>
+<h2>Contact</h2>
 <div class="card">
 📞 +260 979 236 667<br>
 📧 Emmanuel.ngulube@cs.unza.zm<br>
@@ -265,23 +158,31 @@ Fourth Year Student
 </section>
 
 <footer>
-© 2026 Emmanuel Ngulube | Network Engineer
+© 2026 Emmanuel Ngulube | Network Engineering Portfolio
 </footer>
 
 <script>
-function toggleMode(){
-document.body.classList.toggle("dark");
-}
+// Dark Mode Toggle
+function toggleMode(){document.body.classList.toggle("dark");}
 
-const cards=document.querySelectorAll('.card');
-window.addEventListener('scroll',()=>{
+// Animate cards on scroll
+const cards=document.querySelectorAll(".card");
+window.addEventListener("scroll",()=>{
 cards.forEach(card=>{
 const top=card.getBoundingClientRect().top;
-if(top<window.innerHeight-100){
-card.classList.add('show');
+if(top<window.innerHeight-100){card.classList.add("show");}
+});
+});
+
+// Animated network nodes
+const bg=document.getElementById("network-bg");
+for(let i=0;i<40;i++){
+let node=document.createElement("div");
+node.className="node";
+node.style.left=Math.random()*100+"vw";
+node.style.animationDuration=(5+Math.random()*10)+"s";
+bg.appendChild(node);
 }
-});
-});
 </script>
 
 </body>
