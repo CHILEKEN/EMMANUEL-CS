@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <!-- ^ Allows controlled zoom (up to 5×) while preventing wild browser behavior -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NGULUBE EMMANUEL | Network Engineering Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 Free CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEWWZJ2b5Z8z9p9e6q0b3W5z2j3z5Y8z9p9e6q0b3" crossorigin="anonymous">
     <style>
         :root {
@@ -22,8 +22,9 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
         
-        body { background: var(--dark-bg); color: var(--text-main); overflow-x: hidden; line-height: 1.6; width: 100%; touch-action: pan-y; }
+        body { background: var(--dark-bg); color: var(--text-main); overflow-x: hidden; line-height: 1.6; width: 100%; }
 
+        /* Background Grid */
         .bg-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
@@ -33,7 +34,7 @@
             background-size: clamp(40px, 5vw, 60px) clamp(40px, 5vw, 60px);
         }
 
-        /* Navigation - your existing nav styles here (hamburger, sidebar, etc.) */
+        /* Navigation */
         nav { 
             position: fixed; width: 100%; top: 0; background: rgba(2, 6, 23, 0.98); 
             backdrop-filter: blur(15px); padding: 15px clamp(15px, 5%, 50px); 
@@ -41,30 +42,126 @@
             z-index: 1000; border-bottom: 2px solid var(--accent); 
         }
 
-        /* ... keep all your existing nav, hamburger, sidebar-menu, backdrop, etc. styles ... */
+        .welcome-msg {
+            font-size: clamp(1rem, 2vw, 1.4rem); font-weight: 900; letter-spacing: 4px; color: var(--accent-light);
+            text-shadow: 0 0 15px var(--accent);
+        }
 
-        /* Hero section - make profile image pinch-zoomable */
-        #hero { text-align: center; padding: clamp(120px, 15vh, 200px) 20px clamp(40px, 8vh, 80px); position: relative; }
-
-        .profile-container {
+        /* Hamburger & Menu Container */
+        .nav-container {
             position: relative;
-            display: inline-block;
-            margin: 20px auto;
-            touch-action: none; /* Let JS handle gestures completely */
         }
 
-        #profile-img {
-            width: clamp(140px, 25vw, 180px); 
-            height: clamp(140px, 25vw, 180px); 
-            border-radius: 50%; 
-            border: 4px solid var(--accent); 
-            object-fit: cover;
-            box-shadow: 0 0 20px rgba(0, 176, 28, 0.3);
-            transition: transform 0.12s ease-out;
-            will-change: transform;
+        .menu-toggle {
+            display: none;
         }
 
-        /* Your other styles (status-badge, user-name, hero-title, hero-bio, cards, progress bars, skills icons, btn, footer, etc.) remain unchanged */
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--accent-light);
+            cursor: pointer;
+            padding: 10px;
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        .hamburger i::before {
+            transition: all 0.3s;
+        }
+
+        /* Mobile Sidebar Menu */
+        .sidebar-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 80%;
+            max-width: 300px;
+            background: rgba(2, 6, 23, 0.98);
+            backdrop-filter: blur(15px);
+            border-right: 3px solid var(--accent);
+            box-shadow: 5px 0 20px rgba(0, 176, 28, 0.3);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease-out;
+            z-index: 999;
+            padding-top: 80px; /* space below nav height */
+            overflow-y: auto;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 20px 30px;
+            border-bottom: 1px solid rgba(34, 197, 94, 0.2);
+            transition: background 0.3s, padding-left 0.3s;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a:focus {
+            background: rgba(34, 197, 94, 0.15);
+            padding-left: 40px;
+        }
+
+        /* Backdrop overlay */
+        .menu-backdrop {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease;
+            z-index: 998;
+        }
+
+        /* When open */
+        .menu-toggle:checked \~ .sidebar-menu {
+            transform: translateX(0);
+        }
+
+        .menu-toggle:checked \~ .menu-backdrop {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hamburger to X */
+        .menu-toggle:checked + .hamburger i::before {
+            content: "\f00d"; /* fa-times */
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none; /* hide original horizontal links on mobile */
+            }
+        }
+
+        @media (min-width: 769px) {
+            .sidebar-menu, .hamburger, .menu-backdrop {
+                display: none !important;
+            }
+            .nav-links {
+                display: flex !important;
+            }
+        }
+
+        /* HERO SECTION */
+        #hero { text-align: center; padding: clamp(120px, 15vh, 200px) 20px clamp(40px, 8vh, 80px); }
+        
+        /* ... (rest of your existing styles for status-badge, profile, typography, cards, progress, btn, footer, skill-icon, etc. remain unchanged) ... */
+
+        /* Keep your existing media queries and other styles */
+        @media (max-width: 600px) {
+            h2 { letter-spacing: 2px; }
+            .user-name { letter-spacing: 2px; -webkit-text-stroke: 0px; }
+            .skill-icon { font-size: 1.4rem; margin-right: 10px; }
+        }
     </style>
 </head>
 <body>
@@ -72,15 +169,47 @@
 <div class="bg-container"></div>
 
 <nav>
-    <!-- Your full navigation code here (hamburger, sidebar-menu, backdrop, etc.) – unchanged -->
+    <div class="welcome-msg">WELCOME</div>
+    
+    <div class="nav-container">
+        <!-- Checkbox trigger -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        
+        <!-- Hamburger label -->
+        <label for="menu-toggle" class="hamburger" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i>
+        </label>
+
+        <!-- Original desktop links (hidden on mobile) -->
+        <div class="nav-links">
+            <a href="#hero">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <!-- Slide-in sidebar for mobile -->
+        <div class="sidebar-menu">
+            <a href="#hero">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <!-- Clickable backdrop to close -->
+        <label for="menu-toggle" class="menu-backdrop"></label>
+    </div>
 </nav>
 
 <main>
+    <!-- Your existing main content: hero, about, education, skills, projects, contact -->
     <section id="hero">
         <div class="status-badge"><span class="red-dot"></span>OPEN FOR INTERNSHIPS</div>
         <br>
         <div class="profile-container">
-            <img id="profile-img" src="profile.jpg" alt="NGULUBE EMMANUEL">
+            <img src="profile.jpg" alt="NGULUBE EMMANUEL">
         </div>
         <span class="user-name">NGULUBE EMMANUEL</span>
         <div class="hero-title">Network Engineer Intern</div>
@@ -94,7 +223,7 @@
         </div>
     </section>
 
-    <!-- Your other sections (about, education, skills, projects, contact) unchanged -->
+    <!-- ... rest of sections unchanged ... -->
 
 </main>
 
@@ -103,124 +232,19 @@
 </footer>
 
 <script>
-// Your existing scroll visibility script
-function checkVisibility() {
-    const cards = document.querySelectorAll(".card");
-    cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 50) {
-            card.classList.add("show");
-            const bar = card.querySelector(".bar");
-            if (bar) bar.style.width = bar.getAttribute("data-width");
-        }
-    });
-}
-window.addEventListener("scroll", checkVisibility);
-window.addEventListener("load", checkVisibility);
-
-// === Pinch-to-Zoom + Pan on Profile Image ===
-document.addEventListener('DOMContentLoaded', () => {
-    const img = document.getElementById('profile-img');
-    if (!img) return;
-
-    let scale = 1;
-    let minScale = 1;
-    let maxScale = 4;
-    let originX = 0;
-    let originY = 0;
-    let lastScale = 1;
-    let lastOriginX = 0;
-    let lastOriginY = 0;
-    let panning = false;
-    let start = { x: 0, y: 0 };
-
-    const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
-
-    const updateTransform = () => {
-        img.style.transform = `scale(\( {scale}) translate( \){originX}px, ${originY}px)`;
-        img.style.transformOrigin = '0 0';
-    };
-
-    // Double-tap to reset
-    let lastTap = 0;
-    img.addEventListener('touchend', e => {
-        const currentTime = new Date().getTime();
-        const tapLength = currentTime - lastTap;
-        if (tapLength < 500 && tapLength > 0) {
-            scale = 1;
-            originX = 0;
-            originY = 0;
-            updateTransform();
-            e.preventDefault();
-        }
-        lastTap = currentTime;
-    });
-
-    // Pinch + Pan
-    img.addEventListener('touchstart', e => {
-        if (e.touches.length === 2) {
-            // Pinch start
-            const touch1 = e.touches[0];
-            const touch2 = e.touches[1];
-            lastScale = scale;
-            const midX = (touch1.pageX + touch2.pageX) / 2 - img.offsetLeft;
-            const midY = (touch1.pageY + touch2.pageY) / 2 - img.offsetTop;
-            originX = (midX - originX) / scale;
-            originY = (midY - originY) / scale;
-            lastOriginX = originX;
-            lastOriginY = originY;
-            e.preventDefault();
-        } else if (e.touches.length === 1 && scale > 1) {
-            // Pan start when zoomed
-            panning = true;
-            start.x = e.touches[0].clientX - originX;
-            start.y = e.touches[0].clientY - originY;
-            e.preventDefault();
-        }
-    }, { passive: false });
-
-    img.addEventListener('touchmove', e => {
-        if (e.touches.length === 2) {
-            // Pinch zoom
-            const touch1 = e.touches[0];
-            const touch2 = e.touches[1];
-            const currentDist = Math.hypot(
-                touch2.pageX - touch1.pageX,
-                touch2.pageY - touch1.pageY
-            );
-            const initialDist = Math.hypot(
-                touch2.pageX - touch1.pageX, // recalculate initial on move isn't perfect, but good enough
-                touch2.pageY - touch1.pageY
-            ); // Note: better to store initialDist on touchstart
-
-            // For simplicity we use ratio from last known
-            const deltaScale = currentDist / (touch1.clientX - touch2.clientX ? 100 : 1); // fallback
-            scale = clamp(lastScale * (currentDist / initialDist || 1), minScale, maxScale);
-
-            // Adjust origin to zoom toward pinch center
-            const midX = (touch1.pageX + touch2.pageX) / 2 - img.offsetLeft;
-            const midY = (touch1.pageY + touch2.pageY) / 2 - img.offsetTop;
-            originX = midX - (midX - lastOriginX * lastScale) * (scale / lastScale);
-            originY = midY - (midY - lastOriginY * lastScale) * (scale / lastScale);
-
-            updateTransform();
-            e.preventDefault();
-        } else if (panning && e.touches.length === 1) {
-            // Pan while zoomed
-            originX = e.touches[0].clientX - start.x;
-            originY = e.touches[0].clientY - start.y;
-            updateTransform();
-            e.preventDefault();
-        }
-    }, { passive: false });
-
-    img.addEventListener('touchend', () => {
-        panning = false;
-        lastScale = scale;
-        lastOriginX = originX;
-        lastOriginY = originY;
-    });
-});
+    function checkVisibility() {
+        const cards = document.querySelectorAll(".card");
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 50) {
+                card.classList.add("show");
+                const bar = card.querySelector(".bar");
+                if (bar) bar.style.width = bar.getAttribute("data-width");
+            }
+        });
+    }
+    window.addEventListener("scroll", checkVisibility);
+    window.addEventListener("load", checkVisibility);
 </script>
 </body>
 </html>
