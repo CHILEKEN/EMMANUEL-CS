@@ -7,13 +7,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0f172a;
+            --primary: #0f172a; /* Deep Navy for Light Mode Headings */
             --accent: #2563eb;
             --accent-light: #0ea5e9;
             --bg: #f1f5f9;
             --dark-bg: #0b1220;
             --card: #ffffff;
-            --card-text: #111111;
+            --card-text: #1e293b;
             --dark-card: rgba(30, 41, 59, 0.95);
             --dark-card-text: #f1f5f9;
             --divider: linear-gradient(90deg, var(--accent), var(--accent-light));
@@ -29,29 +29,27 @@
         .node { position: absolute; background: var(--accent-light); border-radius: 50%; opacity: 0.3; pointer-events: none; }
 
         /* Navigation */
-        nav { position: fixed; width: 100%; top: 0; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); transition: 0.3s; }
+        nav { position: fixed; width: 100%; top: 0; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); transition: 0.3s; }
         nav.scrolled { padding: 10px 30px; background: rgba(15, 23, 42, 0.98); }
         nav strong { color: white; letter-spacing: 0.5px; font-size: 1.2rem; }
-        nav .nav-links { display: flex; align-items: center; }
         nav a { color: rgba(255,255,255,0.8); text-decoration: none; margin-left: 20px; font-size: 14px; transition: 0.3s; font-weight: 500; }
         nav a:hover, nav a.active { color: var(--accent-light); }
         .toggle { cursor: pointer; background: var(--accent); padding: 6px 15px; border-radius: 20px; font-size: 12px; color: white; transition: 0.3s; margin-left: 15px; border: 1px solid transparent; }
-        .toggle:hover { background: transparent; border-color: var(--accent); }
 
         /* Main Content */
         main { max-width: 900px; margin: auto; padding: 0 20px; }
         section { padding: 100px 0; scroll-margin-top: 80px; }
-        h2 { font-size: 32px; margin-bottom: 24px; position: relative; color: var(--primary); }
-        .dark h2 { color: var(--dark-card-text); }
+        
+        /* VISIBILITY FIX: Heading colors */
+        h2 { font-size: 32px; margin-bottom: 24px; position: relative; color: #0f172a !important; font-weight: 700; }
+        .dark h2 { color: #f1f5f9 !important; }
         h2::after { content: ""; display: block; width: 60px; height: 4px; background: var(--divider); border-radius: 2px; margin-top: 8px; }
 
         /* Hero Section */
         #hero { text-align: center; padding-top: 150px; }
-        #hero img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--accent); margin-bottom: 25px; object-fit: cover; box-shadow: 0 0 20px rgba(37, 99, 235, 0.4); transition: 0.5s; }
-        #hero img:hover { transform: rotate(5deg) scale(1.05); }
+        #hero img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--accent); margin-bottom: 25px; object-fit: cover; box-shadow: 0 0 20px rgba(37, 99, 235, 0.4); }
         #hero h1 { font-size: 3rem; margin-bottom: 15px; background: linear-gradient(90deg, #fff, var(--accent-light), #fff); background-size: 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 8s linear infinite; }
         #hero p { font-size: 1.1rem; color: #cbd5e1; max-width: 700px; margin: 0 auto 30px; }
-
         @keyframes gradientMove { 0% { background-position: 0%; } 100% { background-position: 200%; } }
 
         /* Buttons */
@@ -59,35 +57,26 @@
         .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3); }
 
         /* Cards */
-        .card { background: var(--card); padding: 25px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05); opacity: 0; transform: translateY(30px); transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+        .card { background: var(--card); padding: 25px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.05); opacity: 0; transform: translateY(30px); transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1); color: var(--card-text); }
         .dark .card { background: var(--dark-card); color: var(--dark-card-text); border-color: rgba(255,255,255,0.05); }
         .card.show { opacity: 1; transform: translateY(0); }
-        .card:hover { border-color: var(--accent); }
-        .card h3 { margin-bottom: 10px; color: var(--accent-light); }
-        .card ul { padding-left: 20px; margin-top: 10px; }
-        .card li { margin-bottom: 5px; font-size: 14px; opacity: 0.9; }
+        .card h3 { margin-bottom: 10px; color: var(--accent); }
+        .dark .card h3 { color: var(--accent-light); }
 
         /* Skills/Progress */
-        .skill-label { display: flex; justify-content: space-between; font-weight: 600; font-size: 14px; }
+        .skill-label { display: flex; justify-content: space-between; font-weight: 600; font-size: 14px; color: inherit; }
         .progress { background: rgba(0,0,0,0.1); border-radius: 20px; overflow: hidden; height: 8px; margin: 8px 0 20px; }
         .dark .progress { background: rgba(255,255,255,0.1); }
-        .bar { height: 100%; background: var(--divider); width: 0; transition: 1.5s cubic-bezier(0.1, 0, 0.2, 1); }
-
-        /* Contact Details */
-        .contact-grid { display: grid; gap: 15px; margin-bottom: 20px; }
-        .social-links { display: flex; gap: 15px; }
+        .bar { height: 100%; background: var(--divider); width: 0; transition: 1.5s ease-out; }
 
         /* Footer & Back to Top */
-        footer { padding: 50px 20px; text-align: center; color: #64748b; font-size: 14px; border-top: 1px solid rgba(255,255,255,0.05); }
+        footer { padding: 50px 20px; text-align: center; color: #64748b; font-size: 14px; border-top: 1px solid rgba(0,0,0,0.05); }
         #backTop { position: fixed; bottom: 25px; right: 25px; background: var(--accent); color: white; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; transition: 0.3s; opacity: 0; visibility: hidden; z-index: 100; font-weight: bold; }
         #backTop.visible { opacity: 1; visibility: visible; }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            nav { padding: 15px 20px; }
             #hero h1 { font-size: 2.2rem; }
             nav a { margin-left: 10px; font-size: 12px; }
-            .nav-links { display: flex; align-items: center; }
         }
     </style>
 </head>
@@ -98,7 +87,7 @@
 <nav id="navbar">
     <div><strong>E.N</strong></div>
     <div class="nav-links">
-        <a href="#hero" class="active">Home</a>
+        <a href="#hero">Home</a>
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
@@ -111,90 +100,57 @@
     <section id="hero">
         <img src="profile.jpg" alt="Emmanuel Ngulube">
         <h1>Network Engineer Intern</h1>
-        <p>Final-year Computer Science student at <strong>UNZA</strong>. CCNA Certified specialist focusing on Enterprise Infrastructure, Routing/Switching, and Network Security.</p>
+        <p>Final-year Computer Science student at <strong>UNZA</strong>. CCNA Certified specialist focusing on Enterprise Infrastructure and Network Security.</p>
         <a href="cv.pdf" class="btn" download>Download CV</a>
     </section>
 
     <section id="about">
         <h2>About Me</h2>
         <div class="card">
-            I am a results-driven fourth-year student at the University of Zambia. My expertise lies in designing robust LAN/WAN architectures and troubleshooting complex network issues. I am passionate about optimizing data flow and securing enterprise infrastructures for the Zambian ISP and banking sectors.
+            I am a results-driven fourth-year student at the University of Zambia. My expertise lies in designing robust LAN/WAN architectures and troubleshooting complex network issues. I am passionate about optimizing data flow for the Zambian ISP and banking sectors.
         </div>
     </section>
 
     <section id="skills">
         <h2>Technical Skills</h2>
         <div class="card">
-            <div class="skill-label"><span>Routing & Switching (OSPF, EIGRP, BGP)</span><span>90%</span></div>
+            <div class="skill-label"><span>Routing & Switching (OSPF, BGP)</span><span>90%</span></div>
             <div class="progress"><div class="bar" data-width="90%"></div></div>
 
             <div class="skill-label"><span>TCP/IP & VLSM Subnetting</span><span>95%</span></div>
             <div class="progress"><div class="bar" data-width="95%"></div></div>
 
-            <div class="skill-label"><span>VLANs, STP & Trunking</span><span>85%</span></div>
+            <div class="skill-label"><span>VLANs & Trunking</span><span>85%</span></div>
             <div class="progress"><div class="bar" data-width="85%"></div></div>
 
-            <div class="skill-label"><span>Network Troubleshooting (Wireshark)</span><span>90%</span></div>
+            <div class="skill-label"><span>Wireshark Analysis</span><span>90%</span></div>
             <div class="progress"><div class="bar" data-width="90%"></div></div>
-
-            <div class="skill-label"><span>Linux Administration</span><span>80%</span></div>
-            <div class="progress"><div class="bar" data-width="80%"></div></div>
         </div>
     </section>
 
     <section id="projects">
         <h2>Networking Projects</h2>
-        
         <div class="card">
-            <h3>Enterprise LAN/WAN Infrastructure Design</h3>
-            <p>Simulated a multi-site enterprise network in <strong>GNS3</strong>.</p>
-            <ul>
-                <li>Implemented <strong>802.1Q VLAN Trunking</strong> and Router-on-a-Stick routing.</li>
-                <li>Configured <strong>OSPFv2</strong> with area-based path optimization and neighbor authentication.</li>
-                <li>HSRP implementation for gateway redundancy and high availability.</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h3>IP Address Optimization (VLSM)</h3>
-            <p>Designed a hierarchical IP plan for 500+ host environments.</p>
-            <ul>
-                <li>Minimized IP wastage using <strong>Variable Length Subnet Masking</strong>.</li>
-                <li>Configured Dynamic NAT/PAT and DHCP relay agents for multi-segment connectivity.</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h3>Packet-Level Security Audit</h3>
-            <p>Analyzed network vulnerabilities using <strong>Wireshark</strong>.</p>
-            <ul>
-                <li>Applied <strong>Extended ACLs</strong> to secure internal server segments from unauthorized VLANs.</li>
-                <li>Mitigated Layer 2 attacks through Port Security and DHCP Snooping.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="certifications">
-        <h2>Certifications</h2>
-        <div class="card">
-            <strong>Cisco Certified Network Associate (CCNA)</strong><br>
-            <small>Cisco Networking Academy</small>
+            <h3>Enterprise LAN/WAN Design</h3>
+            <p>Simulated multi-site networks in <strong>GNS3</strong> using OSPFv2, VLAN Trunking, and HSRP redundancy.</p>
         </div>
         <div class="card">
-            <strong>ISP & Enterprise Network Preparedness</strong><br>
-            <small>Practical Labs focused on Zambian Telecom standards</small>
+            <h3>IP Optimization (VLSM)</h3>
+            <p>Designed hierarchical IP plans for 500+ hosts, utilizing NAT/PAT to minimize address wastage.</p>
+        </div>
+        <div class="card">
+            <h3>Network Security Audit</h3>
+            <p>Used <strong>Wireshark</strong> to analyze traffic and implemented Extended ACLs to secure server segments.</p>
         </div>
     </section>
 
     <section id="contact">
         <h2>Contact Me</h2>
         <div class="card">
-            <div class="contact-grid">
-                <span>📍 Lusaka, Zambia</span>
-                <span>📞 +260 979 236 667</span>
-                <span>📧 Emmanuel.ngulube@cs.unza.zm</span>
-            </div>
-            <div class="social-links">
+            <p>📍 Lusaka, Zambia</p>
+            <p>📞 +260 979 236 667</p>
+            <p>📧 Emmanuel.ngulube@cs.unza.zm</p>
+            <div style="margin-top:20px;">
                 <a href="https://github.com/CHILEKEN" target="_blank" class="btn" style="background: #333;">GitHub</a>
                 <a href="https://www.linkedin.com/in/emmanuel-ngulube" target="_blank" class="btn" style="background: #0077b5;">LinkedIn</a>
             </div>
@@ -211,13 +167,11 @@
 <script>
     function toggleMode() { document.body.classList.toggle("dark"); }
 
-    const navbar = document.getElementById("navbar");
-    const backTop = document.getElementById("backTop");
-    const cards = document.querySelectorAll(".card");
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll("nav a");
-
     window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        const backTop = document.getElementById("backTop");
+        const cards = document.querySelectorAll(".card");
+        
         if (window.scrollY > 50) {
             navbar.classList.add("scrolled");
             backTop.classList.add("visible");
@@ -225,17 +179,6 @@
             navbar.classList.remove("scrolled");
             backTop.classList.remove("visible");
         }
-
-        let current = "";
-        sections.forEach(section => {
-            if (pageYOffset >= section.offsetTop - 150) {
-                current = section.getAttribute("id");
-            }
-        });
-        navLinks.forEach(a => {
-            a.classList.remove("active");
-            if (a.getAttribute("href") === `#${current}`) a.classList.add("active");
-        });
 
         cards.forEach(card => {
             if (card.getBoundingClientRect().top < window.innerHeight - 100) {
@@ -247,25 +190,14 @@
     });
 
     const bg = document.getElementById("network-bg");
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 40; i++) {
         let node = document.createElement("div");
-        let size = Math.random() * 4 + 2;
         node.className = "node";
-        node.style.width = size + "px";
-        node.style.height = size + "px";
+        node.style.width = Math.random() * 5 + "px";
+        node.style.height = node.style.width;
         node.style.left = Math.random() * 100 + "vw";
         node.style.top = Math.random() * 100 + "vh";
-        node.style.opacity = Math.random() * 0.4;
-        
-        node.animate([
-            { transform: 'translate(0, 0)' },
-            { transform: `translate(${Math.random() * 40 - 20}px, ${Math.random() * 80 - 40}px)` }
-        ], {
-            duration: 4000 + Math.random() * 4000,
-            iterations: Infinity,
-            direction: 'alternate',
-            easing: 'ease-in-out'
-        });
+        node.animate([{ transform: 'translate(0,0)' }, { transform: `translate(${Math.random()*30}px, ${Math.random()*30}px)` }], { duration: 3000, iterations: Infinity, direction: 'alternate' });
         bg.appendChild(node);
     }
 </script>
