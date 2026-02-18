@@ -10,28 +10,21 @@
             --primary: #0f172a;
             --accent: #00b01c; 
             --accent-light: #22c55e;
+            --status-red: #ff3131; /* Cinematic Red */
             --dark-bg: #020617;
             --card-bg: #0f172a;
             --text-main: #ffffff;
             --text-dim: #cbd5e1;
             --grid-color: rgba(0, 176, 28, 0.12);
-            --glow-burst: 0 0 50px rgba(34, 197, 94, 0.9);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
         
-        body { 
-            background: var(--dark-bg); 
-            color: var(--text-main); 
-            overflow-x: hidden; 
-            line-height: 1.6; 
-            width: 100%;
-        }
+        body { background: var(--dark-bg); color: var(--text-main); overflow-x: hidden; line-height: 1.6; width: 100%; }
 
         .bg-container {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
+            top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
             background-image: 
                 linear-gradient(var(--grid-color) 1px, transparent 1px),
                 linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
@@ -39,54 +32,59 @@
         }
 
         nav { 
-            position: fixed; width: 100%; top: 0; 
-            background: rgba(2, 6, 23, 0.98); 
-            backdrop-filter: blur(15px); 
-            padding: 15px clamp(15px, 5%, 50px); 
+            position: fixed; width: 100%; top: 0; background: rgba(2, 6, 23, 0.98); 
+            backdrop-filter: blur(15px); padding: 15px clamp(15px, 5%, 50px); 
             display: flex; justify-content: space-between; align-items: center; 
-            z-index: 1000; 
-            border-bottom: 2px solid var(--accent); 
+            z-index: 1000; border-bottom: 2px solid var(--accent); 
         }
 
         .welcome-msg {
             font-size: clamp(1rem, 2vw, 1.4rem); font-weight: 900; letter-spacing: 4px; color: var(--accent-light);
             text-shadow: 0 0 15px var(--accent);
-            animation: shake 0.4s infinite alternate;
         }
-        @keyframes shake { 0% { transform: translate(1px, 1px); } 100% { transform: translate(-1px, -1px); } }
 
         .nav-links a { color: #ffffff; text-decoration: none; margin-left: clamp(10px, 2vw, 25px); font-size: clamp(12px, 1.2vw, 14px); font-weight: 700; text-transform: uppercase; }
 
-        /* HERO TYPOGRAPHY - CRISP & BLOCKY */
+        /* HERO SECTION */
         #hero { text-align: center; padding: clamp(120px, 15vh, 200px) 20px clamp(40px, 8vh, 80px); }
         
-        .user-name {
-            font-size: clamp(1.8rem, 6.5vw, 3.5rem); 
-            font-weight: 900; 
-            color: #FFFFFF; 
-            letter-spacing: clamp(3px, 1.2vw, 10px); 
-            text-transform: uppercase; 
-            display: block;
-            line-height: 1.1;
-            margin-bottom: 12px;
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
-            text-shadow: 0 0 15px rgba(34, 197, 94, 0.7);
+        /* THE RED GLOWING RING */
+        .profile-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 25px;
         }
 
         #hero img { 
             width: clamp(140px, 25vw, 180px); height: clamp(140px, 25vw, 180px); border-radius: 50%; 
-            border: 4px solid var(--accent); margin-bottom: 25px; object-fit: cover;
-            box-shadow: 0 0 20px rgba(0, 176, 28, 0.3);
+            border: 4px solid var(--status-red); object-fit: cover;
+            /* Multi-layered Red Glow */
+            box-shadow: 
+                0 0 10px var(--status-red),
+                0 0 25px rgba(255, 49, 49, 0.4),
+                0 0 50px rgba(255, 49, 49, 0.2);
+            animation: pulseRed 3s infinite ease-in-out;
+        }
+
+        @keyframes pulseRed {
+            0%, 100% { box-shadow: 0 0 15px var(--status-red), 0 0 30px rgba(255, 49, 49, 0.3); }
+            50% { box-shadow: 0 0 25px var(--status-red), 0 0 60px rgba(255, 49, 49, 0.6); transform: scale(1.02); }
+        }
+
+        .user-name {
+            font-size: clamp(1.8rem, 6.5vw, 3.5rem); font-weight: 900; color: #FFFFFF; 
+            letter-spacing: clamp(3px, 1.2vw, 10px); text-transform: uppercase; 
+            display: block; line-height: 1.1; margin-bottom: 12px;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+            text-shadow: 0 0 15px rgba(34, 197, 94, 0.7);
         }
 
         .status-badge {
-            display: inline-flex; align-items: center;
-            background: rgba(34, 197, 94, 0.15); border: 1px solid var(--accent);
-            padding: 5px 15px; border-radius: 30px;
+            display: inline-flex; align-items: center; background: rgba(34, 197, 94, 0.15); 
+            border: 1px solid var(--accent); padding: 5px 15px; border-radius: 30px;
             font-size: clamp(0.7rem, 1.5vw, 0.8rem); font-weight: 800; color: var(--accent-light);
-            margin-bottom: 15px; letter-spacing: 1px; animation: beacon 2s infinite;
+            margin-bottom: 15px; letter-spacing: 1px;
         }
-        @keyframes beacon { 0%, 100% { box-shadow: 0 0 0px var(--accent); } 50% { box-shadow: 0 0 15px var(--accent); } }
         .dot { height: 8px; width: 8px; background-color: var(--accent-light); border-radius: 50%; display: inline-block; margin-right: 8px; }
 
         .hero-title {
@@ -96,12 +94,12 @@
 
         .hero-bio {
             color: #FFFFFF; max-width: 750px; margin: 0 auto; 
-            font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 600; line-height: 1.8;
+            font-size: clamp(1.1rem, 2vw, 1.25rem); font-weight: 600; line-height: 1.8;
             background: rgba(15, 23, 42, 0.85); padding: 25px; border-radius: 12px;
             border: 1px solid rgba(34, 197, 94, 0.2);
         }
 
-        /* SECTION HEADERS - CRISP EDGE STYLE */
+        /* CONTENT STYLING */
         main { max-width: 900px; margin: auto; padding: 0 clamp(15px, 5%, 50px); }
         section { padding: clamp(40px, 10vh, 100px) 0; }
         
@@ -109,7 +107,6 @@
             font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 30px; font-weight: 900; 
             color: #ffffff; text-transform: uppercase; letter-spacing: 5px; 
             border-left: 8px solid var(--accent); padding-left: 20px;
-            text-shadow: 2px 2px 0px rgba(0, 176, 28, 0.3);
         }
 
         .card { 
@@ -118,25 +115,22 @@
             opacity: 0; transform: translateY(30px); transition: 0.6s ease-out;
         }
         .card.show { opacity: 1; transform: translateY(0); }
-        .card h3 { color: var(--accent-light); margin-bottom: 15px; font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 800; letter-spacing: 1px; }
+        .card h3 { color: var(--accent-light); margin-bottom: 15px; font-size: clamp(1.2rem, 3vw, 1.5rem); font-weight: 800; }
 
-        /* SKILLS */
         .progress { background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 12px; margin: 10px 0 25px; overflow: hidden; }
         .bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); width: 0; transition: 1.5s ease-in-out; }
 
-        /* INTERACTIVE ELEMENTS */
         .btn, .social-btn { 
             display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); 
             color: white !important; padding: 16px 35px; border-radius: 10px; 
             text-decoration: none; font-weight: 800; border: none; margin: 10px 5px; font-size: 16px;
         }
-        .btn:active, .social-btn:active { transform: scale(0.95); box-shadow: var(--glow-burst); }
 
         footer { padding: 40px 20px; text-align: center; color: #64748b; font-size: 12px; font-weight: 700; letter-spacing: 3px; border-top: 1px solid rgba(34, 197, 94, 0.1); text-transform: uppercase; }
 
         @media (max-width: 600px) {
             .nav-links { display: none; }
-            h2 { letter-spacing: 2px; border-left-width: 5px; }
+            h2 { letter-spacing: 2px; }
             .user-name { letter-spacing: 2px; -webkit-text-stroke: 0px; }
         }
     </style>
@@ -160,7 +154,9 @@
     <section id="hero">
         <div class="status-badge"><span class="dot"></span>OPEN FOR INTERNSHIPS</div>
         <br>
-        <img src="profile.jpg" alt="NGULUBE EMMANUEL">
+        <div class="profile-container">
+            <img src="profile.jpg" alt="NGULUBE EMMANUEL">
+        </div>
         <span class="user-name">NGULUBE EMMANUEL</span>
         <div class="hero-title">Network Engineer Intern</div>
         <p class="hero-bio">
@@ -176,7 +172,7 @@
     <section id="about">
         <h2>About Me</h2>
         <div class="card">
-            I am a results-driven fourth-year student at the University of Zambia. My expertise lies in designing robust <strong>LAN/WAN architectures</strong> and troubleshooting complex network issues. I am passionate about optimizing data flow for the Zambian ISP and banking sectors.
+            I am a results-driven fourth-year student at the University of Zambia. My expertise lies in designing robust <strong>LAN/WAN architectures</strong> and troubleshooting complex network issues for the Zambian ISP and banking sectors.
         </div>
     </section>
 
@@ -190,33 +186,18 @@
         <div class="card">
             <h3>B.Sc. Computer Science</h3>
             <p><strong>The University of Zambia (UNZA)</strong> | Class of 2026</p>
-            <p>Specializing in secure distributed systems and enterprise networking.</p>
         </div>
     </section>
 
     <section id="skills">
         <h2>Technical Skills</h2>
         <div class="card">
-            <p><strong>Routing & Switching</strong> (OSPF, BGP, EIGRP)</p>
+            <p><strong>Routing & Switching</strong> (OSPF, BGP)</p>
             <div class="progress"><div class="bar" data-width="90%"></div></div>
             <p><strong>TCP/IP & VLSM</strong> Subnetting Expert</p>
             <div class="progress"><div class="bar" data-width="95%"></div></div>
-            <p><strong>Network Security</strong> (ACLs, VPNs, Port Security)</p>
+            <p><strong>Network Security</strong> (ACLs, Port Security)</p>
             <div class="progress"><div class="bar" data-width="85%"></div></div>
-            <p><strong>Analysis Tools</strong> (Wireshark, GNS3, Packet Tracer)</p>
-            <div class="progress"><div class="bar" data-width="90%"></div></div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>Networking Projects</h2>
-        <div class="card">
-            <h3>Enterprise LAN/WAN Infrastructure</h3>
-            <p>Full implementation of <strong>802.1Q VLAN Trunking</strong> and <strong>OSPFv2</strong> with gateway redundancy via <strong>HSRP</strong>.</p>
-        </div>
-        <div class="card">
-            <h3>Security Audit & Hardening</h3>
-            <p>Implemented <strong>Extended ACLs</strong> and Port Security to prevent Layer 2 attacks and rogue device access.</p>
         </div>
     </section>
 
