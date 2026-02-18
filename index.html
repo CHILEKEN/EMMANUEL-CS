@@ -19,17 +19,17 @@
             --grid-color: rgba(0, 176, 28, 0.1);
         }
 
+        /* Base Styles - Preserved */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
         body { background: var(--dark-bg); color: var(--text-main); overflow-x: hidden; line-height: 1.6; padding-bottom: 60px; }
 
-        /* Background Grid */
         .bg-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
             background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
             background-size: 50px 50px;
         }
 
-        /* Navigation - Restored to your original style */
+        /* Navigation - Preserved */
         nav { 
             position: fixed; width: 100%; top: 0; background: rgba(2, 6, 23, 0.95); 
             backdrop-filter: blur(10px); padding: 15px 5%; 
@@ -42,13 +42,14 @@
         .nav-links a.active { color: var(--accent-light); }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Standard behavior restored */
+            .nav-links { display: none; } 
         }
 
-        /* Content Sections */
+        /* Layout - Preserved */
         main { max-width: 900px; margin: auto; padding: 0 5%; }
         section { padding: 120px 0 60px; min-height: 80vh; }
-        
+        h2 { font-size: 2rem; margin-bottom: 30px; font-weight: 900; letter-spacing: 5px; border-left: 8px solid var(--accent); padding-left: 20px; text-transform: uppercase;}
+
         .card { 
             background: var(--card-bg); padding: 30px; border-radius: 15px; 
             margin-bottom: 30px; border: 1px solid rgba(34, 197, 94, 0.2); 
@@ -59,17 +60,17 @@
         .progress { background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 10px; margin: 10px 0 25px; overflow: hidden; }
         .bar { height: 100%; background: var(--accent-light); width: 0; transition: 1.5s ease-in-out; }
 
-        /* Small Speaker Toggle */
+        /* Integrated Speaker Icon */
         #sound-toggle {
             position: fixed; bottom: 80px; left: 25px; z-index: 2000;
             width: 40px; height: 40px; background: rgba(15, 23, 42, 0.9);
             border: 1px solid var(--accent); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            cursor: pointer; color: var(--accent-light);
+            cursor: pointer; color: var(--accent-light); transition: 0.3s;
         }
         #sound-toggle.muted { border-color: var(--status-red); color: var(--status-red); }
 
-        /* Network Status Footer */
+        /* Integrated Network Status Footer */
         .net-footer {
             position: fixed; bottom: 0; left: 0; width: 100%; height: 50px;
             background: rgba(2, 6, 23, 0.98); border-top: 1px solid var(--accent);
@@ -78,7 +79,7 @@
             color: var(--accent-light);
         }
 
-        .btn { display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); color: white !important; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 800; margin-top: 20px; border: none; }
+        .btn { display: inline-block; background: linear-gradient(90deg, var(--accent), var(--accent-light)); color: white !important; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 800; margin-top: 20px; border: none; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -104,9 +105,9 @@
 
 <main>
     <section id="hero" style="text-align: center;">
-        <img src="profile.jpg" alt="Profile" style="width:160px; height:160px; border-radius:50%; border:4px solid var(--accent); margin-bottom:20px;">
+        <img src="profile.jpg" alt="Profile" style="width:160px; height:160px; border-radius:50%; border:4px solid var(--accent); margin-bottom:20px; object-fit: cover;">
         <h1 style="font-size:3rem; font-weight:900;">NGULUBE EMMANUEL</h1>
-        <p style="color:var(--accent-light); font-weight:800; font-size:1.2rem;">Network Engineer Intern</p>
+        <p style="color:var(--accent-light); font-weight:800; font-size:1.2rem; letter-spacing: 2px;">Network Engineer Intern</p>
         <div class="card" style="opacity:1; transform:none; margin-top:20px;">
             Final-year Computer Science student at <strong>The University of Zambia (UNZA)</strong>. CCNA Certified specialist.
         </div>
@@ -149,9 +150,9 @@
 </main>
 
 <div class="net-footer">
-    <div>STATUS: ACTIVE</div>
+    <div>NOC_STATUS: ACTIVE</div>
     <div id="sys-time">TIME: --:--:--</div>
-    <div>IP: 192.168.10.1</div>
+    <div>TERMINAL_IP: 192.168.10.1</div>
 </div>
 
 <script>
@@ -163,17 +164,22 @@
     let isMuted = false;
     let currentSection = "";
 
-    // Clock
+    // Live Clock Logic
     setInterval(() => {
         const now = new Date();
         document.getElementById('sys-time').innerText = `TIME: ${now.toLocaleTimeString('en-GB')}`;
     }, 1000);
 
-    // Audio Toggle
+    // Audio Control Logic
     toggleBtn.onclick = () => {
         isMuted = !isMuted;
         toggleBtn.classList.toggle('muted');
         icon.className = isMuted ? "fas fa-volume-mute" : "fas fa-volume-up";
+        
+        // Resume context for modern browsers
+        if(!isMuted) {
+            clickSnd.play().then(() => { clickSnd.pause(); clickSnd.currentTime = 0; });
+        }
     };
 
     function playSfx(sound) {
@@ -184,21 +190,23 @@
         }
     }
 
-    // Universal Click Sound
+    // Event Delegation for Click Sounds
     document.addEventListener('click', (e) => {
         if (e.target.tagName === 'A' || e.target.closest('.btn') || e.target.closest('#sound-toggle')) {
             playSfx(clickSnd);
         }
     });
 
-    // Observer for Cards & Scroll Sound
+    // Observer for Animations & Section Entry Sounds
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                // Section Change Detection
                 if (entry.target.tagName === 'SECTION' && entry.target.id !== currentSection) {
                     currentSection = entry.target.id;
                     playSfx(scrollSnd);
                 }
+                // Card Animations
                 if (entry.target.classList.contains('card')) {
                     entry.target.classList.add('show');
                     const bar = entry.target.querySelector('.bar');
